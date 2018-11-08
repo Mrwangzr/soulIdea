@@ -21,7 +21,7 @@
       },
       data(){
         return{
-          comName:""
+          comName:"homePage"
         }
       },
       components:{
