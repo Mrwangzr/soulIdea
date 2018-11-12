@@ -1,5 +1,7 @@
 <template>
-    <div>个人信息页</div>
+  <div>
+    用户信息页
+  </div>
 </template>
 
 <script>

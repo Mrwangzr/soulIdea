@@ -1,5 +1,6 @@
 import Vue from "vue";
 import  Vuex from "vuex";
+import newsModulesStore from "./newsModulesStore";
 import axios from "axios";
 
 Vue.use(Vuex);
@@ -19,7 +20,8 @@ const actions = {
 const Store = new Vuex.Store({
     state,
     mutations,
-    actions
+    actions,
+    newsModulesStore
 });
 
 export default Store;
