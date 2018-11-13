@@ -2,7 +2,7 @@
     <li :style="deleteSlider"
         @touchstart='touchStart'
         @touchmove='touchMove'
-        @touchend='touchEnd'>
+      >
       <div>
           <span>
             <img src="/static/image/newsPage/messagePage/logo.png" alt="">
@@ -27,28 +27,27 @@
         endX: 0,     //结束位置
         moveX: 0,   //滑动时的位置
         disX: 0,    //移动距离
-        deleteSlider: '',//滑动时的效果,使用v-bind:style="deleteSlider"
+        deleteSlider: '',//滑动时的效果,使用v-bind:style="deleteSlider",
       }
     },
     props:{
       item:Object
     },
     methods: {
-      /*touchStart(e){
+     /* touchStart(e){
         //阻止默认事件
         e.preventDefault();
         //获取起始坐标
         window.startX = e.touches[0].pageX;
       },
-      touchMove(e,index){
-         var num = index.toString();
+      touchMove(e){
          var moveEndX = e.changedTouches[0].pageX;
          var x = moveEndX - window.startX;
        if(x>30){
-          this.slideDelClass[num] = "";
+          this.slideDelClass = "";
         }
         if(x<-30){
-          this.slideDelClass[num] = "slideDel";
+          this.slideDelClass = "slideDel";
         }
       },*/
       touchStart(ev) {
@@ -64,6 +63,7 @@
         ev = ev || event;
         //获取删除按钮的宽度，此宽度为滑块左滑的最大距离
         let wd =105;
+        let wdRem = 2.1;
         if (ev.touches.length == 1) {
           // 滑动时距离浏览器左侧实时距离
           this.moveX = ev.touches[0].clientX
@@ -80,7 +80,7 @@
 
             // 最大也只能等于删除按钮宽度
             if (this.disX * 5 >= wd) {
-              this.deleteSlider = "transform:translateX(-" + wd + "px)";
+              this.deleteSlider = "transform:translateX(-" + wdRem + "rem)";
 
             }
           }
@@ -89,6 +89,7 @@
       touchEnd(ev) {
         ev = ev || event;
         let wd = 105;
+        let wdRem = 2.1;
         if (ev.changedTouches.length == 1) {
           let endX = ev.changedTouches[0].clientX;
 
@@ -100,7 +101,7 @@
             this.deleteSlider = "transform:translateX(0px)";
           } else {
             //大于一半 滑动到最大值
-            this.deleteSlider = "transform:translateX(-" + wd + "px)";
+            this.deleteSlider = "transform:translateX(-" + wdRem + "rem)";
           }
         }
       }
@@ -125,11 +126,11 @@
   }
 
   .slideDel {
-    left: -105px;
+    left: -2.1rem;
   }
 
   ul li div:nth-of-type(2) {
-    width: 100px;
+    width: 2rem;
     height: 100%;
     background: #e96262;
     float: left;
@@ -153,7 +154,7 @@
     display: flex;
     justify-content: space-between;
     float: left;
-    margin-right: 15px;
+    margin-right: 0.25rem;
   }
 
   ul li:first-of-type > div:first-of-type {

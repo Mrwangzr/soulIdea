@@ -2,7 +2,9 @@
   <div>
     <header>
       <b>聊天</b>
-      <span>添加好友</span>
+      <span>
+        <router-link to="/findNewFriendsPage">添加好友</router-link>
+      </span>
     </header>
 
     <nav>
