@@ -15,7 +15,8 @@ export default {
 		{
 			url:"../../../../static/sorksimage/samplereels/yuanquan.png",
 			name:" 释放你的想象"
-		}
-	]
+		},
+	],
+	goodsList:[]
     
 }

@@ -1,18 +1,19 @@
 <template>
-	<div class="WorksCollection">
-		<header class="worksHeader">
-			<p @click="back()"><img src="../../../../static/sorksimage/production/fanhui.png"></p>
-			<p>作品集</p>
-			<p @click="newConstruction()">建立</p>
-		</header>
-		<div class="workslist" v-for="(item,index) in productionList" @click="beautifulGo()">
-			<img :src="item.url">
-			<p>{{item.name}}</p>
+	<div>
+		<div class="WorksCollection">
+			<header class="worksHeader">
+				<p @click="back()"><img src="../../../../static/sorksimage/production/fanhui.png"></p>
+				<p>作品集</p>
+				<p @click="newConstruction()">建立</p>
+			</header>
 		</div>
+		<Tagboard-com></Tagboard-com>
 	</div>
+		
 </template>
 
 <script>
+import Tagboard from "./worksmodule/tagboard.vue"
 import Vuex from "vuex"
 export default {
 		data() {
@@ -20,21 +21,17 @@ export default {
 				
 			};
 		},
-		computed: {
-			...Vuex.mapState({
-				productionList:state=>state.production.productionList
-			})
+		components:{
+			"Tagboard-com":Tagboard
 		},
 		methods: {
-			beautifulGo(){
-				this.$router.push("/beautiful")
-			},
 			back(){
 				this.$router.back()
 			},
 			newConstruction(){
 				this.$router.push("/newConstruction")
-			}
+			},
+			
 		},
 	}
 </script>
@@ -70,24 +67,5 @@ export default {
 	width: 0.2rem;
 	height: 0.41rem;
 	}
-.workslist{
-	width: 3.26rem;
-	height: 4.4rem;
-	background:rgba(255,255,255,1);
-	box-shadow:0px 6px 7px 4px rgba(205,205,205,1);
-	border-radius:10px;
-	margin: .24rem;
-	float: left;
-}
-.workslist img{
-	width: 100%;
-}
-.workslist p{
-	margin-left: .21rem;
-	font-size:.3rem;
-	font-family:PingFang-SC-Medium;
-	font-weight:500;
-	color:#292929;
-	text-align: left;
-}
+
 </style>

@@ -1,16 +1,11 @@
 import axios from "axios"
 export default {
-    productionListGet({commit}){
-		axios({
-			method:"get",
-			url:"",
-			data:{
-				
-			}
-		}).then((data)=>{
-			
-			
-			commit("productionListGet",data)
-		})
-	}
+   getworkslist({commit}){
+	   axios({
+		   method:"get",
+		   url:"http://localhost:3000/workslist",
+	   }).then((data)=>{
+			 commit("getworkslist",data.data)
+		 })
+   }
 }

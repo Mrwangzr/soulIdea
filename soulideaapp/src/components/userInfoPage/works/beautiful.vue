@@ -1,21 +1,26 @@
 <template>
-	<div class="beautiful">
-		<header class="beautifulHeader">
-			<p @click="back()"><img src="../../../../static/sorksimage/production/fanhui.png"></p>
-			<p>最美</p>
-		</header>
-		<div class="beautifulList" @click="detailsGo()">
-			<img src="../../../../static/sorksimage/beautiful/hongjiu.png">
+
+		<div class="beautiful">
+			<header class="beautifulHeader">
+				<p @click="back()"><img src="../../../../static/sorksimage/production/fanhui.png"></p>
+				<p>{{title}}</p>
+			</header>
+			<div class="beautifulList" @click="detailsGo()">
+				<img src="../../../../static/sorksimage/beautiful/hongjiu.png">
+			</div>
+			
 		</div>
-		
-	</div>
+
 </template>
 
 <script scoped>
 	export default {
+		created(){
+			this.title = this.$route.query.name
+		},
 		data() {
 			return {
-				
+				title:""
 			};
 		},
 		methods: {
@@ -24,7 +29,9 @@
 			},
 			back(){
 				this.$router.back()
-			}
+			},
+			
+			
 		},
 	}
 </script>

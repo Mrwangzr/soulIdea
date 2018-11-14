@@ -1,0 +1,36 @@
+{
+	"workslist":[
+		{
+			"id":0,
+			"src":"./static/sorksimage/production/xiaoren.png",
+			"name":"大海啊你全是水",
+			"item":"2018/9/11",
+			"great":10086,
+			"seen":3303
+		},
+		{
+			"id":1,
+			"src":"./static/sorksimage/production/qiche.png",
+			"name":"看灰机灰过来了！",
+			"item":"2018/9/11",
+			"great":10086,
+			"seen":3303
+		},
+		{
+			"id":2,
+			"src":"./static/sorksimage/production/xiaoren.png",
+			"name":"骏马啊你四条腿",
+			"great":10086,
+			"item":"2018/9/11",
+			"seen":3303
+		},
+		{
+			"id":3,
+			"src":"./static/sorksimage/production/qiche.png",
+			"name":"看灰机灰过来了！",
+			"item":"2018/9/11",
+			"great":10086,
+			"seen":3303
+		}
+	]
+}

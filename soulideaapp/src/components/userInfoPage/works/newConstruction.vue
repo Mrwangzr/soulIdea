@@ -33,15 +33,11 @@
 			<div class="classify-con classify-con-2">
 				<div class="classify-con-big">
 					<div><p></p></div>
-					<i>摄影</i>
+					<i>PS</i>
 				</div>
 				<div class="classify-con-big">
 					<div><p></p></div>
-					<i>手绘</i>
-				</div>
-				<div class="classify-con-big">
-					<div><p></p></div>
-					<i>界面</i>
+					<i>icon</i>
 				</div>
 			</div>
 		</div>
@@ -58,7 +54,12 @@
 			return {
 				
 			};
-		}
+		},
+		methods: {
+			back(){
+				this.$router.back()
+			}
+		},
 	}
 </script>
 
@@ -175,6 +176,7 @@
 }
 .classify .classify-con-2{
 	margin-top:.53rem;
+	justify-content:space-around;
 }
 .classify .classify-con-big{
 	display: flex;

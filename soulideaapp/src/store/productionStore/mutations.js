@@ -1,5 +1,6 @@
 export default {
-    productionListGet(state,params){
-		state.productionList = params
-	}
+    getworkslist(state,params){
+		state.goodsList = params;
+		console.log(params)
+	},
 }

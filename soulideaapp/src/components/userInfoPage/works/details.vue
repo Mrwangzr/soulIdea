@@ -1,6 +1,6 @@
 <template>
 	<div class="details">
-		<div class="details-bigimg">
+		<div class="details-bigimg" @click="conceal()">
 			<img src="../../../../static/sorksimage/details/hongjiudatu.png">
 			<div class="details-L" @click="back()">
 				<img src="../../../../static/sorksimage/details/fh.png">
@@ -9,8 +9,8 @@
 				删除
 			</div>
 		</div>
-		<div class="details-mark"></div>
-		<div class="details-text">
+		<div class="details-mark" v-show="show"></div>
+		<div class="details-text" v-show="show">
 			<p>
 				在漫长的软件发展中，界面设计工作一直没有被重视
 				做界面设计的人也别贬义称为“美工”。其实软件界面设
@@ -30,12 +30,15 @@
 	export default {
 		data() {
 			return {
-				
+				show:true
 			};
 		},
 		methods: {
 			back(){
 				this.$router.back()
+			},
+			conceal(){
+				this.show = !this.show
 			}
 		},
 	}
