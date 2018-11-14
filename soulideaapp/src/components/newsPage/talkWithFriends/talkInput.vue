@@ -23,6 +23,7 @@
     align-items: center;
     bottom: 0;
     padding: 0 .25rem;
+    background: #ffffff;
   }
   input{
     width: 5.4rem;

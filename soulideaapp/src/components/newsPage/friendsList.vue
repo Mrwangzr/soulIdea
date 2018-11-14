@@ -197,11 +197,11 @@
     color: #999;
   }
 
-  .move-enter, .move-leave-to {
-    transform: translateX(100%);
+  .move-enter {
+    transform: translateX(-100%);
   }
 
-  .move-enter-active, .move-leave-active {
+  .move-enter-active {
     transition: all .3s;
   }
 </style>

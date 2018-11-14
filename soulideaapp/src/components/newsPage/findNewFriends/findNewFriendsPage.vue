@@ -1,12 +1,14 @@
 <template>
   <transition name="move">
-    <div class="all">
+    <section>
       <find-friends-header-com :titleString="'添加朋友'"></find-friends-header-com>
       <ul>
         <li>
+          <router-link to="/searchUserByNamePage">
           <span>
             <i class="iconfont icon-fangdajing"></i>昵称/点点号/手机号
           </span>
+          </router-link>
         </li>
         <li>
           <div class="list">
@@ -25,7 +27,7 @@
           </div>
         </li>
       </ul>
-    </div>
+    </section>
   </transition>
 </template>
 
@@ -63,9 +65,9 @@
     font-weight: 500;
   }
 
-  .all {
+  section {
     width: 100%;
-    height: 20rem;
+    height: 100%;
     background: #f8f8f8;
   }
 
