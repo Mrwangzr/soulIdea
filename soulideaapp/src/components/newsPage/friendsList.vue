@@ -1,5 +1,6 @@
 <template>
-    <li :style="deleteSlider"
+   <li class="line"
+        :style="deleteSlider"
         @touchstart='touchStart'
         @touchmove='touchMove'
       >
@@ -50,7 +51,7 @@
           this.slideDelClass = "slideDel";
         }
       },*/
-      touchStart(ev) {
+     touchStart(ev) {
         ev = ev || event
         //tounches类数组，等于1时表示此时有只有一只手指在触摸屏幕
 
@@ -110,14 +111,9 @@
 </script>
 <style scoped>
 
-  ul {
-    padding: 0 .24rem;
-    width: 100%;
-    position: absolute;
-    overflow: hidden;
-  }
 
-  ul li {
+
+   li {
     width: 200%;
     height: 1.31rem;
     position: relative;
@@ -129,7 +125,7 @@
     left: -2.1rem;
   }
 
-  ul li div:nth-of-type(2) {
+   li div:nth-of-type(2) {
     width: 2rem;
     height: 100%;
     background: #e96262;
@@ -141,13 +137,13 @@
     font-size: 16px;
   }
 
-  ul li div img {
+   li div img {
     width: .9rem;
     height: .9rem;
     margin-right: .26rem;
   }
 
-  ul li > div:first-of-type {
+   li > div:first-of-type {
     width: 50%;
     height: 1.31rem;
     border-bottom: 1px solid #dfdfdf;
@@ -157,51 +153,43 @@
     margin-right: 0.25rem;
   }
 
-  ul li:first-of-type > div:first-of-type {
+  li:first-of-type > div:first-of-type {
     border-top: 1px solid #dfdfdf;
   }
 
-  ul li div > span:first-of-type {
+   li div > span:first-of-type {
     display: flex;
     align-items: center;
   }
 
-  ul li div > span:first-of-type div {
+   li div > span:first-of-type div {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 0.8rem;
   }
 
-  ul li div > span:first-of-type div span {
+   li div > span:first-of-type div span {
     display: flex;
     justify-content: flex-start;
 
   }
 
-  ul li div > span:first-of-type div span:first-of-type {
+   li div > span:first-of-type div span:first-of-type {
     font-size: 14px;
     color: #292929;
   }
 
-  ul li div > span:first-of-type div span:last-of-type {
+   li div > span:first-of-type div span:last-of-type {
     font-size: 12px;
     color: #999;
   }
 
-  ul li div > b {
+   li div > b {
     font-weight: normal;
     align-self: flex-start;
     padding: 0.3rem 0.4rem 0 0;
     font-size: 12px;
     color: #999;
-  }
-
-  .move-enter {
-    transform: translateX(-100%);
-  }
-
-  .move-enter-active {
-    transition: all .3s;
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <transition name="move">
-    <section>
+    <div class="all">
       <find-friends-header-com :titleString="'添加朋友'"></find-friends-header-com>
       <ul>
         <li>
@@ -27,7 +27,7 @@
           </div>
         </li>
       </ul>
-    </section>
+    </div>
   </transition>
 </template>
 
@@ -65,7 +65,7 @@
     font-weight: 500;
   }
 
-  section {
+  .all {
     width: 100%;
     height: 100%;
     background: #f8f8f8;

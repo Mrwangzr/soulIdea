@@ -1,11 +1,11 @@
 <template>
-  <header>
+  <div>
     <i class="iconfont icon-right" @click="handleBackBtn"></i>
     <span>{{titleString}}</span>
     <span>
     </span>
 
-  </header>
+  </div>
 </template>
 
 <script>
@@ -22,7 +22,8 @@
 </script>
 
 <style scoped>
-  header{
+  div{
+    width: 100%;
     padding: .4rem .34rem 0;
     display: flex;
     height: 1.28rem;
@@ -31,12 +32,12 @@
     border-bottom: 1px solid #d6d6d6;
     background: #fff;
   }
-  header span:first-of-type{
+  div span:first-of-type{
     font-size: 16px;
     color: #292929;
     font-weight: 600;
   }
-  header i{
+  div i{
     font-size: 22px;
     color: #999;
     font-weight: 600;

@@ -1,11 +1,11 @@
 <template>
-  <article>
+  <div class="all">
     <img src="/static/image/newsPage/messagePage/logo.png" alt="">
-    <div>
+    <div class="info">
       <p>用户名</p>
       <p>个签</p>
     </div>
-  </article>
+  </div>
 </template>
 
 <script>
@@ -15,7 +15,7 @@
 </script>
 
 <style scoped>
-  article{
+  .all{
     background: #ffffff;
     width: 100%;
     height: 1.6rem;
@@ -30,8 +30,9 @@
   img{
     width: 1.1rem;
     height: 1.1rem;
+
   }
-  div{
+  .info{
     display: flex;
     align-items: center;
     flex-direction: column;

@@ -21,7 +21,9 @@ const Store = new Vuex.Store({
     state,
     mutations,
     actions,
-    newsModulesStore
+    modules:{
+      newsModulesStore
+    }
 });
 
 export default Store;

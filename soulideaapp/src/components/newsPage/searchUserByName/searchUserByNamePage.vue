@@ -1,13 +1,13 @@
 <template>
 <transition name="move">
-  <section>
+  <div class="all">
     <header-com></header-com>
     <ul>
       <li>
         <list-com></list-com>
       </li>
     </ul>
-  </section>
+  </div>
 </transition>
 </template>
 
@@ -24,7 +24,7 @@
 </script>
 
 <style scoped>
-  section{
+  .all{
     height: 100%;
   }
   ul{

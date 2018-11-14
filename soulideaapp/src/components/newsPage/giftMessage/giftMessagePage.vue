@@ -1,13 +1,13 @@
 <template>
   <transition name="move">
-  <section>
+  <div class="all">
       <header-com :titleString="'打赏记录'"></header-com>
     <ul>
       <li v-for="item in messageList">
         <message-com :username="item.name" :type="'打赏了我'"  :content="item.content" :time="item.time"></message-com>
       </li>
     </ul>
-  </section>
+  </div>
   </transition>
 </template>
 
@@ -36,7 +36,7 @@
 </script>
 
 <style scoped>
-  section{
+  .all{
     height: 100%;
   }
   .move-enter, .move-leave-to {

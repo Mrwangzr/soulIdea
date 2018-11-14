@@ -1,15 +1,14 @@
 <template>
-    <article>
+    <div class="all">
       <div>
         <span> <i class="iconfont icon-fangdajing"></i></span>
         <input type="text">
       </div>
-        <div>
+        <div class="font">
           <a href="##" >搜索</a>
           <a href="##" @click="back()">取消</a>
         </div>
-
-    </article>
+    </div>
 </template>
 
 <script>
@@ -24,7 +23,7 @@
 </script>
 
 <style scoped>
-  article{
+  .all{
     width: 100%;
     height: .8rem;
     display: flex;
@@ -58,7 +57,7 @@
   a{
     color: #f6c45d;
   }
-  div:last-of-type{
+  .font{
     width: 1.1rem;
     display: flex;
     justify-content: space-between;

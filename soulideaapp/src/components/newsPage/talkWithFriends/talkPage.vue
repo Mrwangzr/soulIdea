@@ -1,6 +1,6 @@
 <template>
   <transition name="move">
-    <section>
+    <div class="all">
       <talk-header-com :right="true"></talk-header-com>
         <div class="talk">
           <time-line-com></time-line-com>
@@ -8,7 +8,7 @@
           <my-talk-bubble-com></my-talk-bubble-com>
         </div>
       <talk-input-com></talk-input-com>
-    </section>
+    </div>
   </transition>
 </template>
 
@@ -37,7 +37,7 @@
 </script>
 
 <style scoped>
-  section{
+  .all{
     height: 100%;
   }
   .talk{

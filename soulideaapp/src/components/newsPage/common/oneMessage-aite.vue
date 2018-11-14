@@ -1,14 +1,16 @@
 <template>
-  <div class="article">
-    <div class="line">
+  <div class="all">
+    <div class="top">
+    <div class="info">
       <img :src="imgSrc" alt="">
       <span>{{username}}</span>
       <span>{{type}}</span>
-      <p>{{content}}</p>
     </div>
-    <div>
+    <div class="time">
        {{time}}
     </div>
+    </div>
+    <p>{{content}}</p>
   </div>
 </template>
 
@@ -26,42 +28,52 @@
 </script>
 
 <style scoped>
-  .article {
+  .all{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #d6d6d6;
+    height: 1.6rem;
+  }
+  .top {
     width: 100%;
-    height: 1rem;
+    height: .8rem;
     display: flex;
     align-items: center;
     padding: 0 .4rem;
     justify-content: space-between;
-    border-bottom: 1px solid #d6d6d6;
   }
   img{
     width: .6rem;
     height: .6rem;
     margin-right: .2rem;
   }
-  .line{
+  .info{
     display: flex;
     align-items: center;
     font-size: 12px;
   }
-  .line{
+  .info span{
     font-size: 12px;
-    color: #999;
+    color: #666;
   }
-  span:first-of-type{
+  span:first-of-type  {
     font-weight: 600;
     margin-right: .1rem;
     font-size: 14px;
-    color: #666666;
   }
   p{
-    margin-left: .1rem;
     color: #999;
-    width:3.5rem;
+    width:5.5rem;
+    line-height: .7rem;
+    flex-direction: column;
+    justify-content: center;
+    height: .7rem;
+    text-align: left;
+    margin: -0.1rem 0 0 1.2rem;
+    padding-left: .3rem;
+    background: #efefef;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    text-align: left;
   }
 </style>

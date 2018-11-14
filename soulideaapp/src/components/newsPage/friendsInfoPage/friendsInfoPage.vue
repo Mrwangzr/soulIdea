@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <div class="all">
     <friends-info-page-com :titleString="'更多'"></friends-info-page-com>
     <ul>
       <li class="userInfo">
@@ -57,7 +57,7 @@
       </li>
 
     </ul>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -112,7 +112,7 @@
     transition: all .3s;
   }
 
-  section {
+  .all {
     width: 100%;
     height: 20rem;
     background: #f8f8f8;
@@ -179,7 +179,7 @@
 
   .small-tag span:first-of-type {
     font-size: 14px;
-    color: #999;
+    color: #666;
   }
 
 
@@ -219,15 +219,6 @@
     color: #F6C45D;
     margin-right: .2rem;
   }
-
-
-
-
-
-
-
-
-
 
 
   /*开关效果*/

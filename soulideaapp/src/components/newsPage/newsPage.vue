@@ -1,22 +1,22 @@
 <template>
   <div>
-    <header>
+    <div class="header">
       <b>聊天</b>
       <span>
         <router-link to="/findNewFriendsPage">添加好友</router-link>
       </span>
-    </header>
+    </div>
 
-    <nav>
+    <div class="nav">
       <ul>
-        <li :class="this.arrClass['messagePage']" @click="handleTagClick('messagePage','spanLineMoveLeft','messagePage-com')">消息</li>
-        <li :class="this.arrClass['friendPage']" @click="handleTagClick('friendPage','spanLineMoveRight','friendsPage-com')">好友</li>
+        <li :id="this.arrClass['messagePage']" @click="handleTagClick('messagePage','spanLineMoveLeft','messagePage-com')">消息</li>
+        <li :id="this.arrClass['friendPage']" @click="handleTagClick('friendPage','spanLineMoveRight','friendsPage-com')">好友</li>
       </ul>
       <div>
-        <span :class="this.lineClass"></span>
+        <span :id="this.lineClass"></span>
       </div>
-    </nav>
-  <div>
+    </div>
+  <div class="com">
     <component :is="comName"></component>
   </div>
 
@@ -68,7 +68,7 @@
 </script>
 
 <style scoped>
-  header{
+  .header{
     padding: .7rem .3rem 0;
     height: 1.28rem;
     box-shadow:0 2px 6px -1px #999;
@@ -79,7 +79,7 @@
     background: #F8F8F8;
     position: relative;
   }
-  header span{
+  .header span{
     padding-top:.06rem;
     font-size: 12px;
     color: #999999;
@@ -87,31 +87,31 @@
     position: absolute;
     right: 0.3rem;
   }
-  nav{
+  .nav{
     width: 100%;
     height: .99rem;
     padding-top: .22rem;
   }
-  nav ul{
+  .nav ul{
     width: 100%;
     display: flex;
     justify-content: space-between;
     margin-bottom: .2rem;
     padding: 0 1.2rem;
   }
-  nav  li{
+ .nav  li{
     font-size: 16px;
     font-weight: 600;
     color: #999;
     padding:0 .18rem;
   }
-  nav div{
+  .nav div{
     width:100%;
     height: .06rem;
     padding: 0 1.2rem;
     position: relative;
   }
-  nav div span{
+  .nav span{
     display: block;
     height: 100%;
     width: 1rem;
@@ -120,16 +120,16 @@
     left: 1.2rem;
     transition: 0.2s;
   }
-  div>div{
+ .com{
     position: relative;
   }
-  .spanOnTag{
+  #spanOnTag{
     color: #292929;
   }
-  .spanLineMoveLeft{
+  #spanLineMoveLeft{
     left: 1.2rem;
   }
-  .spanLineMoveRight{
+  #spanLineMoveRight{
     left: 5.3rem;
      }
 
