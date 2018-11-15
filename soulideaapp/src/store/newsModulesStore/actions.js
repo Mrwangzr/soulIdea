@@ -2,8 +2,6 @@ import axios from "axios";
 export default {
   //关注变化列表的获取
   handleFansChangeList_getList({commit},params){
-    console.log(params.pageNum,params.max);
-    console.log(params.pageNum<params.max);
     //第一次进入页面
     if(params.max === -1){
         axios({
@@ -18,7 +16,6 @@ export default {
         });
     }
     else if(params.pageNum<params.max){
-      console.log("执行");
         axios({
           method:"get",
           url:"http://localhost:3000/forklist",
@@ -26,15 +23,12 @@ export default {
             page:params,
             count:20
           }*/}).then((data)=>{
-            console.log(data);
             commit("handleFansChangeList_getList",data.data);
         })
     }
   },
   //@列表变化的获取
   handleAiteChangeList_getList({commit},params){
-    console.log(params.pageNum,params.max);
-    console.log(params.pageNum<params.max);
     //第一次进入页面
     if(params.max === -1){
       axios({
@@ -49,7 +43,6 @@ export default {
       });
     }
     else if(params.pageNum<params.max){
-      console.log("执行");
       axios({
         method:"get",
         url:"http://localhost:3000/aitelist",
@@ -57,15 +50,12 @@ export default {
           page:params,
           count:20
         }*/}).then((data)=>{
-        console.log(data.data);
         commit("handleAiteChangeList_getList",data.data);
       })
     }
   },
 
   handleGiftChangeList_getList({commit},params){
-    console.log(params.pageNum,params.max);
-    console.log(params.pageNum<params.max);
     //第一次进入页面
     if(params.max === -1){
       axios({
@@ -80,15 +70,13 @@ export default {
       });
     }
     else if(params.pageNum<params.max){
-      console.log("执行");
       axios({
         method:"get",
-        url:"http://localhost:3000/gift",
+        url:"http://localhost:3000/getgiftupdate",
         /*data:{
           page:params,
           count:20
         }*/}).then((data)=>{
-        console.log(data.data);
         commit("handleGiftChangeList_getList",data.data);
       })
     }
