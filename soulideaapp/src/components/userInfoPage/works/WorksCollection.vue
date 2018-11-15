@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="mylist">
 		<div class="WorksCollection">
 			<header class="worksHeader">
 				<p @click="back()"><img src="../../../../static/sorksimage/production/fanhui.png"></p>
@@ -32,11 +32,15 @@ export default {
 				this.$router.push("/newConstruction")
 			},
 			
+			
 		},
 	}
 </script>
 
 <style scoped>
+.mylist{
+	height: 100%;
+}
 .WorksCollection{
 	padding-top: .4rem;	
 	}

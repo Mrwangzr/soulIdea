@@ -1,22 +1,17 @@
 <template>
 	<div class="details">
 		<div class="details-bigimg" @click="conceal()">
-			<img src="../../../../static/sorksimage/details/hongjiudatu.png">
+			<img :src="product.src">
 			<div class="details-L" @click="back()">
 				<img src="../../../../static/sorksimage/details/fh.png">
 			</div>
-			<div class="details-R">
+			<div class="details-R" @click="cancel(index)">
 				删除
 			</div>
 		</div>
 		<div class="details-mark" v-show="show"></div>
 		<div class="details-text" v-show="show">
-			<p>
-				在漫长的软件发展中，界面设计工作一直没有被重视
-				做界面设计的人也别贬义称为“美工”。其实软件界面设
-				在漫长的软件发展中，界面设计工作一直没有被重视
-				做界面设计的人也别贬义称为“美工”。其实软件界面设
-			</p>
+			<p>{{product.contant}}</p>
 			<p>
 				<img src="../../../../static/sorksimage/details/logo.png">
 			</p>
@@ -27,21 +22,41 @@
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				show:true
-			};
+import Vuex from "vuex"
+export default {
+	created(){
+		this.id = this.$route.query.id;
+		this.getproduct(this.id);
+		this.index = this.id
+	},
+	data() {
+		return {
+			show:true,
+			index:""
+		};
+	},
+	computed: {
+		...Vuex.mapState({
+			product:state=>state.production.getproduct
+		})
+	},
+	methods: {
+		back(){
+			this.$router.back()
 		},
-		methods: {
-			back(){
-				this.$router.back()
-			},
-			conceal(){
-				this.show = !this.show
-			}
+		conceal(){
+			this.show = !this.show
 		},
-	}
+		...Vuex.mapActions({
+			getproduct:"getproduct",
+			deletedData:"deletedData"
+		}),
+		cancel(index){
+			this.deletedData(index);
+			this.$router.back()
+		}
+	},
+}
 </script>
 
 <style scoped>

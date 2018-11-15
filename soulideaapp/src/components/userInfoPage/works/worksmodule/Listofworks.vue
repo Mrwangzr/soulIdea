@@ -3,12 +3,12 @@
 		<div class="content">
 			<div class="production-list" v-for="(item,index) in goodsList">
 				<router-link :to="{name:'beautiful',query:{id:item.id,name:item.name}}">
-					<p class="bigimg"><img :src="item.src"></p>
+					<p class="bigimg"><img :src="item.head"></p>
 				</router-link>
 				<div class="production-list-b">
 					<div class="production-list-b-l">
 						<p>{{item.name}}</p>
-						<p>{{item.item}}</p>
+						<p>{{item.time}}</p>
 					</div>
 					<div class="production-list-b-r" @click="handleToggle()">
 						<img src="../../../../../static/sorksimage/production/jiaru.png">
@@ -20,7 +20,7 @@
 				</div>
 				<div class="production-list-yanjing-r">
 					<p><img src="../../../../../static/sorksimage/production/dianzan.png"></p>
-					<p>{{item.seen}}</p>
+					<p>{{item.comment}}</p>
 				</div>
 			</div>
 			
@@ -31,10 +31,10 @@
 </template>
 
 <script>
+import BScroll from "better-scroll"
 import Mark from "./mark.vue"
 import joinList from "./joinList.vue"
 import Vuex from "vuex"
-import BScroll from "better-scroll"
 export default {
     created(){
     	this.getworkslist()
@@ -68,20 +68,27 @@ export default {
     	}),
     },
 	mounted(){
-			this.scroll = new  BScroll(".wrapper")
+		this.scroll = new BScroll(this.$refs.wrapper,{
+				click:true,
+				pullUpLoad:true
+		})
 	},
-	updated(){
-		this.scroll.refresh();
-		
-		
+	updated () {
+			//重新计算高度
+			this.scroll.refresh();
+			//当数据加载完毕以后通知better-scroll
+			this.scroll.finishPullUp();
 	}
-};
+}
 </script>
 
 <style scoped>
 	.wrapper{
 		overflow: hidden;
 		height: 100%;
+	}
+	.content{
+		padding-bottom: 2.2rem;
 	}
 	.production-list{
 		margin-top: .2rem;

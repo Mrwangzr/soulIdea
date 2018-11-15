@@ -19,6 +19,7 @@
 </template>
 
 <script>
+
 import ListWorks from "./worksmodule/Listofworks.vue"
 export default {
 	components:{
@@ -33,6 +34,9 @@ export default {
 </script>
 
 <style scoped>
+.production{
+	height: 100%;
+}
 .production{
 	padding-top: .4rem;
 }

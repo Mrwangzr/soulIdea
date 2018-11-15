@@ -1,46 +1,44 @@
 <template>
-
-		<div class="beautiful">
+	<div class="bigdiv">
 			<header class="beautifulHeader">
 				<p @click="back()"><img src="../../../../static/sorksimage/production/fanhui.png"></p>
 				<p>{{title}}</p>
 			</header>
-			<div class="beautifulList" @click="detailsGo()">
-				<img src="../../../../static/sorksimage/beautiful/hongjiu.png">
-			</div>
-			
-		</div>
+		<particularList-com></particularList-com>
+	</div>
+	
 
 </template>
 
-<script scoped>
-	export default {
-		created(){
-			this.title = this.$route.query.name
+<script>
+import particularList from "./worksmodule/beautifullist.vue"
+import	Vuex from "vuex"
+export default {
+	created(){
+			this.title = this.$route.query.name;
 		},
-		data() {
+		components:{
+			"particularList-com":particularList
+		},
+	data() {
 			return {
 				title:""
 			};
 		},
-		methods: {
-			detailsGo(){
-				this.$router.push("/details")
-			},
-			back(){
-				this.$router.back()
-			},
-			
-			
-		},
+	methods: {
+		back(){
+			this.$router.back()
+		}
 	}
+}
 </script>
 
-<style>
-.beautiful{
+<style scoped>
+.bigdiv{
+	height: 100%;
 	padding-top: .4rem;	
-	
 }
+
 .beautifulHeader{
 	background: #fff;
 	width: 100%;
@@ -64,14 +62,5 @@
 	left: 0.34rem;
 	top: 0.24rem;
 }
-.beautifulList{
-	width: 3.68rem;
-	height: 3.4rem;
-	border:1px dashed #ccc;
-	float: left;
-	margin: 0 0 .02rem .05rem;
-}
-.beautifulList img{
-	width: 100%;
-}
+
 </style>

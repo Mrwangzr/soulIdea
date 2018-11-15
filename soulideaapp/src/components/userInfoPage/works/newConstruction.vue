@@ -17,27 +17,9 @@
 		<div class="classify">
 			<span>分类</span>
 			<div class="classify-con">
-				<div class="classify-con-big">
-					<div><p class="active"></p></div>
-					<i>摄影</i>
-				</div>
-				<div class="classify-con-big">
-					<div><p></p></div>
-					<i>手绘</i>
-				</div>
-				<div class="classify-con-big">
-					<div><p></p></div>
-					<i>界面</i>
-				</div>
-			</div>
-			<div class="classify-con classify-con-2">
-				<div class="classify-con-big">
-					<div><p></p></div>
-					<i>PS</i>
-				</div>
-				<div class="classify-con-big">
-					<div><p></p></div>
-					<i>icon</i>
+				<div class="classify-con-big" v-for="(item,index) in classify">
+					<div><p :class="activeIndex == index ? 'active':''" @click="changeIndex(index)"></p></div>
+					<i>{{item}}</i>
 				</div>
 			</div>
 		</div>
@@ -52,12 +34,16 @@
 	export default {
 		data() {
 			return {
-				
+				classify:["摄影","手绘","界面","PS","icon"],
+				activeIndex:0
 			};
 		},
 		methods: {
 			back(){
 				this.$router.back()
+			},
+			changeIndex(index){
+				this.activeIndex = index
 			}
 		},
 	}
@@ -167,24 +153,19 @@
 	color:rgba(41,41,41,1);
 }
 .classify .classify-con{
-	display: flex;
 	width: 4.85rem;
-	height: .29rem;
+	overflow: hidden;
+	height: 2rem;
 	margin-top:.93rem;
-	justify-content: space-between;
 	margin-left:1.33rem ;
 }
-.classify .classify-con-2{
-	margin-top:.53rem;
-	justify-content:space-around;
-}
 .classify .classify-con-big{
-	display: flex;
-	justify-content: space-between;
-	align-items:center;
-	height: .29rem;
+	float: left;
+	height: .4rem;
+	margin-bottom: .4rem;
+	margin-right: .2rem;
 }
-.classify .classify-con-big div:nth-child(1) {
+.classify .classify-con-big div{
 	width:.28rem;
 	height:.28rem;
 	border:.02rem solid rgba(153,153,153,1);
@@ -193,9 +174,11 @@
 	justify-content: center;
 	align-items: center;
 	margin-right: .4rem;
+	float: left;
+	margin-top: .06rem;
 	
 }
-.classify .classify-con-big div:nth-child(1) p {
+.classify .classify-con-big div p {
 	width:.16rem;
 	height:.16rem;
 	background:#999999;
