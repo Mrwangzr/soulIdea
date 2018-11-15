@@ -1,19 +1,13 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import firstLevelPage from '../components/firstLevelPage';
-import homePage from "../components/homePage/homePage";
 import production from "../components/userInfoPage/works/myproduction";
 import WorksCollection from "../components/userInfoPage/works/WorksCollection"
 import Beautiful from "../components/userInfoPage/works/beautiful";
 import details from "../components/userInfoPage/works/details";
 import newConstruction from "../components/userInfoPage/works/newConstruction";
-Vue.use(Router)
 
-export default new Router({
-  routes: [
+export default [
     {
       //首页的跳转路由
-      path: '/',
+      path: '/production',
       name: 'production',
       component: production,
     },
@@ -27,7 +21,7 @@ export default new Router({
 			path: '/beautiful/',
 			name:"beautiful",
 			component:Beautiful
-			
+
 		},
 		{
 			//作品详情
@@ -41,7 +35,5 @@ export default new Router({
 			name:"newConstruction",
 			component:newConstruction
 		},
-		
-			
   ]
-})
+

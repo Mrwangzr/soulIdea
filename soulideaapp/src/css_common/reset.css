@@ -13,6 +13,7 @@ ul, ol ,li{ list-style:none; }
 body { color:#333; font:12px "SimSun","宋体","Arial Narrow",HELVETICA; background:#fff;}
 
 a { color:#666; text-decoration:none; }
+
 /*清除浮动*/
 .clear{clear:both}
 
