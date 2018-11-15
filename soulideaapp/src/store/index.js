@@ -8,6 +8,7 @@ import userInfoStore from "./userInfoStore";
 import signInStore from "./signInStroe";
 import otherUserTwo from "./otherUserTwo";
 import commentStore from "./commentStore"
+import production from "./productionStore"
 Vue.use(Vuex);
 
 const state = {
@@ -35,7 +36,8 @@ const Store = new Vuex.Store({
         newsModulesStore,
     signInStore,
     otherUserTwo,
-    commentStore
+    commentStore,
+    production
 	}
 });
 

@@ -6,8 +6,11 @@ import userInfoModule from "./userInfoModule";
 import newsModule from './newsModule';
 import routerLi from "./router-Libo";
 import othersInfoModule from "./othersInfoModule";
+import works from "./works";
 
 Vue.use(Router);
+
+Vue.use(Router)
 
 export default new Router({
   routes: [
@@ -29,6 +32,7 @@ export default new Router({
     //消息模块的路由
     ...newsModule,
     //他人信息路由
-    ...othersInfoModule
+    ...othersInfoModule,
+    ...works
   ]
 })
