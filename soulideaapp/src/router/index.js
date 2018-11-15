@@ -2,8 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import firstLevelPage from '../components/firstLevelPage';
 import homePage from "../components/homePage/homePage";
-
-
+import routerLi from "./router-Libo";
 Vue.use(Router)
 
 export default new Router({
@@ -19,5 +18,6 @@ export default new Router({
       name: 'firstLevelPage',
       component: firstLevelPage,
     },
+		...routerLi
   ]
 })
