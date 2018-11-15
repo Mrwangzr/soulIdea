@@ -20,7 +20,6 @@ const actions = {
 };
 
 const Store = new Vuex.Store({
-    namespaced:true,
     state,
     mutations,
     actions,

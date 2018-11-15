@@ -8,53 +8,66 @@
                 <p>时间更新</p>
             </div>
             <!-- 作品集 -->
-            <div class="proCon">
-                <!-- 作品 -->
-                <div class="pr" @click="handle()">
-                    <div class="one">
-                        <img src="../../../../static/otherHomeImg/pro.jpg" alt="">
-                    </div>
-                    <div class="two">
-                        <p>爱美丽插画集</p>
-                        <p><i>6</i>推荐 <i>0</i>评论</p>
-                    </div>
-                     <div class="three">
-                        平面-插画
-                    </div>
+            <div class="wrapper" ref="wrapper">
+                <div class="proCon content">
+                    <!-- 作品 -->
+                    <div class="pr" @click="handle()">
+                        <div class="one">
+                            <img src="../../../../static/otherHomeImg/pro.jpg" alt="">
+                        </div>
+                        <div class="two">
+                            <p>爱美丽插画集</p>
+                            <p><i>6</i>推荐 <i>0</i>评论</p>
+                        </div>
+                        <div class="three">
+                            平面-插画
+                        </div>
 
-                </div>
-                <div class="pr">
-                    <div class="one">
-                        <img src="../../../../static/otherHomeImg/pro.jpg" alt="">
                     </div>
-                    <div class="two">
-                        <p>《爱美丽插画集》</p>
-                        <p><i>6</i>推荐 <i>0</i>评论</p>
-                    </div>
-                    <div class="three">
-                        平面-插画
-                    </div>
+                    <div class="pr">
+                        <div class="one">
+                            <img src="../../../../static/otherHomeImg/pro.jpg" alt="">
+                        </div>
+                        <div class="two">
+                            <p>《爱美丽插画集》</p>
+                            <p><i>6</i>推荐 <i>0</i>评论</p>
+                        </div>
+                        <div class="three">
+                            平面-插画
+                        </div>
 
+                    </div>
+                
                 </div>
-               
             </div>
+<!--             
              <div class="more">
                     
                     <img src="../../../../static/otherHomeImg/gd@2x.png" alt="">
                     <p>
                     点击加载更多
                     </p>
-                </div>
+                </div> -->
         </div>
     </div>
 </template>
 
 <script>
+import Bscroll from "better-scroll";
 export default {
     methods:{
         handle(){
             this.$router.push("/otherUserTwo");
         }
+    },
+    mounted(){
+        var scroll = new Bscroll(this.$refs.wrapper,{
+            click:true,
+            pullUpLoad:true,
+        });
+        // this.scroll.on("pullingUp",()=>{
+            
+        // })
     }
 
 }
@@ -88,10 +101,18 @@ export default {
     color:#797979;
 }
 /*作品集*/
+
+.wrapper{
+    width: 100%;
+    /* height: 100%; */
+    height: 3rem;
+    /* overflow: hidden; */
+}
+
 #prMore .proCon{
     width: 100%;
     height: auto;
-    overflow: hidden;
+    /* overflow: hidden; */
     margin-bottom: 10px;
 }
 #prMore .con .more{
