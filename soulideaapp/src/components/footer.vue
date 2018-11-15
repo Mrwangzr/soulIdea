@@ -52,8 +52,8 @@
     position: absolute;
     bottom: 0;
     display: flex;
-    background: #ffffff;
-		border-top:1px solid #efefef ;
+    background: #fff;
+    border-top:1px solid #efefef ;
   }
 
   div {

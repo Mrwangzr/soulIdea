@@ -3,9 +3,10 @@ import Router from 'vue-router';
 import firstLevelPage from '../components/firstLevelPage';
 import homePage from "../components/homePage/homePage";
 import userInfoModule from "./userInfoModule";
-
+import newsModule from './newsModule';
 import routerLi from "./router-Libo";
-Vue.use(Router)
+
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -20,7 +21,9 @@ export default new Router({
       name: 'firstLevelPage',
       component: firstLevelPage,
     },
-		...routerLi
+		...routerLi,
 		...userInfoModule,
+    //消息模块的路由
+    ...newsModule,
   ]
 })

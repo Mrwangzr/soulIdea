@@ -1,5 +1,6 @@
 import Vue from "vue";
 import  Vuex from "vuex";
+import newsModulesStore from "./newsModulesStore";
 import axios from "axios";
 import storeLi from "./store-Libo";
 // import BScroll from 'better-scroll';
@@ -27,7 +28,8 @@ const Store = new Vuex.Store({
 	getters,
 	modules:{
 		storeLi,
-        userInfoStore
+        userInfoStore,
+        newsModulesStore
 	}
 });
 
