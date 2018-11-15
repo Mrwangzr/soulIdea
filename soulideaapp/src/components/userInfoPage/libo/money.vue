@@ -39,7 +39,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 .money{
 	height:13.34rem;
 }

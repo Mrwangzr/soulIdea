@@ -16,9 +16,11 @@
 		<div class="login-cont">
 			<div class="login-icon">
 			</div>
+			<span class="tit">请输入正确的手机号或者密码！</span>
 			<div 
 				class="inputName"
-				:class="inputStyle == true ? 'myStyle' : ''"
+				:class="inputStyle == true ? 'myStyle' : ''" 
+				:id="show == true ? 'errorStyle' : ''"
 			>
 				<div class="input-icon">
 					<div class="input-icon-f"></div>
@@ -75,6 +77,7 @@
 		},
 		data() {
 			return {
+				show:"",
 				username:"",
 				password:"",
 				inputStyle:"",
@@ -87,8 +90,16 @@
 			handleRouter(){
 				this.$router.push({name:"register"})
 			},
+			
 			handlerBlur(){
-				this.inputStyle = false
+				this.inputStyle = false;
+				var re = /^1\d{10}$/;
+				if(re.test(this.username)) {
+					alert("正确");
+				} else {
+					alert("错误");
+				}
+	
 				
 			},
 			handlerFocus(){
@@ -103,40 +114,40 @@
 			},
 			handlerLogin(){
 				this.slider = !this.slider;
-				axios({
-				  method:"post",
-				  url:"http://localhost:3000/list",
-				  data:{
-					  username:this.username,
-					  password:this.password
-				  }
-				}).then((data)=>{
-					console.log(data);
-					if(data.data.result){
-						console.log("登陆成功！")
-						this.text = "登陆成功！"
-					}else{
-						switch(data.errorCode){
-							case 301:
-								this.text = "登录密码错误，请重新输入！"
-								break;
-							case 304:
-								this.text = "邮箱网址错误，请输入正确的邮箱网址！"
-								break;
-							case 306:
-								this.text = "手机地址错误，请输入正确的手机号码！"
-								break;
-						}
-						
-					}
-				})
+				this.$router.go(0);
+// 				axios({
+// 				  method:"post",
+// 				  url:"http://localhost:3000/list",
+// 				  data:{
+// 					  username:this.username,
+// 					  password:this.password
+// 				  }
+// 				}).then((data)=>{
+// 					console.log(data);
+// 					if(data.data.result){
+// 						console.log("登陆成功！")
+// 						this.text = "登陆成功！"
+// 					}else{
+// 						switch(data.errorCode){
+// 							case 301:
+// 								this.text = "登录密码错误，请重新输入！"
+// 								break;
+// 							case 304:
+// 								this.text = "邮箱网址错误，请输入正确的邮箱网址！"
+// 								break;
+// 							case 306:
+// 								this.text = "手机地址错误，请输入正确的手机号码！"
+// 								break;
+// 						}
+// 						
+// 					}
+// 				})
 			},
 		
 
 		},
 		watch:{			
-	
-
+		
 		}
 		
 		
@@ -145,8 +156,13 @@
 	}
 </script>
 
-<style>
-	
+<style scoped>
+.tit{
+	position: absolute;
+	left:.5rem;
+	top:4.7rem;
+	color: #fc4343;
+}	
 .login{
 	height:13.34rem;
 	width:100%;
@@ -186,7 +202,7 @@
 	
 }
 .myStyle{
-	border:1px solid #4CD1E0;
+	border:1px solid #488ee7;
 }
 .login-top{
 	height:.88rem;

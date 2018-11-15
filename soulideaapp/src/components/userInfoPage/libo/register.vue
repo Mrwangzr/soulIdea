@@ -18,6 +18,7 @@
 						<input 
 							type="text" 
 							placeholder="请输入手机号"
+							v-model="phone"
 							@focus="handlerFocusOne()"
 							@blur="handlerBlurOne()"
 						>
@@ -34,14 +35,14 @@
 					<div class="input-icon">
 						<div class="input-icon-s"></div>
 					</div>
-					<input type="text" placeholder="请输入短信验证码" @focus="handlerFocusTwo()"
+					<input type="text" v-model="code" placeholder="请输入短信验证码" @focus="handlerFocusTwo()"
 							@blur="handlerBlurTwo()">
 				</div>
 				<div class="inputPassword" :class="inputStyleT == true ? 'myStyle' : ''">
 					<div class="input-icon">
 						<div class="input-icon-t"></div>
 					</div>
-					<input :type="type" placeholder="请设置6-16位密码" @focus="handlerFocusThree()"
+					<input :type="type" v-model="password" placeholder="请设置6-16位密码" @focus="handlerFocusThree()"
 							@blur="handlerBlurThree()">
 					<div class="input-icon-right">
 						<div class="input-icon-fo" @click="handlerSee()"></div>
@@ -68,6 +69,9 @@
 				inputStyle:"",
 				inputStyleS:"",
 				inputStyleT:"",
+				phone:"",
+				code:"",
+				password:""
 			};
 		},
 		methods:{
@@ -114,6 +118,38 @@
 			},
 			handlerRegister(){
 				alert("注册成功")
+				console.log(this.phone,this.password)
+// 				axios({
+// 				  method:"post",
+// 				  url:"http://localhost:3000/list",
+// 				  data:{
+// 					  phone:this.phone,
+//						code:this.code,
+// 					  password:this.password
+// 				  }
+// 				}).then((data)=>{
+// 					console.log(data);
+// 					if(data.data.result){
+// 						console.log("注册成功！")
+// 						this.text = "注册成功！"
+// 					}else{
+// 						switch(data.errorCode){
+// 							case 302:
+// 								this.text = "验证码错误，请重新输入！"
+// 								break;
+// 							case 304:
+// 								this.text = "邮箱网址错误，请输入正确的邮箱网址！"
+// 								break;
+// 							case 306:
+// 								this.text = "手机地址错误，请输入正确的手机号码！"
+// 								break;
+//							case 308:
+//                this.text = "该手机邮箱已经注册，请登录！"
+// 				        break;
+// 						}
+// 						
+// 					}
+// 				})
 			},
 			handlerSee(){
 				if(!this.toggle){
@@ -128,7 +164,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 .myStyle{
 	border:1px solid #4CD1E0;
 }
