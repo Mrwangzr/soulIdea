@@ -7,6 +7,7 @@ import newsModule from './newsModule';
 import routerLi from "./router-Libo";
 import othersInfoModule from "./othersInfoModule";
 import works from "./works";
+import contentCommentRouter from "./contentCommentRouter.js"
 
 Vue.use(Router);
 
@@ -31,6 +32,7 @@ export default new Router({
     ...newsModule,
     //他人信息路由
     ...othersInfoModule,
-    ...works
+    ...works,
+    ...contentCommentRouter
   ]
 })
