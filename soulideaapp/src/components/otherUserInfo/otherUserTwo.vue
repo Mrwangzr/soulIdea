@@ -3,43 +3,45 @@
         <!-- 头部空白 -->
         <div class="white">
 
-              </div>  
+         </div>  
 
-            <!-- name -->
-            <div class="name">
-                <i class="iconfont icon-right" @click="handleBack()"></i>
-                《爱美丽》插画集
-            </div> 
+        <!-- name -->
+        <div class="name">
+            <i class="iconfont icon-right" @click="handleBack()"></i>
+            《爱美丽》插画集
+        </div> 
       
         <!-- 插画集 -->
-        <div class="con">
-            <div class="pic" v-for="(item,index) in arr"  @click="handleToThree(index)">
-                <img  :src="item.src1" alt="">
-                <div class="one">
-                    <p>{{item.p1}}</p>
-                    <div class="oneR">
-                        <p><i class="iconfont icon-yanjing1"></i>{{item.p2}}</p>
-                        <p><i class="iconfont icon-dianzan"></i>{{item.p3}}</p>
+        <div class="wrapper" ref="wrapper">
+            <div class="con content">
+                <div class="pic" v-for="(item,index) in arr"  @click="handleToThree(index)">
+                    <img  :src="item.src1" alt="">
+                    <div class="one">
+                        <p>{{item.p1}}</p>
+                        <div class="oneR">
+                            <p><i class="iconfont icon-yanjing1"></i>{{item.p2}}</p>
+                            <p><i class="iconfont icon-dianzan"></i>{{item.p3}}</p>
+                        </div>
                     </div>
-                </div>
-                 <div class="head">
-                    <img :src="item.src2" alt="">
-                    <p>{{item.p4}}</p>
-                 </div>      
-                <div class="dis">
-                    <dl>
-                        <dt>简介:</dt>
-                        <dd> {{item.p5}} </dd>
-                    </dl>
+                    <div class="head">
+                        <img :src="item.src2" alt="">
+                        <p>{{item.p4}}</p>
+                    </div>      
+                    <div class="dis">
+                        <dl>
+                            <dt>简介:</dt>
+                            <dd> {{item.p5}} </dd>
+                        </dl>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 
 <script>
 import Vuex from "vuex";
+import Bscroll from "better-scroll";
 export default {
     data(){
         return{
@@ -52,6 +54,15 @@ export default {
 
         // console.log(this.arr);
 
+    },
+     mounted(){
+        var scroll = new Bscroll(this.$refs.wrapper,{
+            click:true,
+            pullUpLoad:true,
+        });
+        // this.scroll.on("pullingUp",()=>{
+            
+        // })
     },
     computed:{
         ...Vuex.mapState({
@@ -93,6 +104,7 @@ export default {
         position: fixed;
         top: 0;
         /* margin-bottom: 10px; */
+        z-index: 1000;
 
     }
     /* 名称 */
@@ -106,6 +118,7 @@ export default {
         position: fixed; 
         /* bottom: 0; */
         top: .4rem;
+        z-index: 1000;
 
     }
     .name i{
@@ -115,6 +128,18 @@ export default {
         left: 10px;
     }
     /* 插画集 */
+    .wrapper{
+        width: 100%;
+        /* height: 100%; */
+        /* height: 3rem; */
+        height:100% ;
+        overflow: hidden;
+        padding-top: 1.28rem;
+    }
+    .content{
+
+    }
+
     .con{
         padding-top: 1.1rem;
         background: #f0f0f0;

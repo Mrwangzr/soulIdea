@@ -5,6 +5,7 @@ import homePage from "../components/homePage/homePage";
 import userInfoModule from "./userInfoModule";
 import newsModule from './newsModule';
 import routerLi from "./router-Libo";
+import othersInfoModule from "./othersInfoModule";
 
 Vue.use(Router);
 
@@ -24,6 +25,7 @@ export default new Router({
 		...routerLi,
 		...userInfoModule,
     //消息模块的路由
-    ...newsModule,
+        ...newsModule,
+        ...othersInfoModule
   ]
 })
