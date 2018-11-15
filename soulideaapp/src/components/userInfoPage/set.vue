@@ -40,7 +40,8 @@
 </script>
 
 <style>
-html,body{
+.box{
+	height:100%;
 	background: #f8f8f8;
 }
 

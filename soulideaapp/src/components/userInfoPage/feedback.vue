@@ -7,7 +7,7 @@
 			<li>意见反馈</li>
 			<li></li>
 		</div>
-		<div class="info">
+		<div class="info"> 
 			<li>内容反馈:</li>
 			<textarea class="info-text" style="resize: none;" name="textareal"></textarea>
 		</div>
@@ -19,17 +19,35 @@
 				<li><input type="radio" name="a">不满意</input></li>		
 			</div>
 		</div>
-		<div class="submit">
-			<router-link to="/set">
+		<div class="submit" @click="submit()">
+			<!-- <router-link to="/set"> -->
 				<img src="../../../static/image/feedback/提交.png" />
-			</router-link>
-			
+			<!-- </router-link>	 -->
+			<li v-show="show">提交成功!</li>
 		</div>
 	</div>
 </template>
 
 <script>
-	
+	export default{
+		data(){
+			return{
+				show:false
+			}
+		},
+		methods:{
+			//点击提交，显示提交成功，3s后跳转到设置页面（set.vue）
+			submit(){
+				this.show=true;
+				alert(1);
+				setTimeout(()=>{
+					this.show=false;
+					this.$router.push('/set');
+					
+				},3000)
+			}
+		}
+	}
 </script>
 
 <style>
@@ -96,5 +114,10 @@ html,body{
 }
 .submit img{
 	width: 100%;
+}
+.submit li{
+	padding-top: 1rem;
+	font-size:.3rem ;
+	color: #F6C45D;
 }
 </style>
