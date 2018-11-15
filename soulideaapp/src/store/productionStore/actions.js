@@ -41,5 +41,17 @@ export default {
 		 }).then((data)=>{
 		 	console.log(data)
 		 })
-	 } 
-}
+	 },
+	 ReleasePortfolio({commit},obj){
+		 axios({
+			 method:"post",
+			 url:"http://localhost:3000/ReleasePortfolio",
+			data:{
+				name:obj.name,
+				contant:obj.introduce,
+				tags:obj.tags
+			}
+		 }).then((data)=>{
+			 if()
+		 })
+	 }

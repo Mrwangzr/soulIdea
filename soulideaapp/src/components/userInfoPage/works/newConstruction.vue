@@ -6,11 +6,11 @@
 		</div>
 		<div class="newlyName">
 			<p>名字</p>
-			<input type="text" placeholder="给作品起个名字吧！"/>
+			<input type="text" placeholder="给作品起个名字吧！" v-model="name"/>
 		</div>
 		<div class="intro">
 			<p>简介</p>
-			<textarea placeholder="介绍一下自己的作品！">
+			<textarea placeholder="介绍一下自己的作品！" v-model="introduce">
 				
 			</textarea>
 		</div>
@@ -23,7 +23,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="accomplish">
+		<div class="accomplish" @click="present()">
 			<img src="../../../../static/sorksimage/details/圆角矩形1.png">
 			<p>完成</p>
 		</div>
@@ -31,19 +31,34 @@
 </template>
 
 <script>
+	import Vuex from "vuex"
 	export default {
 		data() {
 			return {
 				classify:["摄影","手绘","界面","PS","icon"],
-				activeIndex:0
+				activeIndex:0,
+				name:"",
+				introduce:"",
+				tags:"摄影",
 			};
 		},
 		methods: {
+			...Vuex.mapActions({
+				ReleasePortfolio:"ReleasePortfolio"
+			}),
 			back(){
 				this.$router.back()
 			},
 			changeIndex(index){
-				this.activeIndex = index
+				this.activeIndex = index;
+				this.tags = this.classify[index];
+			},
+			present(){
+				var obj = {}
+				obj.name = this.name;
+				obj.introduce = this.introduce;
+				obj.tags = this.tags
+				this.ReleasePortfolio(obj)
 			}
 		},
 	}
@@ -102,7 +117,7 @@
 	font-size:.22rem;
 	font-family:PingFang-SC-Medium;
 	font-weight:500;
-	color:#E1E1E1;
+	color:#333;
 
 }
 .intro{
@@ -133,7 +148,7 @@
 	font-size:.22rem;
 	font-family:PingFang-SC-Medium;
 	font-weight:500;
-	color:rgba(231,231,231,1);
+	color:#333;
 }
 .classify{
 	margin-top: .1rem;

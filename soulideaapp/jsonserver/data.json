@@ -140,15 +140,15 @@
     }
   ],
   "getproduct": [
-	  {
-	  "id": 6,
-	  "src": "./static/sorksimage/details/hongjiudatu.png",
-	  "name": "红酒",
-	  "time": "11111",
-	  "great": "3333",
-	  "seen": "66666",
-	  "contant": "2在漫长的软件发展中，界面设计工作一直没有被重视做界面设计的人也别贬义称为“美工”。其实软件界面设在漫长的软件发展中，界面设计工作一直没有被重视做界面设计的人也别贬义称为“美工”。其实软件界面设"
-	  },
+    {
+      "id": 6,
+      "src": "./static/sorksimage/details/hongjiudatu.png",
+      "name": "红酒",
+      "time": "11111",
+      "great": "3333",
+      "seen": "66666",
+      "contant": "2在漫长的软件发展中，界面设计工作一直没有被重视做界面设计的人也别贬义称为“美工”。其实软件界面设在漫长的软件发展中，界面设计工作一直没有被重视做界面设计的人也别贬义称为“美工”。其实软件界面设"
+    },
     {
       "id": 7,
       "src": "./static/sorksimage/details/hongjiudatu.png",
@@ -240,6 +240,41 @@
       "taglist": "标签列表，我也不知道啥用",
       "comment": 6666,
       "time": "2018/9/11"
+    }
+  ],
+  "ReleasePortfolio": [
+    {
+      "name": "obj.name",
+      "contant": "obj.introduce",
+      "id": 1
+    },
+    {
+      "name": "asdasd",
+      "contant": "asdad",
+      "id": 2
+    },
+    {
+      "name": "sadasdsa",
+      "contant": "dasd",
+      "id": 3
+    },
+    {
+      "name": "asdas",
+      "contant": "dsd",
+      "tags": "",
+      "id": 4
+    },
+    {
+      "name": "asdas",
+      "contant": "asdad",
+      "tags": "摄影",
+      "id": 5
+    },
+    {
+      "name": "asd",
+      "contant": "asd",
+      "tags": "摄影",
+      "id": 6
     }
   ]
 }
