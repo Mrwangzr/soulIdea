@@ -63,4 +63,36 @@ export default {
     }
   },
 
+  handleGiftChangeList_getList({commit},params){
+    console.log(params.pageNum,params.max);
+    console.log(params.pageNum<params.max);
+    //第一次进入页面
+    if(params.max === -1){
+      axios({
+        method:"get",
+        url:"",
+        data:{
+          page:params,
+          count:20
+        }}).then((data)=>{
+        commit("handleGiftChangeMax_setMax",data.data.max);
+        commit("handleGiftChangeList_getList",data.data.forklist);
+      });
+    }
+    else if(params.pageNum<params.max){
+      console.log("执行");
+      axios({
+        method:"get",
+        url:"http://localhost:3000/gift",
+        /*data:{
+          page:params,
+          count:20
+        }*/}).then((data)=>{
+        console.log(data.data);
+        commit("handleGiftChangeList_getList",data.data);
+      })
+    }
+  },
+
+
 }

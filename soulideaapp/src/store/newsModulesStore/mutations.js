@@ -14,5 +14,12 @@ export default {
   handleAiteChangeMax_setMax(state,params){
     state.aiteChange_max = params;
   },
+  //打赏
+  handleGiftChangeList_getList(state,params){
+    state.giftChange_list = [...state.aiteChange_list,...params];
+  },
+  handleGiftChangeMax_setMax(state,params){
+    state.giftChange_max = params;
+  },
 }
 
