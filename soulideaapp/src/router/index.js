@@ -22,10 +22,13 @@ export default new Router({
       name: 'firstLevelPage',
       component: firstLevelPage,
     },
+    //登录注册模块
 		...routerLi,
+    //个人信息路由
 		...userInfoModule,
     //消息模块的路由
-        ...newsModule,
-        ...othersInfoModule
+    ...newsModule,
+    //他人信息路由
+    ...othersInfoModule
   ]
 })
