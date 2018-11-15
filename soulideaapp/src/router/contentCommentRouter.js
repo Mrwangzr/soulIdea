@@ -14,8 +14,8 @@ export default [
     //   name: 'firstLevelPage',
     //   component: firstLevelPage,
     // },
-    { 
-      path:"/",
+    {
+      path:"/contentComment",
       name:"contentComment",
       component:contentComment
     },
