@@ -23,13 +23,13 @@
 											<router-link to="/attention">
 													<li>2000</li>
 													<li class="fans-li">关注</li>
-											</router-link>		
+											</router-link>
 									</span>
 									<span>
 											<router-link to="fans">
 													<li>99万</li>
 													<li class="fans-li">粉丝</li>
-											</router-link>	
+											</router-link>
 									</span>
 							</div>
 				</div>
@@ -45,9 +45,9 @@
 						<li class="iconfont icon-arrow-right"></li>
 					</ul>
 				</router-link>
-		 
+
 	</div>
-	
+
 
 </template>
 
@@ -55,19 +55,19 @@
 	//     export default {
 	//         name: "user-info-page",
 	// 		//cameras-and-albums
-	// 		
+	//
 	//      }
 	// import vueCropper from 'vue-cropper'
 	  // import codes from 'code.vue'
 // 	export default {
-// 		
+//
 // 		 name: "user-info-page",
-// 		
+//
 // 	}
 
 	export default {
 		name: "user-info-page",
-    
+
   }
 </script>
 
@@ -171,5 +171,5 @@
 		width: 100%;
 		background: red;
 	}
-	
+
 </style>
