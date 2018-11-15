@@ -2,6 +2,8 @@ import Vue from "vue";
 import  Vuex from "vuex";
 import axios from "axios";
 import storeLi from "./store-Libo";
+// import BScroll from 'better-scroll';
+import userInfoStore from "./userInfoStore";
 Vue.use(Vuex);
 
 const state = {
@@ -16,7 +18,7 @@ const actions = {
 
 };
 const getters = {
-	
+
 };
 const Store = new Vuex.Store({
     state,
@@ -24,7 +26,8 @@ const Store = new Vuex.Store({
     actions,
 	getters,
 	modules:{
-		storeLi
+		storeLi,
+        userInfoStore
 	}
 });
 

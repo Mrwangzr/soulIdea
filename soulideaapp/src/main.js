@@ -4,6 +4,7 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from './store';
+
 //全局css
 import './css_common/reset.css';
 //图形文字
@@ -13,6 +14,7 @@ import './js_rem/rem';
 //封装observer
 import observer from "./js_rem/observer";
 
+ import VueCropper from 'vue-cropper'
 Vue.config.productionTip = false;
 //设置observer 处理组件传值
 Vue.prototype.observer  = observer;

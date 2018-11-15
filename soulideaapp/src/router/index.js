@@ -2,6 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import firstLevelPage from '../components/firstLevelPage';
 import homePage from "../components/homePage/homePage";
+import userInfoModule from "./userInfoModule";
+
 import routerLi from "./router-Libo";
 Vue.use(Router)
 
@@ -19,5 +21,6 @@ export default new Router({
       component: firstLevelPage,
     },
 		...routerLi
+		...userInfoModule,
   ]
 })
