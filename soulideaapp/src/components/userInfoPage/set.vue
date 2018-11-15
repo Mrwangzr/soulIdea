@@ -39,7 +39,7 @@
 	
 </script>
 
-<style>
+<style scoped>
 .box{
 	height:100%;
 	background: #f8f8f8;

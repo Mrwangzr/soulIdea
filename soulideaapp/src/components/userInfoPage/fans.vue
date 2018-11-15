@@ -17,7 +17,6 @@
 							>
 							<fanslist-com></fanslist-com>	
 						</div> 
-					
 				</div>
 			</div>
 		</div>
@@ -69,11 +68,12 @@
 				this.scroll.refresh();
 				//当数据加载完毕以后通知better-scroll
 				this.scroll.finishPullUp();
+				
 		}
 	}
 </script>
 
-<style>
+<style scoped>
 .box{
 	height:100%;
 	background: #f8f8f8;

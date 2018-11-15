@@ -46,8 +46,8 @@
 	}
 </script>
 
-<style>
-html,body{
+<style scoped>
+.box{
 	background: #f8f8f8;
 }
 

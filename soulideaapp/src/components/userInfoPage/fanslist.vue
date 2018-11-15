@@ -15,21 +15,28 @@
 </template>
 
 <script>
+	import Vuex from "vuex";
 	export default{
 		data(){
 			return{
 				message:"关注",
 				
 			    del:"相互关注",
-				list:{},
+				list:[],
 				
 			}
+		},
+		computed:{
+			...Vuex.mapState({
+				list:state=>state.userInfoStore.list
+			})
 		},
 		methods:{
 			cancel(){
 				if(this.message="关注"){
 					this.message=this.del;
-					console.log(this.message);	
+					console.log(this.message);
+						console.log(this.index)
 				}	
 			}
 		},
