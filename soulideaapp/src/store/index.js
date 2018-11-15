@@ -5,6 +5,10 @@ import axios from "axios";
 import storeLi from "./store-Libo";
 // import BScroll from 'better-scroll';
 import userInfoStore from "./userInfoStore";
+import signInStore from "./signInStroe";
+import otherUserTwo from "./otherUserTwo";
+
+
 Vue.use(Vuex);
 
 const state = {
@@ -29,7 +33,9 @@ const Store = new Vuex.Store({
 	modules:{
 		storeLi,
         userInfoStore,
-        newsModulesStore
+        newsModulesStore,
+    signInStore,
+    otherUserTwo
 	}
 });
 
