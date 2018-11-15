@@ -7,8 +7,7 @@ import storeLi from "./store-Libo";
 import userInfoStore from "./userInfoStore";
 import signInStore from "./signInStroe";
 import otherUserTwo from "./otherUserTwo";
-
-
+import commentStore from "./commentStore"
 Vue.use(Vuex);
 
 const state = {
@@ -35,7 +34,8 @@ const Store = new Vuex.Store({
         userInfoStore,
         newsModulesStore,
     signInStore,
-    otherUserTwo
+    otherUserTwo,
+    commentStore
 	}
 });
 

@@ -4,6 +4,7 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from './store';
+import storeCom from "./store/commentStore"
 //全局css
 import './css_common/reset.css';
 //图形文字
@@ -28,6 +29,7 @@ new Vue({
   el: '#app',
   router,
   store,
+  storeCom,
   components: { App },
   template: '<App/>'
 });
