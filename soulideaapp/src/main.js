@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import App from './App';
-import router from './router/works.js';
+import router from './router';
 import store from './store';
 import storeCom from "./store/commentStore"
 //全局css

@@ -10,8 +10,6 @@ import works from "./works";
 
 Vue.use(Router);
 
-Vue.use(Router)
-
 export default new Router({
   routes: [
     {
