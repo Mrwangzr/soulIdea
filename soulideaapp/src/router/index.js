@@ -10,18 +10,17 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    // {
-    //   //重定向
-    //   path:"/",
-    //   redirect:"/firstLevelPage"
-    // },
-    // {
-    //   //首页的跳转路由
-    //   path: '/firstLevelPage',
-    //   name: 'firstLevelPage',
-    //   component: firstLevelPage,
-    // },
-    // { 
+    {
+      //重定向
+      path:"/",
+      redirect:"/firstLevelPage"
+    },
+    {
+      //首页的跳转路由
+      path: '/firstLevelPage',
+      name: 'firstLevelPage',
+      component: firstLevelPage,
+    },
     ...contentCommentRouter
   ]
 })
