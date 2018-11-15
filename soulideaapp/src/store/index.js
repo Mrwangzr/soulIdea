@@ -1,7 +1,7 @@
 import Vue from "vue";
 import  Vuex from "vuex";
 import axios from "axios";
-
+import commentStore from "./commentStore"
 Vue.use(Vuex);
 
 const state = {
@@ -19,7 +19,10 @@ const actions = {
 const Store = new Vuex.Store({
     state,
     mutations,
-    actions
+    actions,
+    modules:{
+        commentStore
+    }
 });
 
 export default Store;
