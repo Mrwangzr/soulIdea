@@ -1,6 +1,9 @@
 import Vue from "vue";
 import  Vuex from "vuex";
 import axios from "axios";
+import signInStore from "./signInStroe";
+import otherUserTwo from "./otherUserTwo";
+
 
 Vue.use(Vuex);
 
@@ -17,9 +20,14 @@ const actions = {
 };
 
 const Store = new Vuex.Store({
+    namespaced:true,
     state,
     mutations,
-    actions
+    actions,
+    modules:{
+        signInStore,
+        otherUserTwo
+    }
 });
 
 export default Store;

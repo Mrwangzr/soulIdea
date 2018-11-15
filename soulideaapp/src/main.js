@@ -12,7 +12,12 @@ import './font_xkd0wfhsk8/iconfont.css';
 import './js_rem/rem';
 //封装observer
 import observer from "./js_rem/observer";
+//srh-elementUi查件
+import ElementUI from 'element-ui';
+//srh-elementUi查件css
+import 'element-ui/lib/theme-chalk/index.css';
 
+Vue.use(ElementUI);
 Vue.config.productionTip = false;
 //设置observer 处理组件传值
 Vue.prototype.observer  = observer;
