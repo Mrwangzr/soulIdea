@@ -2,6 +2,7 @@ import set from "../components/userInfoPage/set";
 import feedback from "../components/userInfoPage/feedback";
 import fans from "../components/userInfoPage/fans";
 import attention from "../components/userInfoPage/attention"
+import rank from "../components/userInfoPage/rank"
 export default [
 	{
 		path:'/set',
@@ -22,5 +23,10 @@ export default [
 		path:'/attention',
 		name:'attention',
 		component:attention
+	},
+	{
+		path:"/rank",
+		name:"rank",
+		component:rank
 	}
 ]
