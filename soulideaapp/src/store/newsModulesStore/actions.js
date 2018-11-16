@@ -54,7 +54,7 @@ export default {
       })
     }
   },
-
+  //打赏列表的获取
   handleGiftChangeList_getList({commit},params){
     //第一次进入页面
     if(params.max === -1){
@@ -81,6 +81,108 @@ export default {
       })
     }
   },
+
+
+  //好友模块
+    //加好友
+    addNewFriend(id){
+       axios({
+         method:"post",
+         url:"/friend/addfriend",
+         headers:{
+           'Content-type': 'application/x-www-form-urlencoded'
+         },
+
+         data:{
+           id:id
+         }
+       }).then(
+         (data)=>{
+           if(data.errorCode === 200){
+
+           }
+           else{
+
+           }
+         }
+       )
+    },
+    //删好友
+    deleteFriend(id){
+      axios({
+        method:"post",
+        url:"/friend/deletefriend",
+        headers:{
+          'Content-type': 'application/x-www-form-urlencoded'
+        },
+
+        data:{
+          id:id
+        }
+      }).then(
+        (data)=>{
+          if(data.errorCode === 200){
+
+          }else{
+
+          }
+        }
+      )
+    },
+    //改备注
+    editFriendRemarks(params){
+    axios({
+      method:"post",
+      url:"/friend/getfriendname",
+      headers:{
+        'Content-type': 'application/x-www-form-urlencoded'
+      },
+
+      data:{
+        id:params.id,
+        name:params.name
+      }
+    }).then(
+      (data)=>{
+        if(data.errorCode === 200){
+
+        }else{
+
+        }
+      }
+    )
+    },
+    //查找个人信息
+    findFriendInfo(){
+      axios({
+        method:"get",
+        url: "",
+      }).then(
+        (data)=>{
+
+        }
+      )
+    },
+  //聊天模块
+    //发送消息
+    sendMessageTo(id){
+     axios({
+       method:"post",
+       headers:{
+         'Content-type': 'application/x-www-form-urlencoded'
+       },
+       url:"/friend/user",
+       data:{
+         to:id
+       }
+     }).then(
+       (data)=>{
+         data
+       }
+     )
+    },
+    //查找消息
+
 
 
 }

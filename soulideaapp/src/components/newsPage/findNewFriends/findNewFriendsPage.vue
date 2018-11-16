@@ -48,6 +48,7 @@
 </script>
 
 <style scoped>
+
   .list {
     width: 100%;
     height: 100%;

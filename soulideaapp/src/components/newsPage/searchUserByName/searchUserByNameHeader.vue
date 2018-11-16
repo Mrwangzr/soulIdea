@@ -30,6 +30,7 @@
     border-bottom: 1px solid #efefef;
     padding-left: .7rem;
     align-items: center;
+    background: #ffffff;
   }
   div{
     display: flex;
