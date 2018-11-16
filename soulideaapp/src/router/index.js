@@ -2,8 +2,14 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import firstLevelPage from '../components/firstLevelPage';
 import homePage from "../components/homePage/homePage";
+import userInfoModule from "./userInfoModule";
+import newsModule from './newsModule';
 import routerLi from "./router-Libo";
-Vue.use(Router)
+import othersInfoModule from "./othersInfoModule";
+import works from "./works";
+import contentCommentRouter from "./contentCommentRouter.js"
+
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -18,6 +24,15 @@ export default new Router({
       name: 'firstLevelPage',
       component: firstLevelPage,
     },
-		...routerLi
+    //登录注册模块
+		...routerLi,
+    //个人信息路由
+		...userInfoModule,
+    //消息模块的路由
+    ...newsModule,
+    //他人信息路由
+    ...othersInfoModule,
+    ...works,
+    ...contentCommentRouter
   ]
 })

@@ -1,7 +1,14 @@
 import Vue from "vue";
 import  Vuex from "vuex";
+import newsModulesStore from "./newsModulesStore";
 import axios from "axios";
 import storeLi from "./store-Libo";
+// import BScroll from 'better-scroll';
+import userInfoStore from "./userInfoStore";
+import signInStore from "./signInStroe";
+import otherUserTwo from "./otherUserTwo";
+import commentStore from "./commentStore"
+import production from "./productionStore"
 Vue.use(Vuex);
 
 const state = {
@@ -16,7 +23,7 @@ const actions = {
 
 };
 const getters = {
-	
+
 };
 const Store = new Vuex.Store({
     state,
@@ -24,7 +31,13 @@ const Store = new Vuex.Store({
     actions,
 	getters,
 	modules:{
-		storeLi
+		storeLi,
+        userInfoStore,
+        newsModulesStore,
+    signInStore,
+    otherUserTwo,
+    commentStore,
+    production
 	}
 });
 
