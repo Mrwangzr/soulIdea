@@ -1,5 +1,15 @@
 <template>
 	<div class="register">
+		<transition name="markSport">
+			<div class="mark"
+				v-show="slider"
+			></div>
+		</transition>
+		<transition name="boxSport">
+			<div class="box"
+				v-show="slider"
+			>{{tit}}</div>
+		</transition>
 		<div class="blank"></div>
 		<div class="register-top">注册</div>
 		<div class="register-cont">
@@ -8,9 +18,11 @@
 		<div class="register-cont-second">
 			<div class="register-input">
 				<div class="inputFirst">	
+					<span class="tit" v-show="showS">请输入正确的手机号！</span>
 					<div 
 						class="inputName"
-						:class="inputStyle == true ? 'myStyle' : ''"
+						:id="inputStyle == true ? 'myStyle' : ''"
+						:class="showS == true ? 'errorStyle' : ''"
 					>
 						<div class="input-icon">
 							<div class="input-icon-f"></div>
@@ -52,15 +64,18 @@
 			<div 
 				class="register-on"
 				@click="handlerRegister()"
+				:id="(registerOne && registerTwo && registerThree) == true ? 'newStyle':''"
 			>立即注册</div>
 		</div>
 	</div>
 </template>
 
 <script>
+	import axios from "axios";
 	export default {
 		data() {
 			return {
+				showS:'',
 				show:"",
 				text:"获取验证码",
 				num:60,
@@ -71,8 +86,39 @@
 				inputStyleT:"",
 				phone:"",
 				code:"",
-				password:""
+				password:"",
+				registerThree:'',
+				registerOne:'',
+				registerTwo:'',
+				slider:"",
+				tit:""
 			};
+		},
+		watch:{
+			password(val){
+				if(val){
+					this.registerThree = true;
+				}else{
+					this.registerThree = false;
+				}
+			},
+			code(val){
+				if(val){
+					this.registerTwo = true;
+				}else{
+					this.registerTwo = false;
+				}
+			},
+			phone(val){
+				var re = /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/;
+				if(re.test(val)) {
+					this.registerOne = true;
+					this.showS = false;
+				} else {
+					this.registerOne = false;
+				}
+			}
+			
 		},
 		methods:{
 			handlerBlurTwo(){
@@ -91,10 +137,15 @@
 			},
 			handlerBlurOne(){
 				this.inputStyle = false
-				
+				var re = /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/;
+				if(re.test(this.phone)) {
+					this.showS = false;					
+				} else {
+					this.showS = true;
+				}
 			},
 			handlerFocusOne(){
-				this.inputStyle = true
+				this.inputStyle = true;
 			},
 			handlerGet(){
 				if(!this.show){
@@ -103,8 +154,7 @@
 					let timer = null; 
 					var sport = function(){
 						timer = setInterval(function(){
-							that.num --
-							console.log(that.num);
+							that.num --;
 							if(that.num < 1){
 								clearInterval(timer);
 								that.show = !that.show;
@@ -117,39 +167,49 @@
 				}								
 			},
 			handlerRegister(){
-				alert("注册成功")
-				console.log(this.phone,this.password)
-// 				axios({
-// 				  method:"post",
-// 				  url:"http://localhost:3000/list",
-// 				  data:{
-// 					  phone:this.phone,
-//						code:this.code,
-// 					  password:this.password
-// 				  }
-// 				}).then((data)=>{
-// 					console.log(data);
-// 					if(data.data.result){
-// 						console.log("注册成功！")
-// 						this.text = "注册成功！"
-// 					}else{
-// 						switch(data.errorCode){
-// 							case 302:
-// 								this.text = "验证码错误，请重新输入！"
-// 								break;
-// 							case 304:
-// 								this.text = "邮箱网址错误，请输入正确的邮箱网址！"
-// 								break;
-// 							case 306:
-// 								this.text = "手机地址错误，请输入正确的手机号码！"
-// 								break;
-//							case 308:
-//                this.text = "该手机邮箱已经注册，请登录！"
-// 				        break;
+				if(this.registerOne && this.registerTwo && this.registerThree){								
+					this.slider = true;
+					axios({
+						method:"post",
+						url:"http://localhost:3000/list",
+						data:{
+							phone:this.phone,
+							code:this.code,
+							password:this.password
+						}
+					}).then((data)=>{
+						console.log(data.data.phone);
+						//this.slider = false;
+						var that = this;
+						setTimeout(function(){
+							that.slider = false;
+						},1500)
+						setTimeout(function(){
+							that.$router.push({name:'login'});
+						},2500)
+						
+// 						if(data.data.result){
+// 							console.log("注册成功！")
+// 							this.tit = "注册成功！";
+// 						}else{
+// 							switch(data.errorCode){
+// 								case 302:
+// 									this.tit = "验证码错误，请重新输入！"
+// 									break;
+// 								case 304:
+// 									this.tit = "邮箱网址错误，请输入正确的邮箱网址！"
+// 									break;
+// 								case 306:
+// 									this.tit = "手机地址错误，请输入正确的手机号码！"
+// 									break;
+// 								case 308:
+// 								 this.tit = "该手机邮箱已经注册，请登录！"
+// 									break;
+// 							}
+// 							
 // 						}
-// 						
-// 					}
-// 				})
+					})
+				}
 			},
 			handlerSee(){
 				if(!this.toggle){
@@ -165,8 +225,49 @@
 </script>
 
 <style scoped>
+.tit{
+	position:absolute;
+	left:.5rem;
+	top:4.22rem;
+	color: #fc4343;
+}	
+.box{
+	height:3rem;
+	width:6rem;
+	background: #fff;
+	position: fixed;
+	z-index: 2;
+	margin:auto;
+	left:0;
+	top:0;
+	bottom:0;
+	right:0;
+	box-shadow:0px 7px 7px 1px rgba(167,167,167,0.3);
+	border-radius:10px;
+	line-height: 3rem;
+	color:;
+	font-weight:600;
+	letter-spacing: .02rem;
+	font-size:.3rem
+}
+.mark{
+	height:100%;
+	width:100%;
+	position: absolute;
+	background: rgba(0,0,0,0.5);	
+	z-index: 1;
+}
+#myStyle{
+	border:1px solid #488ee7;
+}
+.errorStyle{
+	border:1px solid #fc4343;
+}
 .myStyle{
-	border:1px solid #4CD1E0;
+	border:1px solid #488ee7;
+}
+#errorStyle{
+	border:1px solid #fc4343;
 }
 .register{
 	height:13.34rem;
@@ -318,7 +419,7 @@ input{
 .register-on{
 	width:5rem;
 	height:1rem;
-	background:rgba(246,196,93,1);
+	background:#ccc;
 	box-shadow:0px 13px 7px 0px rgba(240,240,240,0.92);
 	border-radius:10px;
 	text-align: center;
@@ -329,5 +430,20 @@ input{
 	color:rgba(255,255,255,1);
 	letter-spacing:.1rem;
 	/* opacity:0.55; */
+}
+#newStyle{
+	background:rgba(246,196,93,1);
+}
+.markSport-enter,.markSport-leave-to{
+    opacity: 0;
+}
+.markSport-enter-active,.markSport-leave-active{
+    transition: all 300ms;
+}
+.boxSport-enter,.boxSport-leave-to{
+    transform: translateY(-100%);
+}
+.boxSport-enter-active,.boxSport-leave-active{
+    transition: all 600ms;
 }
 </style>
