@@ -8,12 +8,14 @@
 			</header>
 		</div>
 		<Tagboard-com></Tagboard-com>
+		<Box-com></Box-com>
 	</div>
 		
 </template>
 
 <script>
 import Tagboard from "./worksmodule/tagboard.vue"
+import Box from "./worksmodule/popBox.vue"
 import Vuex from "vuex"
 export default {
 		data() {
@@ -22,11 +24,12 @@ export default {
 			};
 		},
 		components:{
-			"Tagboard-com":Tagboard
+			"Tagboard-com":Tagboard,
+			"Box-com":Box
 		},
 		methods: {
 			back(){
-				this.$router.back()
+				this.$router.push("/production")
 			},
 			newConstruction(){
 				this.$router.push("/newConstruction")
