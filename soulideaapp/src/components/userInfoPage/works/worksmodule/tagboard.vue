@@ -1,7 +1,7 @@
 <template>
 	<div class="wrapper" ref="wrapper">
 		<div class="content">
-			<div v-for="(item,index) in getMyList" @touchstart.prevent="touchin(item.id)" @touchend.prevent="cleartime(item.id)">
+			<div v-for="(item,index) in getMyList">
 				<router-link :to="{name:'beautiful',query:{id:item.id,name:item.name}}">
 					<div class="workslist">
 						<img :src="item.src">
@@ -35,17 +35,7 @@ export default {
 			...Vuex.mapActions({
 				getWorksMyList:"getWorksMyList"
 			}),
-				touchin(id) {
-					clearInterval(this.Loop); //再次清空定时器，防止重复注册定时器
-					this.Loop = setTimeout(function() {
-						alert('是否确认删除')
-					}.bind(this), 1000);
-				},
-				cleartime(id,course_id) {
-					// 这个方法主要是用来将每次手指移出之后将计时器清零
-					clearInterval(this.Loop);
-				}
-			},
+		},
 		mounted(){
 			this.scroll = new BScroll(this.$refs.wrapper,{
 					click:true,

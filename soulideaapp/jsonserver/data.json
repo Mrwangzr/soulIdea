@@ -51,73 +51,9 @@
   ],
   "getproductour": [
     {
-      "id": 6,
-      "src": "./static/sorksimage/beautiful/dahai.png",
-      "name": "大海",
-      "time": "1234",
-      "great": 1111,
-      "seen": 2222
-    },
-    {
-      "id": 7,
-      "src": "./static/sorksimage/beautiful/hongjiu.png",
-      "name": "红酒",
-      "time": "1234",
-      "great": 1111,
-      "seen": 2222
-    },
-    {
-      "id": 8,
-      "src": "./static/sorksimage/beautiful/lianggeren.png",
-      "name": "不知道是什么",
-      "time": "1234",
-      "great": 1111,
-      "seen": 2222
-    },
-    {
-      "id": 9,
-      "src": "./static/sorksimage/beautiful/renwu.png",
-      "name": "人",
-      "time": "1234",
-      "great": 1111,
-      "seen": 2222
-    },
-    {
       "id": 10,
       "src": "./static/sorksimage/beautiful/yiyi.png",
       "name": "一亿",
-      "time": "1234",
-      "great": 1111,
-      "seen": 2222
-    },
-    {
-      "id": 11,
-      "src": "./static/sorksimage/beautiful/dahai.png",
-      "name": "大海",
-      "time": "1234",
-      "great": 1111,
-      "seen": 2222
-    },
-    {
-      "id": 11,
-      "src": "./static/sorksimage/beautiful/dahai.png",
-      "name": "大海",
-      "time": "1234",
-      "great": 1111,
-      "seen": 2222
-    },
-    {
-      "id": 11,
-      "src": "./static/sorksimage/beautiful/dahai.png",
-      "name": "大海",
-      "time": "1234",
-      "great": 1111,
-      "seen": 2222
-    },
-    {
-      "id": 11,
-      "src": "./static/sorksimage/beautiful/dahai.png",
-      "name": "大海",
       "time": "1234",
       "great": 1111,
       "seen": 2222
@@ -276,5 +212,50 @@
       "tags": "摄影",
       "id": 6
     }
+  ],
+  "Joinoptions":[
+	  {
+		"name": "最美",
+		"contant": "大铁锤",
+		"tags": "摄影",
+		"id": 6  
+	  },
+	  {
+	  "name": "大铁锤",
+	  "contant": "",
+	  "tags": "",
+	  "id": 6  
+	  },
+	  {
+	  "name": "摄影",
+	  "contant": "",
+	  "tags": "",
+	  "id": 6  
+	  },
+	  {
+	  "name": "大铁锤",
+	  "contant": "",
+	  "tags": "",
+	  "id": 6  
+	  },
+	  {
+	  "name": "最美",
+	  "contant": "",
+	  "tags": "",
+	  "id": 6  
+	  },
+	  {
+	  "name": "摄影",
+	  "contant": "",
+	  "tags": "",
+	  "id": 6  
+	  },
+	  {
+	  "name": "大铁锤",
+	  "contant": "",
+	  "tags": "",
+	  "id": 6  
+	  }
+	  
   ]
 }
