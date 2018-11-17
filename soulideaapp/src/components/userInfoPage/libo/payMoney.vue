@@ -26,6 +26,8 @@
 			handlerBtn(index){
 				this.active = index;
 				this.howMoney = this.list[index][1];
+				// console.log(this.list[index][1]);
+				this.$emit("byVal",this.list[index][1]);
 			}
 		},
     }

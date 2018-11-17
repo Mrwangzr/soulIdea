@@ -1,11 +1,15 @@
 <template>
 	<div class="login">
-		<div class="mark"
-			v-show="slider"
-		></div>
-		<div class="box"
-			v-show="slider"
-		></div>
+		<transition name="markSport">
+			<div class="mark"
+				v-show="slider"
+			></div>
+		</transition>
+		<transition name="boxSport">
+			<div class="box"
+				v-show="slider"
+			>{{text}}</div>
+		</transition>		
 		<div class="blank"></div>
 		<div class="login-top">
 			<p>登录</p>
@@ -16,9 +20,11 @@
 		<div class="login-cont">
 			<div class="login-icon">
 			</div>
+			<span class="tit" v-show="show">请输入正确的手机号或者邮箱！</span>
 			<div 
 				class="inputName"
-				:class="inputStyle == true ? 'myStyle' : ''"
+				:id="inputStyle == true ? 'myStyle' : ''" 
+				:class="show == true ? 'errorStyle' : ''"
 			>
 				<div class="input-icon">
 					<div class="input-icon-f"></div>
@@ -34,7 +40,7 @@
 			</div>
 			<div 
 				class="inputPassword"
-				:class="inputStyleS == true ? 'myStyle' : ''"
+				:id="inputStyleS == true ? 'myStyle' : ''"
 			>
 				<div class="input-icon">
 					<div class="input-icon-s"></div>
@@ -47,11 +53,14 @@
 					@blur="handlerBlurS()"
 				>
 			</div>
-			<div class="login-on" @click="handlerLogin">登&nbsp;&nbsp;&nbsp;录</div>
+			<div class="login-on"
+				@click="handlerLogin"
+				:id="(loginOne && loginTwo) == true ? 'newStyle':''"
+			 >登&nbsp;&nbsp;&nbsp;录</div>
 			<div class="login-herf">
-				<p>账号安全</p>
+				<p @click="handlerGo()">账号安全</p>
 				<p></p>
-				<p>找回密码？</p>
+				<p @click="handlerGo()">找回密码？</p>
 			</div>
 			<div class="login-dashed">
 				<div class="dashed"></div>
@@ -75,20 +84,37 @@
 		},
 		data() {
 			return {
+				show:"",
 				username:"",
 				password:"",
 				inputStyle:"",
 				inputStyleS:"",
 				slider:'',
-				text:""
+				text:"",
+				showS:"true",
+				loginOne:'',
+				loginTwo:""
 			};
 		},
 		methods:{
 			handleRouter(){
 				this.$router.push({name:"register"})
 			},
+			handlerGo(){
+				window.location.href = "https://www.360.cn/"
+			},
 			handlerBlur(){
-				this.inputStyle = false
+				this.inputStyle = false;
+				var re = /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/;
+				var reO = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+				if(re.test(this.username) || reO.test(this.username)) {
+					this.show = false;
+					this.loginOne = true;
+				} else {
+					this.show = true;
+					this.loginOne = false;
+				}
+	
 				
 			},
 			handlerFocus(){
@@ -96,47 +122,67 @@
 			},
 			handlerBlurS(){
 				this.inputStyleS = false
-				
 			},
 			handlerFocusS(){
 				this.inputStyleS = true
 			},
 			handlerLogin(){
-				this.slider = !this.slider;
-				axios({
-				  method:"post",
-				  url:"http://localhost:3000/list",
-				  data:{
-					  username:this.username,
-					  password:this.password
-				  }
-				}).then((data)=>{
-					console.log(data);
-					if(data.data.result){
-						console.log("登陆成功！")
-						this.text = "登陆成功！"
-					}else{
-						switch(data.errorCode){
-							case 301:
-								this.text = "登录密码错误，请重新输入！"
-								break;
-							case 304:
-								this.text = "邮箱网址错误，请输入正确的邮箱网址！"
-								break;
-							case 306:
-								this.text = "手机地址错误，请输入正确的手机号码！"
-								break;
+				if(this.loginOne && this.loginTwo){
+					this.slider = !this.slider;
+					axios({
+						method:"get",
+						headers:{
+							'Content-type':'application/x-www-form-urlencoded'
+						},
+						// url:"/Soulidea-1.0/user/login?username=17864308316&password=123456"
+						url:"/Soulidea-1.0/user/login?username="+this.username+"&password="+this.password,
+					 /* data:{
+						  username:this.username,
+						  password:this.password
+					  } */
+					}).then((data)=>{
+						console.log(data);
+						if(data.data.data.result){
+							this.$router.push({name:"firstLevelPage"});
+							this.text = "登陆成功" 
+						}else{
+							switch(data.errorCode){
+								case 301:
+									this.text = "登录密码错误，请重新输入！"
+									break;
+								case 304:
+									this.text = "邮箱网址错误，请输入正确的邮箱网址！"
+									break;
+								case 306:
+									this.text = "手机地址错误，请输入正确的手机号码！"
+									break;
+							}
+							
 						}
-						
-					}
-				})
+					})
+				}
 			},
 		
 
 		},
 		watch:{			
-	
-
+			password(val){
+				if(val){
+					this.loginTwo = true;
+				}else{
+					this.loginTwo = false;
+				}
+			},
+			username(val){
+				var re = /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/;
+				var reO = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+				if(re.test(val) || reO.test(val)) {
+					this.loginOne = true;
+					this.show = false;
+				} else {
+					this.loginOne = false;
+				}
+			}
 		}
 		
 		
@@ -145,8 +191,13 @@
 	}
 </script>
 
-<style>
-	
+<style scoped>
+.tit{
+	position: absolute;
+	left:.5rem;
+	top:4.7rem;
+	color: #fc4343;
+}	
 .login{
 	height:13.34rem;
 	width:100%;
@@ -185,8 +236,12 @@
 	width:100%;
 	
 }
-.myStyle{
-	border:1px solid #4CD1E0;
+#myStyle{
+	border:1px solid #488ee7;
+}
+	
+.errorStyle{
+	border:1px solid #fc4343;
 }
 .login-top{
 	height:.88rem;
@@ -284,13 +339,17 @@ input{
 	left:1.19rem;
 	width:5.13rem;
 	height:1.2rem;
-	background:url(../../../assets/imgLibo/background.png);
-	background-size:cover;
+	background:#ccc;
+	border-radius: 10px;
 	font-size:.32rem;
-	line-height:1rem;
+	line-height:1.2rem;
 	font-family:PingFang-SC-Heavy;
 	font-weight:800;
 	color:rgba(255,255,255,1);
+}
+#newStyle{
+	background:rgba(246,196,93,1);
+	background-size:cover;
 }
 .login-herf{
 	height:.25rem;
@@ -362,5 +421,17 @@ input{
 	width:.6rem;
 	background: url(../../../assets/imgLibo/weibo@2x.png) no-repeat;
 	background-size:contain;
+}
+.markSport-enter,.markSport-leave-to{
+    opacity: 0;
+}
+.markSport-enter-active,.markSport-leave-active{
+    transition: all 300ms;
+}
+.boxSport-enter,.boxSport-leave-to{
+    transform: translateY(-100%);
+}
+.boxSport-enter-active,.boxSport-leave-active{
+    transition: all 300ms;
 }
 </style>
