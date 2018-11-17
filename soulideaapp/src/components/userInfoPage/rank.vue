@@ -27,7 +27,7 @@
 		<div class="rank-bottom">
 			<div class="rank-next">
 				<li>距离下一个等级：</li>
-				<li><el-progress type="circle" :percentage="10"></el-progress></li>
+				<li><el-progress type="circle" :percentage="80"></el-progress></li>
 			</div>
 			<div class="rank-suffer">
 				

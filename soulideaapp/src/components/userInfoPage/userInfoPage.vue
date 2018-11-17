@@ -21,18 +21,18 @@
 							<div class="nickname">
 									<li>{{message.name}}</li>
 									
-										<li><router-link to="/rank">{{message.v}}</router-link></li>
+										<li><router-link to="/rank">v.{{message.gender}}</router-link></li>
 									
 							</div>
 							<li>{{message.sign}}</li>
 							<div class="fans">
 									<span>
-											<li>{{message.zan}}</li>
+											<li>{{message.fork}}</li>
 											<li class="fans-li">赞</li>
 									</span>
 									<span>
 											<router-link to="/attention">
-													<li>{{message.att}}</li>
+													<li>{{message.great}}</li>
 													<li class="fans-li">关注</li>
 											</router-link>
 									</span>
@@ -50,7 +50,7 @@
 						<li class="iconfont icon-arrow-right"></li>
 					</ul>
 				</router-link>
-				<router-link to="/home">
+				<router-link to="/production">
 					<ul class="ul-my">
 						<li>我的作品</li>
 						<li class="iconfont icon-arrow-right"></li>
@@ -70,11 +70,6 @@ export default {
 		computed:{
 			...Vuex.mapState({
 				message:state=>state.userInfoStore.message
-			})
-		},
-		methods:{
-			...Vuex.mapActions({
-				handleGetMessage:"userInfoStore/handleGetMessage"
 			})
 		},
 		created(){
@@ -101,7 +96,10 @@ export default {
           this.$message.error('上传头像图片大小不能超过 2MB!');
         }
         return isJPG && isLt2M;
-      }
+      },
+			...Vuex.mapActions({
+				handleGetMessage:"userInfoStore/handleGetMessage"
+			})
     }
   }
 </script>
@@ -240,4 +238,5 @@ export default {
     height: 178px;
     display: block;
   } */
+	
 </style>

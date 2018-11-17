@@ -5,7 +5,7 @@
             <!-- 创作个数 -->
             <div class="proNum">
                 <p>共上传20个创作</p>
-                <p>时间更新</p>
+                <p @click="handleTime()">时间更新</p>
             </div>
             <!-- 作品集 -->
             <div class="wrapper" ref="wrapper">
@@ -58,6 +58,11 @@ export default {
     methods:{
         handle(){
             this.$router.push("/otherUserTwo");
+        },
+        handleTime(){
+            //进行axios请求，按照时间进行请求
+            console.log("1");
+
         }
     },
     mounted(){
@@ -97,6 +102,10 @@ export default {
     line-height: .73rem;
     padding: 0 12px;
 }
+#prMore .proNum p:nth-of-type(2){
+    background: #797979;
+    border-radius: 5px;
+}
 #prMore .proNum p:nth-of-type(1){
     color:#797979;
 }
@@ -107,6 +116,7 @@ export default {
     /* height: 100%; */
     height: 3rem;
     /* overflow: hidden; */
+    background: #fff;
 }
 
 #prMore .proCon{
@@ -114,6 +124,8 @@ export default {
     height: auto;
     /* overflow: hidden; */
     margin-bottom: 10px;
+    background: #fff;
+    
 }
 #prMore .con .more{
     height: 64px;

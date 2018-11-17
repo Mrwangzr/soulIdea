@@ -4,7 +4,7 @@
       <img :src="imgSrc" alt="">
       <span>{{username}}</span>
       <span>{{type}}</span>
-      <p>{{content}}</p>
+      <p>{{types}}{{num}}</p>
     </div>
     <div>
        {{time}}
@@ -20,8 +20,20 @@
       username:String,
       time:String,
       type:String,
-      content:String
-    }
+      content:String,
+      num:Number
+    },
+    data(){
+      return{
+        types:""
+      }
+    },
+    created(){
+      console.log(this.num);
+      if(this.num) {
+        this.types = this.content + "×";
+      }
+     }
   }
 </script>
 
@@ -52,16 +64,29 @@
   span:first-of-type{
     font-weight: 600;
     margin-right: .1rem;
-    font-size: 14px;
+    font-size: 12px;
     color: #666666;
+    max-width: 1.5rem;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  span:last-of-type{
+    max-width: 1.5rem;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   p{
     margin-left: .1rem;
     color: #999;
-    width:3.5rem;
+    max-width:1.5rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     text-align: left;
+
   }
 </style>

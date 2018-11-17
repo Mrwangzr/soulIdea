@@ -1,9 +1,12 @@
 <template>
 	<div class="box">
 		<div class="set">
-			<router-link to="/set">
+			<!-- <router-link to="/set">
 				<li class="iconfont icon-right"></li>
-			</router-link>
+			</router-link> -->
+			<span @click="back">
+				<li class="iconfont icon-right"></li>
+			</span>
 			<li>意见反馈</li>
 			<li></li>
 		</div>
@@ -25,9 +28,6 @@
 					<img src="../../../static/image/feedback/提交.png" />
 				</el-button>
 			</template>
-				
-			
-			<li v-show="show">提交成功!</li>
 		</div>
 	</div>
 </template>
@@ -42,28 +42,14 @@
 		},
 		methods:{
 			//点击提交，显示提交成功，3s后跳转到设置页面（set.vue）
-			submit(){
-				console.log(this.message)
-				if(this.message!=""){
-					
-					setTimeout(()=>{
-						this.show=false;
-						this.$router.push('/set');
-						
-					},3000)
-				}else{
-					alert(1)
-				}
-				
-			},
 			open4() {
-				
+				if(this.message!=""){
 					const h = this.$createElement;
 					this.$msgbox({
-						title: '消息',
+						title: '意见反馈',
 						message: h('p', null, [
-						h('span', null, '内容可以是 '),
-						h('i', { style: 'color: teal' }, 'VNode')
+						h('span', null, '是否提交该内容 '),
+						h('i', { style: 'color: teal' }, '')
 						]),
 						showCancelButton: true,
 						confirmButtonText: '确定',
@@ -72,11 +58,13 @@
 						if (action === 'confirm') {
 							instance.confirmButtonLoading = true;
 							instance.confirmButtonText = '执行中...';
+							this.message=="";
 							setTimeout(() => {
 							done();
 							setTimeout(() => {
 								instance.confirmButtonLoading = false;
 							}, 300);
+							this.$router.push('/set');
 							}, 3000);
 						} else {
 							done();
@@ -88,15 +76,15 @@
 						message: 'action: ' + action
 						});
 					});
-					
-				
-					
+				}		
+			},
+			back(){
+				this.$router.back();
 			}
 		},
 		watch:{
 			message(newVal,oldVal){
-				
-				console.log('message:'+newVal,oldVal)
+				this.message=newVal;
 			}
 		}
 	}
@@ -172,4 +160,7 @@ html,body{
 	font-size:.3rem ;
 	color: #F6C45D;
 }
+.el-message-box{
+		width: 6.75rem;
+	}
 </style>

@@ -2,7 +2,7 @@ export default{
 	//获取粉丝列表
 	handleGetName(state,params){
 		state.list = params;
-		// console.log(state.list);
+		console.log(state.list);
 	},
 	handleGetMessage(state,params){
 		state.message = params;
@@ -11,5 +11,6 @@ export default{
 	handleGetAttentions(state,params){
 		state.attentionsList = params;
 		// console.log(state.message);
-	}
+	},
+	
 } 

@@ -25,7 +25,8 @@
 		methods:{
 			handlerBtn(index){
 				this.active = index;
-				console.log(11)
+				// console.log(this.list[index][1]);
+				this.$emit("byVal",this.list[index][1]);
 			}
 		},
     }

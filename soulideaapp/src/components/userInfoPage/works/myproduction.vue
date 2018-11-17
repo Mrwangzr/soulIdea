@@ -1,8 +1,8 @@
 <template>
 	<div class="production">
 		<!-- 头部 -->
-		<div class="header">
-			<img src="../../../../static/sorksimage/production/fanhui.png" @click="back()">
+		<div class="header" @click="back()">
+			<img src="../../../../static/sorksimage/production/fanhui.png" >
 			<p>作品</p>
 		</div>
 		<!-- 作品集 -->
@@ -14,21 +14,40 @@
 		</router-link>
 	
 		<!-- 作品列表 -->
-		<ListWorks-com></ListWorks-com>
+		<ListWorks-com @handleTogle="getShow"></ListWorks-com>
+		
+		<mark-com @handleMark="getVal" v-show="show"></mark-com>
+		<joinList-com @handleMark="getVal" v-show="show"></joinList-com>
 	</div>
 </template>
 
 <script>
 
 import ListWorks from "./worksmodule/Listofworks.vue"
+import Mark from "./worksmodule/mark.vue"
+import joinList from "./worksmodule/joinList.vue"
 export default {
+	data(){
+		return{
+			show:false
+
+		}
+	},
 	components:{
-		"ListWorks-com":ListWorks
+		"ListWorks-com":ListWorks,
+		"joinList-com":joinList,
+		"mark-com":Mark
 	},
 	methods: {
 		back(){
 			this.$router.back()
-		}
+		},
+		getVal(val){
+			this.show = val
+		},
+		getShow(){
+			this.show = !this.show;
+		},
 	},
 }
 </script>
