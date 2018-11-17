@@ -38,7 +38,7 @@ export default {
     	return {
 
     	}
-    }, 
+    },
     computed: {
     	...Vuex.mapState({
     		goodsList:state=>state.production.goodsList
@@ -46,7 +46,7 @@ export default {
     },
     methods: {
     	Addportfolio(){
-    		
+
     	},
     	...Vuex.mapActions({
     		getworkslist:"getworkslist"
@@ -60,14 +60,14 @@ export default {
 				this.$message({
 					type: 'success',
 					message: '成功加入!',
-					
+
 				});
-				
+
 			}).catch(() => {
 				this.$message({
 					type: 'info',
 					message: '取消加入'
-				});          
+				});
 			});
 		}
     },
@@ -87,7 +87,7 @@ export default {
 </script>
 
 <style scoped>
-	
+
 	.listBox{
 		overflow: hidden;
 		height: 100%;
@@ -114,7 +114,7 @@ export default {
 		justify-content: space-between;
 		align-items: center;
 		padding-right:.25rem;
-		
+
 	}
 	.production-list-b-l{
 		text-align: left;
@@ -146,7 +146,7 @@ export default {
 	}
 	.production-list-yanjing p img{
 		width: .2rem;
-	
+
 	}
 	.production-list-yanjing p:nth-child(2){
 		font-size:.2rem;

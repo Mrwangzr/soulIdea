@@ -4,28 +4,32 @@ export default{
 	handleGetName({commit},data){
 		axios({
 			method:"get",
-			url:"Soulidea1.0/user/loginfanslist",
+			url:"/Soulidea-1.0/user/loginfanslist",
 			
 		}).then((data)=>{
-			console.log(data.data)
-			commit("handleGetName",data.data)
+			console.log(data.data.data)
+			commit("handleGetName",data.data.data)
 		})
 	},
 	//获取用户信息
 	handleGetMessage({commit}){
 		axios({
 			method:"get",
-			url:"v4/api/message",
+			url:"/Soulidea-1.0/user/getloginuserdata",
 			
 		}).then((data)=>{
+			console.log(data.data);
 			var obj = {};
-			obj.name=data.data[0].name;
-			obj.sign=data.data[0].sign;
-			obj.v=data.data[0].v;
-			obj.fans=data.data[0].fans;
-			obj.zan=data.data[0].zan;
-			obj.att=data.data[0].att;
-			 // console.log(obj);
+			obj.name=data.data.data.username;
+			obj.sign=data.data.data.sign;
+			obj.fork=data.data.data.fork;
+			obj.fans=data.data.data.fans;
+			obj.great=data.data.data.great;
+			obj.head=data.data.data.head;
+			obj.leave=data.data.data.leave;
+			obj.gender=data.data.data.gender;
+			obj.exp=data.data.data.exp;
+			// console.log(data.data.data);
 			commit("handleGetMessage",obj);
 		})
 	},
@@ -33,9 +37,11 @@ export default{
 	handleGetAttentions({commit},data){
 		axios({
 			method:"get",
-			url:"v4/api/list",
+			url:"/Soulidea-1.0/user/loginforkslist",
 		}).then((data)=>{
+			// console.log(data.data)
 			commit("handleGetAttentions",data.data)
 		})
 	},
+	
 }

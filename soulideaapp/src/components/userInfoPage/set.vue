@@ -1,24 +1,22 @@
 <template>
 	<div class="box">
 		<div class="set">
-			<router-link to="/">
+			<span @click="back">
 				<li class="iconfont icon-right"></li>
-			</router-link>
+			</span>
 			<li>设置</li>
 			<li></li>
 		</div>
 		<div class="account">
 			<li>账号与安全</li>
-			<!-- <router-link to="/rank"> -->
-				<li class="iconfont icon-arrow-right"></li>
-			<!-- </router-link> -->
+			<li class="iconfont icon-arrow-right"></li>
 		</div>
-		<div class="account tickling">
-			<li>意见反馈</li>
-			<router-link to="/feedback">
+		<router-link to="/feedback">
+			<div class="account tickling">
+				<li>意见反馈</li>
 				<li class="iconfont icon-arrow-right"></li>
-			</router-link>
-		</div>
+			</div>
+		</router-link>
 		<div class="account update">
 			<li>检查更新</li>
 			<li>灵点2.0.6</li>
@@ -27,7 +25,7 @@
 			<li>清楚缓存</li>
 			<li>358.4M</li>
 		</div>
-		<div class="logout">
+		<div class="logout" @click="handleUserLogout()">
 			<a href="#">
 				<li>退出当前账号</li>
 			</a>
@@ -36,7 +34,27 @@
 </template>
 
 <script>
-	
+	import Vuex from "vuex";
+	import axios from "axios";
+	export default{
+		methods:{
+			back(){
+				this.$router.back();
+			},
+			//退出登录
+			handleUserLogout(){
+				axios({
+					method:"get",
+					url:"/Soulidea-1.0/user/logout",
+				}).then((data)=>{
+					console.log(data.status)
+					if(data.status=200){
+						this.$router.push("/login");
+					}
+				})
+			}
+		}
+	}
 </script>
 
 <style scoped>

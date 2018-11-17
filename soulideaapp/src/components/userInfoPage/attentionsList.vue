@@ -10,7 +10,7 @@
 		<a href="#" @click="cancel()">
 			<li>{{message}}</li>
 			
-		</a>
+		</a> 
 	</div>
 </template>
 

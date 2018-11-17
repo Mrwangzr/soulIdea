@@ -27,7 +27,7 @@
 		<div class="rank-bottom">
 			<div class="rank-next">
 				<li>距离下一个等级：</li>
-				<li></li>
+				<li><el-progress type="circle" :percentage="80"></el-progress></li>
 			</div>
 			<div class="rank-suffer">
 				
@@ -147,10 +147,13 @@
 	color:  #292929 ;
 	font-size: .28rem;
 }
+.rank-bottom .rank-next li:nth-child(2){
+	margin-top: 1rem;
+}
 .rank-bottom .rank-suffer{
 	height: 4.2rem;
 	width: 4.2rem;
-	background:url(../../../static/image/feedback/dj_jf.png) no-repeat center;
+	/* background:url(../../../static/image/feedback/dj_jf.png) no-repeat center; */
 	
 }
 </style>

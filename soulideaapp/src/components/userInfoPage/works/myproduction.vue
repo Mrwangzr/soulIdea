@@ -12,10 +12,10 @@
 				<p><img src="../../../../static/sorksimage/production/xiayibu.png"></p>
 			</div>
 		</router-link>
-	
+
 		<!-- 作品列表 -->
 		<ListWorks-com @handleTogle="getShow"></ListWorks-com>
-		
+
 		<mark-com @handleMark="getVal" v-show="show"></mark-com>
 	</div>
 </template>
@@ -45,7 +45,7 @@ export default {
 		getShow(){
 			this.show = !this.show;
 		},
-		 
+
 	},
 }
 </script>
