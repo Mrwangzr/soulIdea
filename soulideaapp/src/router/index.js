@@ -4,6 +4,8 @@ import firstLevelPage from '../components/firstLevelPage';
 import homePage from "../components/homePage/homePage";
 
 
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -18,6 +20,11 @@ export default new Router({
       path: '/firstLevelPage',
       name: 'firstLevelPage',
       component: firstLevelPage,
+    },
+    {
+      path:'./homePage',
+      name:"homePage",
+      component:homePage
     },
   ]
 })
