@@ -1,14 +1,14 @@
 <template>
-		<div class="wrapper bigbox" ref="wrapper">
+		<div class="wrapper" ref="wrapper">
 			<div class="JoinList content">
 					<h3>选择作品集</h3>
 					<div v-for="(item,index) in TitleWork" 
-					:class="activeIndex == index?'active':''"
-					@click="handleToggle(index)">
-						<p @click="handleToggle(index)">{{item.name}}</p>
+					:class="activeIndex == index?'active':''">
+						<p @click="handleToggle(index);handleColor(index)">{{item.name}}</p>
 					</div>
 			</div>
 		</div>
+		
 </template>
 
 <script>
@@ -36,7 +36,7 @@ export default {
 				this.activeIndex = index
 			},
 			handleToggle(params){
-				this.$emit("handleMark",false)
+				this.$emit("handleMark",true)
 			},
 			...Vuex.mapActions({
 				GetTitleWork:"GetTitleWork"
@@ -59,7 +59,7 @@ export default {
 </script>
 
 <style scoped>
-.bigbox{
+.wrapper{
 	overflow: hidden;
 	width: 50%;
 	height: 4rem;
