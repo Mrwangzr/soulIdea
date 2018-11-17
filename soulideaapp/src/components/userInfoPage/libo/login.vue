@@ -9,7 +9,7 @@
 			<div class="box"
 				v-show="slider"
 			>{{text}}</div>
-		</transition>		
+		</transition>
 		<div class="blank"></div>
 		<div class="login-top">
 			<p>登录</p>
@@ -21,33 +21,33 @@
 			<div class="login-icon">
 			</div>
 			<span class="tit" v-show="show">请输入正确的手机号或者邮箱！</span>
-			<div 
+			<div
 				class="inputName"
-				:id="inputStyle == true ? 'myStyle' : ''" 
+				:id="inputStyle == true ? 'myStyle' : ''"
 				:class="show == true ? 'errorStyle' : ''"
 			>
 				<div class="input-icon">
 					<div class="input-icon-f"></div>
 				</div>
-				<input 
-					type="text" 
-					placeholder="手机号/邮箱" 
-					v-model="username" 
+				<input
+					type="text"
+					placeholder="手机号/邮箱"
+					v-model="username"
 					@focus="handlerFocus()"
 					@blur="handlerBlur()"
 					/>
 
 			</div>
-			<div 
+			<div
 				class="inputPassword"
 				:id="inputStyleS == true ? 'myStyle' : ''"
 			>
 				<div class="input-icon">
 					<div class="input-icon-s"></div>
 				</div>
-				<input 
-					type="password" 
-					placeholder="登陆密码" 
+				<input
+					type="password"
+					placeholder="登陆密码"
 					v-model="password"
 					@focus="handlerFocusS()"
 					@blur="handlerBlurS()"
@@ -80,7 +80,7 @@
 	import axios from "axios";
 	export default {
 		created(){
-			
+
 		},
 		data() {
 			return {
@@ -114,8 +114,8 @@
 					this.show = true;
 					this.loginOne = false;
 				}
-	
-				
+
+
 			},
 			handlerFocus(){
 				this.inputStyle = true
@@ -130,7 +130,7 @@
 				if(this.loginOne && this.loginTwo){
 					this.slider = !this.slider;
 					axios({
-						method:"get",
+						method:"post",
 						headers:{
 							'Content-type':'application/x-www-form-urlencoded'
 						},
@@ -141,10 +141,19 @@
 						  password:this.password
 					  } */
 					}).then((data)=>{
+						var that = this;
+						setTimeout(function(){
+							that.slider = false;
+						},1500)
+
+						console.log(this.username,this.password);
 						console.log(data);
 						if(data.data.data.result){
-							this.$router.push({name:"firstLevelPage"});
-							this.text = "登陆成功" 
+
+							setTimeout(function(){
+								that.$router.push({name:"firstLevelPage"});
+							},2500)
+							this.text = "登陆成功！"
 						}else{
 							switch(data.errorCode){
 								case 301:
@@ -157,15 +166,15 @@
 									this.text = "手机地址错误，请输入正确的手机号码！"
 									break;
 							}
-							
+
 						}
 					})
 				}
 			},
-		
+
 
 		},
-		watch:{			
+		watch:{
 			password(val){
 				if(val){
 					this.loginTwo = true;
@@ -184,10 +193,10 @@
 				}
 			}
 		}
-		
-		
-		
-		
+
+
+
+
 	}
 </script>
 
@@ -197,7 +206,7 @@
 	left:.5rem;
 	top:4.7rem;
 	color: #fc4343;
-}	
+}
 .login{
 	height:13.34rem;
 	width:100%;
@@ -228,18 +237,18 @@
 	height:100%;
 	width:100%;
 	position: absolute;
-	background: rgba(0,0,0,0.5);	
+	background: rgba(0,0,0,0.5);
 	z-index: 1;
 }
 .blank{
 	height:.4rem;
 	width:100%;
-	
+
 }
 #myStyle{
 	border:1px solid #488ee7;
 }
-	
+
 .errorStyle{
 	border:1px solid #fc4343;
 }
@@ -263,7 +272,6 @@
 	position:absolute;
 	right:.25rem;
 	bottom:.21rem;
-	background: #fff;
 	font-family:PingFang-SC-Regular;
 	font-weight:400;
 	color:rgba(246,196,93,1);
@@ -377,11 +385,11 @@ input{
 	position: absolute;
 	left:1.23rem;
 	top:11.7rem;
-	
+
 }
 .login-dashed .dashed{
 	margin: .1rem .1rem 0 .1rem;
-	
+
 	height: .01rem;
 	width: 1.6rem;
 	background:url(../../../assets/imgLibo/dashed.png)
@@ -432,6 +440,6 @@ input{
     transform: translateY(-100%);
 }
 .boxSport-enter-active,.boxSport-leave-active{
-    transition: all 300ms;
+    transition: all 600ms;
 }
 </style>

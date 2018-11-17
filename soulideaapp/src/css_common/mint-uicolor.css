@@ -1,0 +1,53 @@
+.mint-header {
+  background-color: #fce450;
+}
+.mint-button:not(.is-disabled):active::after {
+  opacity: .2 /* .6 */
+}
+.mint-button--primary {
+  background-color:  #fce450;
+}
+.mint-button--primary.is-plain {
+  border: 1px solid  #fce450;
+  color:  #fce450
+}
+.mint-badge.is-primary {
+  background-color:  #fce450
+}
+.mint-switch-input:checked + .mint-switch-core {
+  border-color:  #fce450;
+  background-color:  #fce450;
+}
+.mint-navbar .mint-tab-item.is-selected {
+  border-bottom: 3px solid  #fce450;
+  color:  #fce450;
+}
+.mint-tabbar > .mint-tab-item.is-selected {
+  color:  #fce450;
+}
+.mint-searchbar-cancel {
+  color:  #fce450 ;
+}
+.mint-checkbox-input:checked + .mint-checkbox-core {
+  background-color:  #fce450 ;
+  border-color: #fce450 ;
+}
+.mint-radio-input:checked + .mint-radio-core {
+  background-color:  #fce450;
+  border-color:  #fce450;
+}
+.mt-range-progress {
+  background-color: #fce450 ;
+}
+.mt-progress-progress {
+  background-color:  #fce450 ;
+}
+.mint-msgbox-confirm {
+  color:  #fce450;
+}
+.mint-msgbox-confirm:active {
+  color:  #fce450 ;
+}
+.mint-datetime-action {
+  color:  #fce450 ;
+}

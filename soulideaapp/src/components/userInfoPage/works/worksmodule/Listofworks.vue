@@ -3,16 +3,16 @@
 		<div class="content">
 			<div class="production-list" v-for="(item,index) in goodsList">
 				<router-link :to="{name:'beautiful',query:{id:item.id,name:item.name}}">
-					<p class="bigimg"><img :src="item.head"></p>
+					<p class="bigimg"><img :src="item.src"></p>
 				</router-link>
 				<div class="production-list-b">
 					<div class="production-list-b-l">
 						<p>{{item.name}}</p>
 						<p>{{item.time}}</p>
 					</div>
-					<div class="production-list-b-r" @click="handleToggle(item.id)">
+					<el-button type="text" class="production-list-b-r" @click="open2(item.id)">
 						<img src="../../../../../static/sorksimage/production/jiaru.png">
-					</div>
+					</el-button>
 				</div>
 				<div class="production-list-yanjing">
 					<p><img src="../../../../../static/sorksimage/production/yanjing.png"></p>
@@ -38,7 +38,7 @@ export default {
     	return {
 
     	}
-    }, 
+    },
     computed: {
     	...Vuex.mapState({
     		goodsList:state=>state.production.goodsList
@@ -46,15 +46,30 @@ export default {
     },
     methods: {
     	Addportfolio(){
-    		
-    	},
-    	handleToggle(id){
-    		this.$emit("handleTogle")
-			this.observer.$emit("AddportfolioId",id)
+
     	},
     	...Vuex.mapActions({
     		getworkslist:"getworkslist"
     	}),
+		open2(id) {
+			this.$confirm('是否加入作品集？', '提示', {
+			confirmButtonText: '确定',
+			cancelButtonText: '取消',
+			type: 'warning'
+			}).then((id) => {
+				this.$message({
+					type: 'success',
+					message: '成功加入!',
+
+				});
+
+			}).catch(() => {
+				this.$message({
+					type: 'info',
+					message: '取消加入'
+				});
+			});
+		}
     },
 	mounted(){
 		this.scroll = new BScroll(this.$refs.wrapper,{
@@ -72,6 +87,7 @@ export default {
 </script>
 
 <style scoped>
+
 	.listBox{
 		overflow: hidden;
 		height: 100%;
@@ -98,7 +114,7 @@ export default {
 		justify-content: space-between;
 		align-items: center;
 		padding-right:.25rem;
-		
+
 	}
 	.production-list-b-l{
 		text-align: left;
@@ -130,7 +146,7 @@ export default {
 	}
 	.production-list-yanjing p img{
 		width: .2rem;
-	
+
 	}
 	.production-list-yanjing p:nth-child(2){
 		font-size:.2rem;
@@ -156,5 +172,11 @@ export default {
 		font-weight:500;
 		color:rgba(234,234,234,1);
 		margin-left: .07rem;
+	}
+
+</style>
+<style>
+	.el-message-box{
+		width: 5rem;
 	}
 </style>

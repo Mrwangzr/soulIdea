@@ -16,8 +16,11 @@
 import BScroll from "better-scroll"
 import Vuex from "vuex"
 export default {
+	props:[
+		"getId"
+	],
 	created(){
-			this.getproductour()
+			this.getproductour(this.getId)
 		},
 		computed: {
 			...Vuex.mapState({
@@ -55,7 +58,6 @@ export default {
 .beautifulList{
 	width: 3.68rem;
 	height: 3.4rem;
-	border:1px dashed #ccc;
 	float: left;
 	margin: 0 0 .02rem .05rem;
 }

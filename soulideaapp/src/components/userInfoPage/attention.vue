@@ -1,9 +1,12 @@
 <template>
 	<div class="box">
 		<div class="set">
-			<router-link to="/">
+			<!-- <router-link to="/">
 				<li class="iconfont icon-right"></li>
-			</router-link>
+			</router-link> -->
+			<a href="javascript:;" @click="back">
+				<li class="iconfont icon-right"></li>
+			</a>
 			<li>关注</li>
 			<li></li>
 		</div>

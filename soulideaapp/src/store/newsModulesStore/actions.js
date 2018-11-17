@@ -6,24 +6,24 @@ export default {
     if(params.max === -1){
         axios({
           method:"get",
-          url:"",
+          url:"/Soulidea-1.0/user/forklist",
           data:{
             page:params,
-            count:20
           }}).then((data)=>{
-            commit("handleFansChangeMax_setMax",data.data.max);
-            commit("handleFansChangeList_getList",data.data.forklist);
+            console.log(data);
+           /* commit("handleFansChangeMax_setMax",data.data.max);
+            commit("handleFansChangeList_getList",data.data.forklist);*/
         });
     }
     else if(params.pageNum<params.max){
         axios({
           method:"get",
-          url:"http://localhost:3000/forklist",
-          /*data:{
+          url:"/Soulidea-1.0/user/forklist",
+          data:{
             page:params,
-            count:20
-          }*/}).then((data)=>{
-            commit("handleFansChangeList_getList",data.data);
+          }}).then((data)=>{
+            console.log(data);
+          /*  commit("handleFansChangeList_getList",data.data);*/
         })
     }
   },
@@ -33,24 +33,24 @@ export default {
     if(params.max === -1){
       axios({
         method:"get",
-        url:"",
+        url:"/Soulidea-1.0/share/message",
         data:{
           page:params,
-          count:20
         }}).then((data)=>{
-        commit("handleAiteChangeMax_setMax",data.data.max);
-        commit("handleAiteChangeList_getList",data.data.forklist);
+          console.log(data);
+      /*  commit("handleAiteChangeMax_setMax",data.data.max);
+        commit("handleAiteChangeList_getList",data.data.forklist);*/
       });
     }
     else if(params.pageNum<params.max){
       axios({
         method:"get",
-        url:"http://localhost:3000/aitelist",
-        /*data:{
+        url:"/Soulidea-1.0/share/message",
+        data:{
           page:params,
-          count:20
-        }*/}).then((data)=>{
-        commit("handleAiteChangeList_getList",data.data);
+        }}).then((data)=>{
+          console.log(data);
+      // commit("handleAiteChangeList_getList",data.data);
       })
     }
   },
@@ -60,23 +60,23 @@ export default {
     if(params.max === -1){
       axios({
         method:"get",
-        url:"",
+        url:"/Soulidea-1.0/share/getgiftupdate",
         data:{
           page:params,
-          count:20
         }}).then((data)=>{
-        commit("handleGiftChangeMax_setMax",data.data.max);
-        commit("handleGiftChangeList_getList",data.data.forklist);
+          console.log(data);
+     /*   commit("handleGiftChangeMax_setMax",data.data.max);
+        commit("handleGiftChangeList_getList",data.data.forklist);*/
       });
     }
     else if(params.pageNum<params.max){
       axios({
         method:"get",
-        url:"http://localhost:3000/getgiftupdate",
-        /*data:{
+        url:"/Soulidea-1.0/share/getgiftupdate",
+        data:{
           page:params,
-          count:20
-        }*/}).then((data)=>{
+        }}).then((data)=>{
+          console.log(data);
         commit("handleGiftChangeList_getList",data.data);
       })
     }
@@ -88,67 +88,35 @@ export default {
     addNewFriend(id){
        axios({
          method:"post",
-         url:"/friend/addfriend",
+         url:"/Soulidea/friend/addfriend",
          headers:{
            'Content-type': 'application/x-www-form-urlencoded'
          },
-
          data:{
            id:id
          }
        }).then(
          (data)=>{
-           if(data.errorCode === 200){
-
-           }
-           else{
-
-           }
+           console.log(data);
          }
        )
     },
-    //删好友
-    deleteFriend(id){
-      axios({
-        method:"post",
-        url:"/friend/deletefriend",
-        headers:{
-          'Content-type': 'application/x-www-form-urlencoded'
-        },
 
-        data:{
-          id:id
-        }
-      }).then(
-        (data)=>{
-          if(data.errorCode === 200){
-
-          }else{
-
-          }
-        }
-      )
-    },
     //改备注
     editFriendRemarks(params){
     axios({
       method:"post",
-      url:"/friend/getfriendname",
+      url:"/Soulidea/friend/getfriendname",
       headers:{
         'Content-type': 'application/x-www-form-urlencoded'
       },
-
       data:{
         id:params.id,
         name:params.name
       }
     }).then(
       (data)=>{
-        if(data.errorCode === 200){
-
-        }else{
-
-        }
+        console.log(data);
       }
     )
     },
