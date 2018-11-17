@@ -13,7 +13,7 @@
 				>{{item}}</li>
 			</div>
 			<keep-alive>
-			<component :is="comNames"></component> 
+			<component :is="comNames" v-on:byVal="getVal"></component> 
 			</keep-alive> 
 			<div class="cont-bottom">
 				<div class="line"></div>
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+	import axios from "axios";
 	import payMoney from "./payMoney";
 	import payVip from "./payVip";
     export default {
@@ -43,18 +44,23 @@
 				active : 0,
 				comNames:"payMoney-com",
 				show:"",
+				money:"",
+				body:"there is a fool will be charge money !!!"
 			}
 		},
 		methods:{
-           handlerToggle(index){
-				this.active = index;
-				switch(index){
-                case 0:
-                    this.comNames = "payMoney-com"
-                    break;
-                case 1:
-                     this.comNames = "payVip-com"
-                     break;
+				getVal(val){
+					this.money = val;
+				},
+        handlerToggle(index){
+					this.active = index;
+					switch(index){
+						case 0:
+                this.comNames = "payMoney-com"
+                break;
+            case 1:
+                this.comNames = "payVip-com"
+                break;
             }
            },
 		   handleShow(){
@@ -63,7 +69,17 @@
 		   handlePay(){
 			   if(this.show){
 				  console.log("可以支付了")
-				   window.location.href = "http://www.baidu.com"
+				   // window.location.href = "mhttp://ceshi.chenjunbo.xin/payment/weixinpay";
+					axios({
+						method:"post",
+						url:"mhttp://ceshi.chenjunbo.xin/payment/weixinpay",
+						data:{
+							price:this.money,
+							body:this.body,
+						}
+					}).then((data)=>{
+						console.log(data);
+					})
 			   }
 		   },
 		   handlerBack(){

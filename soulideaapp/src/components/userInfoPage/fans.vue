@@ -1,7 +1,9 @@
 <template>
-	
 		<div class="box">
 			<div class="set">
+				<!-- <a href="##" @click="back">
+					<li class="iconfont icon-right"></li>
+				</a> -->
 				<router-link to="/">
 					<li class="iconfont icon-right"></li>
 				</router-link>
@@ -15,9 +17,8 @@
 							v-for="(item,index) in list"
 							@click="handleClick()"
 							>
-							<fanslist-com></fanslist-com>	
+							<fanslist-com :item="item"></fanslist-com>	
 						</div> 
-					
 				</div>
 			</div>
 		</div>
@@ -49,6 +50,9 @@
 			}),
 			handleClick(){
 				alert(1);
+			},
+			back(){
+				this.$router.back();
 			}
 		},
 		created(){
@@ -69,11 +73,12 @@
 				this.scroll.refresh();
 				//当数据加载完毕以后通知better-scroll
 				this.scroll.finishPullUp();
+				
 		}
 	}
 </script>
 
-<style>
+<style scoped>
 .box{
 	height:100%;
 	background: #f8f8f8;
@@ -104,35 +109,10 @@
     top:1.28rem;
 	bottom: .1rem;
     width:100%;
-	height:100%;
+	/* height:100%; */
     overflow: hidden;
 	
 
 }
-/* .attention{
-	height: 1rem;
-	width: 100%;
-	background: white;
-	margin-top: .08rem;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-}
-.attention li:nth-child(1) img{
-	height: .8rem;
-	width: .8rem;
-}
-.attention li:nth-child(3) img{
-	height: .28rem;
-	width: .28rem;
-}
-.attention a li{
-	width: 1.5rem;
-	height: .5rem;
-	border-radius: .25rem;
-	border: .02rem solid #F6C45D;
-	color: #F6C45D;
-	font-size: .24rem;
-	line-height: .5rem;
-} */
+
 </style>

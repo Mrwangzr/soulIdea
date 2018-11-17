@@ -15,7 +15,7 @@
 			:class="cash == index? 'cash':''"
 			@click="handlerCash(index)"
 		>{{item}}</div>
-	<div class="pay-vip">>>充值VIP，解锁更多新功能^^~</div>
+	<div class="pay-vip" @click="handlerGo()">>>充值VIP，解锁更多新功能^^~</div>
 	</div>
 </template>
 
@@ -30,16 +30,22 @@
 		methods:{
 			handlerCash(index){
 				this.cash = index;
+				if(index == 0){
+					this.$router.push({name:"pay"});
+				}
 			},
 			handlerBack(){
 				this.$router.back();
 				window.reload();
+			},
+			handlerGo(){
+				this.$router.push({name:"pay"});
 			}
 		}
 	}
 </script>
 
-<style>
+<style scoped>
 .money{
 	height:13.34rem;
 }

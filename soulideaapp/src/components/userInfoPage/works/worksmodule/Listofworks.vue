@@ -1,5 +1,5 @@
 <template>
-	<div class="wrapper" ref="wrapper">
+	<div class="wrapper listBox" ref="wrapper">
 		<div class="content">
 			<div class="production-list" v-for="(item,index) in goodsList">
 				<router-link :to="{name:'beautiful',query:{id:item.id,name:item.name}}">
@@ -10,7 +10,7 @@
 						<p>{{item.name}}</p>
 						<p>{{item.time}}</p>
 					</div>
-					<div class="production-list-b-r" @click="handleToggle()">
+					<div class="production-list-b-r" @click="handleToggle(item.id)">
 						<img src="../../../../../static/sorksimage/production/jiaru.png">
 					</div>
 				</div>
@@ -23,31 +23,22 @@
 					<p>{{item.comment}}</p>
 				</div>
 			</div>
-			
-			<mark-com @handleMark="getVal" v-show="show"></mark-com>
-			<joinList-com @handleMark="getVal" v-show="show"></joinList-com>
 		</div>
 	</div>
 </template>
 
 <script>
 import BScroll from "better-scroll"
-import Mark from "./mark.vue"
-import joinList from "./joinList.vue"
 import Vuex from "vuex"
 export default {
     created(){
     	this.getworkslist()
     },
-    components:{
-    	"joinList-com":joinList,
-    	"mark-com":Mark
-    },
     data() {
     	return {
-    		show:false
+
     	}
-    },
+    }, 
     computed: {
     	...Vuex.mapState({
     		goodsList:state=>state.production.goodsList
@@ -57,11 +48,9 @@ export default {
     	Addportfolio(){
     		
     	},
-    	getVal(val){
-    		this.show = val
-    	},
-    	handleToggle(){
-    		this.show = !this.show;
+    	handleToggle(id){
+    		this.$emit("handleTogle")
+			this.observer.$emit("AddportfolioId",id)
     	},
     	...Vuex.mapActions({
     		getworkslist:"getworkslist"
@@ -83,7 +72,7 @@ export default {
 </script>
 
 <style scoped>
-	.wrapper{
+	.listBox{
 		overflow: hidden;
 		height: 100%;
 	}

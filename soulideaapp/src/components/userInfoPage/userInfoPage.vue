@@ -7,27 +7,42 @@
 			</div>
 				<div class="box-center">
 							<div class="photo">
-
+									<img src="../../../static/image/feedback/gz_tx.png" />
+									<!-- <div id="photo">
+										<div class="item_bock head_p">
+												 <div class="head_img">
+													 <!-- <img :src="userInfo.avatar"/> -->
+													 <!-- 图片地址动态绑定 -->
+												<!-- </div>
+												 <div class="setting_right" @click.stop="uploadHeadImg">
+													 <div class="caption">更改头像</div>
+												 </div>
+												 <input type="file" accept="image/*" @change="handleFile" class="hiddenInput"/>
+										</div>
+									</div> -->
+									  
 							</div>
 							<div class="nickname">
-									<li>我的名字叫大白 </li>
-									<li> v.9</li>
+									<li>{{message.name}}</li>
+									
+										<li><router-link to="/rank">{{message.v}}</router-link></li>
+									
 							</div>
-							<li>一个不会写代码的厨子不是个好的设计师</li>
+							<li>{{message.sign}}</li>
 							<div class="fans">
 									<span>
-											<li>200万</li>
+											<li>{{message.zan}}</li>
 											<li class="fans-li">赞</li>
 									</span>
 									<span>
 											<router-link to="/attention">
-													<li>2000</li>
+													<li>{{message.att}}</li>
 													<li class="fans-li">关注</li>
 											</router-link>
 									</span>
 									<span>
 											<router-link to="fans">
-													<li>99万</li>
+													<li>{{message.fans}}</li>
 													<li class="fans-li">粉丝</li>
 											</router-link>
 									</span>
@@ -45,29 +60,54 @@
 						<li class="iconfont icon-arrow-right"></li>
 					</ul>
 				</router-link>
-
+				
 	</div>
 
 
 </template>
 
 <script>
-	//     export default {
-	//         name: "user-info-page",
-	// 		//cameras-and-albums
-	//
-	//      }
-	// import vueCropper from 'vue-cropper'
-	  // import codes from 'code.vue'
-// 	export default {
-//
-// 		 name: "user-info-page",
-//
-// 	}
-
-	export default {
+import Vuex from "vuex";
+export default {
 		name: "user-info-page",
-
+// 		  el: '#photo',
+//   data: {
+//     userInfo: {
+//       avatar: 'https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=62d46c39067b020818c437b303b099b6/d4628535e5dde7119c3d076aabefce1b9c1661ba.jpg'
+//     }
+//     // 初始图片
+//   },
+//   methods: {
+//     // 打开图片上传
+//     uploadHeadImg: function () {
+//       this.$el.querySelector('.hiddenInput').click()
+//     },
+//     // 将头像显示
+//     handleFile: function (e) {
+//       let $target = e.target || e.srcElement
+//       let file = $target.files[0]
+//       var reader = new FileReader()
+//       reader.onload = (data) => {
+//         let res = data.target || data.srcElement
+//         this.userInfo.avatar = res.result
+//       }
+//        reader.readAsDataURL(file)
+//      },
+//    },
+		computed:{
+			...Vuex.mapState({
+				message:state=>state.userInfoStore.message
+			})
+		},
+		methods:{
+			...Vuex.mapActions({
+				handleGetMessage:"userInfoStore/handleGetMessage"
+			})
+		},
+		created(){
+			
+			this.handleGetMessage();
+		} ,
   }
 </script>
 
@@ -112,7 +152,9 @@
 		border-radius: .7rem;
 		padding-bottom: .1rem;
 	}
-
+.box-center .photo img{
+		width:100%;
+}
 	.box-center .nickname {
 		display: flex;
 		text-decoration: row;
@@ -125,9 +167,10 @@
 	.box-center .nickname li:nth-child(1) {
 		font-size: .3rem;
 		padding-right: .06rem;
+		padding-left: .4rem;
 	}
 
-	.box-center .nickname li:nth-child(2) {
+	.box-center .nickname li:nth-child(2) a{
 		font-size: .2rem;
 		color: white;
 	}
@@ -171,5 +214,39 @@
 		width: 100%;
 		background: red;
 	}
-
+/* .item_bock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height:94px;
+  width: 300px;
+  padding:0px 24px 0px 38px;
+  border-bottom: 1px solid #f7f7f7;
+  background: #fff;
+}
+.head_p {
+  height:132px;
+}
+.head_img{
+  height: 90px;
+}
+.head_img img{
+  width:90px;
+  height:90px;
+  border-radius:50px
+}
+.setting_right{
+  display: flex;
+  height: 37px;
+  justify-content: flex-end;
+  align-items: center;
+}
+.hiddenInput{
+  display: none;
+}
+.caption {
+  color: #8F8F8F;
+  font-size: 26px;
+  height: 37px;
+} */
 </style>

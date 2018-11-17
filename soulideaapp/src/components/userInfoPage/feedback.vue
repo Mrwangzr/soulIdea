@@ -9,7 +9,7 @@
 		</div>
 		<div class="info"> 
 			<li>内容反馈:</li>
-			<textarea class="info-text" style="resize: none;" name="textareal"></textarea>
+			<textarea class="info-text" style="resize: none;" name="textareal" v-model="message"></textarea>
 		</div>
 		<div class="evaluate">
 			<li>评价我们：</li>	
@@ -28,23 +28,36 @@
 	</div>
 </template>
 
-<script>
+<script scoped>
 	export default{
 		data(){
 			return{
-				show:false
+				show:false,
+				message:""
 			}
 		},
 		methods:{
 			//点击提交，显示提交成功，3s后跳转到设置页面（set.vue）
 			submit(){
-				this.show=true;
-				alert(1);
-				setTimeout(()=>{
-					this.show=false;
-					this.$router.push('/set');
-					
-				},3000)
+				console.log(this.message)
+				if(this.message!=""){
+					this.show=true;
+					alert(1);
+					setTimeout(()=>{
+						this.show=false;
+						this.$router.push('/set');
+						
+					},3000)
+				}else{
+					alert(1)
+				}
+				
+			}
+		},
+		watch:{
+			message(newVal,oldVal){
+				
+				console.log('message:'+newVal,oldVal)
 			}
 		}
 	}

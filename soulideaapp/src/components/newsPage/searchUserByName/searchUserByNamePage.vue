@@ -3,7 +3,7 @@
   <div class="all">
     <header-com></header-com>
     <ul>
-      <li>
+      <li v-for="item in userList">
         <list-com></list-com>
       </li>
     </ul>
@@ -14,11 +14,32 @@
 <script>
   import header from "./searchUserByNameHeader";
   import list from "./searchUserByNameList";
+  import axios from "axios";
     export default {
         name: "search-user-by-name-page",
         components:{
           "header-com":header,
           "list-com":list
+      },
+      data(){
+        return{
+          userList:[""]
+        }
+      },
+      created(){
+          this.$on("search-submit",this.handleSearch)
+      },
+      methods:{
+          handleSearch(str){
+            axios({
+              method:"get",
+              url:""
+            }).then(
+              (data)=>{
+                  this.userList = [...this.userList,...data.data]
+              }
+            );
+          }
       }
     }
 </script>
