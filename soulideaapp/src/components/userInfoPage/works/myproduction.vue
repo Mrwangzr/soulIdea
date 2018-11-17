@@ -1,8 +1,8 @@
 <template>
 	<div class="production">
 		<!-- 头部 -->
-		<div class="header">
-			<img src="../../../../static/sorksimage/production/fanhui.png" @click="back()">
+		<div class="header"  @click="back()">
+			<img src="../../../../static/sorksimage/production/fanhui.png">
 			<p>作品</p>
 		</div>
 		<!-- 作品集 -->
@@ -17,7 +17,6 @@
 		<ListWorks-com @handleTogle="getShow"></ListWorks-com>
 		
 		<mark-com @handleMark="getVal" v-show="show"></mark-com>
-		<joinList-com @handleMark="getVal" v-show="show"></joinList-com>
 	</div>
 </template>
 
@@ -25,7 +24,6 @@
 
 import ListWorks from "./worksmodule/Listofworks.vue"
 import Mark from "./worksmodule/mark.vue"
-import joinList from "./worksmodule/joinList.vue"
 export default {
 	data(){
 		return{
@@ -35,7 +33,6 @@ export default {
 	},
 	components:{
 		"ListWorks-com":ListWorks,
-		"joinList-com":joinList,
 		"mark-com":Mark
 	},
 	methods: {
@@ -48,6 +45,7 @@ export default {
 		getShow(){
 			this.show = !this.show;
 		},
+		 
 	},
 }
 </script>

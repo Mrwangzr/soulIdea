@@ -4,7 +4,7 @@
 				<p @click="back()"><img src="../../../../static/sorksimage/production/fanhui.png"></p>
 				<p>{{title}}</p>
 			</header>
-		<particularList-com></particularList-com>
+		<particularList-com :getId="getid"></particularList-com>
 	</div>
 	
 
@@ -16,6 +16,7 @@ import	Vuex from "vuex"
 export default {
 	created(){
 			this.title = this.$route.query.name;
+			this.getid = this.$route.query.id
 		},
 		components:{
 			"particularList-com":particularList
@@ -24,6 +25,11 @@ export default {
 			return {
 				title:""
 			};
+		},
+		watch:{
+			"$route"(to,from){
+				this.title = to.query.name;
+			}
 		},
 	methods: {
 		back(){
