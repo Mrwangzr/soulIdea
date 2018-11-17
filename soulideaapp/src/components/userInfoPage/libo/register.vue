@@ -149,6 +149,23 @@
 			},
 			handlerGet(){
 				if(!this.show){
+					console.log(this.phone);
+// 					{
+// 						method:"get",
+// 						headers:{
+// 							'Content-type':'application/x-www-form-urlencoded'
+// 						},
+// 						url:"/Soulidea-1.0/code/sendcode",
+// 						data:{
+// 							phone:this.phone,
+// 						}
+// 					}
+					
+				/* 	axios.get("/Soulidea-1.0/code/sendcode?phone="+this.phone) */
+				axios.post("/Soulidea-1.0/code/sendcode?phone="+this.phone) 
+				.then((data)=>{
+						console.log(data);
+					}).catch(()=>{});
 					this.show = !this.show;
 					var that = this;
 					let timer = null; 
@@ -169,16 +186,21 @@
 			handlerRegister(){
 				if(this.registerOne && this.registerTwo && this.registerThree){								
 					this.slider = true;
+					console.log(this.phone,this.code,this.password);
 					axios({
-						method:"post",
-						url:"http://localhost:3000/list",
+						method:"get",
+						headers:{
+							'Content-type':'application/x-www-form-urlencoded'
+						},
+						url:"/Soulidea-1.0/user/regist",
 						data:{
 							phone:this.phone,
 							code:this.code,
 							password:this.password
 						}
+						// url:"/Soulidea-1.0/user/register?phone="+this.phone+"&code="+this.code+"&password"+this.password,
 					}).then((data)=>{
-						console.log(data.data.phone);
+						console.log(data);
 						//this.slider = false;
 						var that = this;
 						setTimeout(function(){
@@ -188,26 +210,26 @@
 							that.$router.push({name:'login'});
 						},2500)
 						
-// 						if(data.data.result){
-// 							console.log("注册成功！")
-// 							this.tit = "注册成功！";
-// 						}else{
-// 							switch(data.errorCode){
-// 								case 302:
-// 									this.tit = "验证码错误，请重新输入！"
-// 									break;
-// 								case 304:
-// 									this.tit = "邮箱网址错误，请输入正确的邮箱网址！"
-// 									break;
-// 								case 306:
-// 									this.tit = "手机地址错误，请输入正确的手机号码！"
-// 									break;
-// 								case 308:
-// 								 this.tit = "该手机邮箱已经注册，请登录！"
-// 									break;
-// 							}
-// 							
-// 						}
+						if(data.data.data.result){
+							console.log("注册成功！")
+							this.tit = "注册成功！";
+						}else{
+							switch(data.errorCode){
+								case 302:
+									this.tit = "验证码错误，请重新输入！"
+									break;
+								case 304:
+									this.tit = "邮箱网址错误，请输入正确的邮箱网址！"
+									break;
+								case 306:
+									this.tit = "手机地址错误，请输入正确的手机号码！"
+									break;
+								case 308:
+								 this.tit = "该手机邮箱已经注册，请登录！"
+									break;
+							}
+							
+						}
 					})
 				}
 			},

@@ -130,7 +130,7 @@
 				if(this.loginOne && this.loginTwo){
 					this.slider = !this.slider;
 					axios({
-						method:"get",
+						method:"post",
 						headers:{
 							'Content-type':'application/x-www-form-urlencoded'
 						},
@@ -141,10 +141,19 @@
 						  password:this.password
 					  } */
 					}).then((data)=>{
+						var that = this;
+						setTimeout(function(){
+							that.slider = false;
+						},1500)						
+						
+						console.log(this.username,this.password);
 						console.log(data);
 						if(data.data.data.result){
-							this.$router.push({name:"firstLevelPage"});
-							this.text = "登陆成功" 
+							
+							setTimeout(function(){
+								that.$router.push({name:"firstLevelPage"});
+							},2500)					
+							this.text = "登陆成功！" 
 						}else{
 							switch(data.errorCode){
 								case 301:
@@ -263,7 +272,6 @@
 	position:absolute;
 	right:.25rem;
 	bottom:.21rem;
-	background: #fff;
 	font-family:PingFang-SC-Regular;
 	font-weight:400;
 	color:rgba(246,196,93,1);
@@ -432,6 +440,6 @@ input{
     transform: translateY(-100%);
 }
 .boxSport-enter-active,.boxSport-leave-active{
-    transition: all 300ms;
+    transition: all 600ms;
 }
 </style>
