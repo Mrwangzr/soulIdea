@@ -33,6 +33,7 @@
       },
       {
         path:'/otherUserFour',
+        props:true,
         name:"otherUserFour",
         component:otherUserFour
       }

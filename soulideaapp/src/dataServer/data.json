@@ -45,5 +45,51 @@
 
         }
         
+    ],
+  "image":[
+      {
+          "id":1,
+          "src":"../../../static/two/two.png"
+      },
+      {
+        "id":2,
+        "src":"../../../static/two/two.png"
+    },
+    {
+        "id":3,
+        "src":"../../../static/two/two.png"
+    },
+    {
+        "id":4,
+        "src":"../../../static/two/two.png"
+    },
+    {
+        "id":5,
+        "src":"../../../static/two/two.png"
+    },
+    {
+        "id":6,
+        "src":"../../../static/two/two.png"
+    },
+    {
+        "id":7,
+        "src":"../../../static/two/two.png"
+    },
+    {
+        "id":8,
+        "src":"../../../static/two/two.png"
+    },
+    {
+        "id":9,
+        "src":"../../../static/two/two.png"
+    },
+    {
+        "id":10,
+        "src":"../../../static/two/two.png"
+    },
+    {
+        "id":11,
+        "src":"../../../static/two/two.png"
+    }
     ]
 }
