@@ -1,6 +1,7 @@
 <template>
 <!-- 内容 -->
-    <div class="content_comment">
+    <transition name="slide">
+        <div class="content_comment">
         
         <!-- <router-viwe></router-viwe> -->
         <commentTop-com></commentTop-com>
@@ -8,6 +9,8 @@
         <commentFooter-com  @handlGetBoo="getval"></commentFooter-com>
         <commentInput-com v-show="Boo"></commentInput-com>
     </div>
+    </transition>
+    
 </template>
 <script>
 import commentTop from "./commentCommentTop/commentTop"
@@ -47,5 +50,10 @@ html,body{
          padding-top:.4rem;
         
     }
-     
+.slide-enter {
+  transform: translateX(-100%);
+}
+.slide-enter-active {
+  transition: all 300ms;
+}   
 </style>
