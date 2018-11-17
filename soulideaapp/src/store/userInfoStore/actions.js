@@ -4,7 +4,7 @@ export default{
 	handleGetName({commit},data){
 		axios({
 			method:"get",
-			url:"Soulidea1.0/user/loginfanslist",
+			url:"Soulidea1.0/api/user/loginfanslist",
 			
 		}).then((data)=>{
 			console.log(data.data)

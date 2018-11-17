@@ -19,10 +19,14 @@
 				<li><input type="radio" name="a">不满意</input></li>		
 			</div>
 		</div>
-		<div class="submit" @click="submit()">
-			<!-- <router-link to="/set"> -->
-				<img src="../../../static/image/feedback/提交.png" />
-			<!-- </router-link>	 -->
+		<div class="submit" >
+			<template>
+				<el-button type="text" @click="open4">
+					<img src="../../../static/image/feedback/提交.png" />
+				</el-button>
+			</template>
+				
+			
 			<li v-show="show">提交成功!</li>
 		</div>
 	</div>
@@ -41,8 +45,7 @@
 			submit(){
 				console.log(this.message)
 				if(this.message!=""){
-					this.show=true;
-					alert(1);
+					
 					setTimeout(()=>{
 						this.show=false;
 						this.$router.push('/set');
@@ -52,6 +55,42 @@
 					alert(1)
 				}
 				
+			},
+			open4() {
+				
+					const h = this.$createElement;
+					this.$msgbox({
+						title: '消息',
+						message: h('p', null, [
+						h('span', null, '内容可以是 '),
+						h('i', { style: 'color: teal' }, 'VNode')
+						]),
+						showCancelButton: true,
+						confirmButtonText: '确定',
+						cancelButtonText: '取消',
+						beforeClose: (action, instance, done) => {
+						if (action === 'confirm') {
+							instance.confirmButtonLoading = true;
+							instance.confirmButtonText = '执行中...';
+							setTimeout(() => {
+							done();
+							setTimeout(() => {
+								instance.confirmButtonLoading = false;
+							}, 300);
+							}, 3000);
+						} else {
+							done();
+						}
+						}
+					}).then(action => {
+						this.$message({
+						type: 'info',
+						message: 'action: ' + action
+						});
+					});
+					
+				
+					
 			}
 		},
 		watch:{
