@@ -54,6 +54,7 @@
     display: flex;
     background: #fff;
     border-top:1px solid #efefef ;
+    z-index: 1000;
   }
 
   div {

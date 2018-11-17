@@ -1,8 +1,11 @@
 <template>
-  <div>
+	<keep-alive>
+		<div>
       <component :is="comName"></component>
       <footer-com></footer-com>
   </div>
+	</keep-alive>
+  
 </template>
 
 <script>

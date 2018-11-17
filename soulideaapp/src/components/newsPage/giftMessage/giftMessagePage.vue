@@ -4,8 +4,8 @@
       <header-com :titleString="'打赏记录'"></header-com>
       <div class="wrapper" ref="wrapper">
         <ul class="content">
-          <li v-for="item in messageList">
-            <message-com :username="item.name" :type="'打赏了我'" :content="item.content" :time="item.time"></message-com>
+          <li v-for="item in giftChange_list">
+            <message-com :username="item.username" :type="'打赏了我'" :content="item.name" :time="item.time" :num="1" :imgSrc="'/static/image/newsPage/messagePage/logo.png'"></message-com>
           </li>
         </ul>
       </div>
@@ -42,7 +42,7 @@
       })
     },
     created() {
-      this.handleGiftChangeList_getList({pageNum:this.pageNum,max:this.giftChange_max()});
+      this.handleGiftChangeList_getList({pageNum:this.pageNum,max:this.giftChange_max});
     },
     mounted() {
         this.scroll = new BScroll(this.$refs.wrapper,{
@@ -55,6 +55,14 @@
 <style scoped>
   .all {
     height: 100%;
+  }
+  .wrapper{
+    width: 100%;
+    position: absolute;
+    top: 1.28rem;
+    bottom: 0;
+    z-index: 1;
+    overflow: hidden;
   }
 
   .move-enter, .move-leave-to {

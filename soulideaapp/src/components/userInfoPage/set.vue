@@ -9,9 +9,9 @@
 		</div>
 		<div class="account">
 			<li>账号与安全</li>
-			<router-link to="/">
+			<!-- <router-link to="/rank"> -->
 				<li class="iconfont icon-arrow-right"></li>
-			</router-link>
+			<!-- </router-link> -->
 		</div>
 		<div class="account tickling">
 			<li>意见反馈</li>
@@ -39,7 +39,7 @@
 	
 </script>
 
-<style>
+<style scoped>
 .box{
 	height:100%;
 	background: #f8f8f8;

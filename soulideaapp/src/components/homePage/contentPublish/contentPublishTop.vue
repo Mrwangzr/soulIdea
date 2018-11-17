@@ -1,12 +1,18 @@
 <template>
     <div class="top_comment">
-            <div><span class="iconfont icon-right"></span></div>
+            <div><span class="iconfont icon-right" @click="handlBack()"></span></div>
             <div>编辑</div>
             <div>发布</div>
     </div>
 </template>
 <script>
-export default {};
+export default {
+    methods:{
+      handlBack(){
+          this.$router.back()
+      }
+  },
+};
 </script>
 <style>
 .top_comment {

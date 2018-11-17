@@ -17,12 +17,16 @@ import observer from "./js_rem/observer";
 import ElementUI from 'element-ui';
 //srh-elementUi查件css
 import 'element-ui/lib/theme-chalk/index.css';
-import VueCropper from 'vue-cropper'
+import VueCropper from 'vue-cropper';
 
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
 //设置observer 处理组件传值
 Vue.prototype.observer  = observer;
+
+
+
+
 
 /* eslint-disable no-new */
 new Vue({
