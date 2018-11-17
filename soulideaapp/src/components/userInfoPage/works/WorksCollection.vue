@@ -18,22 +18,20 @@ import Vuex from "vuex"
 export default {
 		data() {
 			return {
-				
+				show:false
 			};
 		},
 		components:{
-			"Tagboard-com":Tagboard
+			"Tagboard-com":Tagboard,
 		},
 		methods: {
 			back(){
-				this.$router.back()
+				this.$router.push("/production")
 			},
 			newConstruction(){
 				this.$router.push("/newConstruction")
-			},
-			
-			
-		},
+			}
+		}
 	}
 </script>
 

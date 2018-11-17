@@ -41,5 +41,34 @@ export default {
 		 }).then((data)=>{
 		 	console.log(data)
 		 })
-	 } 
+	 },
+	 ReleasePortfolio({commit},obj){
+		 axios({
+			 method:"post",
+			 url:"http://localhost:3000/ReleasePortfolio",
+			data:{
+				name:obj.name,
+				contant:obj.introduce,
+				tags:obj.tags
+			}
+		 }).then((data)=>{
+
+		 })
+	 },
+	DeletePortfolio({commit},index){
+			axios({
+				method:"delete",
+				url:"http://localhost:3000/getproductour"+"/"+index,
+			}).then((data)=>{
+				console.log(data)
+			})
+	},
+	GetTitleWork({commit}){
+		axios({
+			method:"get",
+			url:"http://localhost:3000/joinoptions"
+		}).then((data)=>{
+			commit("GetTitleWork",data.data)
+		})
+	}
 }
