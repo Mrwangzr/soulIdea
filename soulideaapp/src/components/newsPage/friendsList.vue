@@ -21,9 +21,11 @@
 </template>
 
 <script>
+  import {MessageBox} from "mint-ui";
+  import axios from "axios";
+
   export default {
-    components:{
-    },
+    components: {},
     data() {
       return {
         startX: 0,   //触摸位置
@@ -31,7 +33,7 @@
         moveX: 0,   //滑动时的位置
         disX: 0,    //移动距离
         deleteSlider: '',//滑动时的效果,使用v-bind:style="deleteSlider",
-        options:{
+        options: {
           btn: {
             text: '按钮',
             style: {
@@ -64,68 +66,87 @@
          }
        },*/
       handleDelete() {
-        },
-  touchStart(ev)
-  {
-    ev = ev || event
-    //tounches类数组，等于1时表示此时有只有一只手指在触摸屏幕
+        MessageBox.confirm("确认删除好友吗",{
+          title: '  ',
+          message: '确定执行此操作?',
+          showCancelButton: true
+        }).then(
+          action => {
+            axios({
+              method: "post",
+              url: "/Soulidea/friend/deletefriend",
+              headers: {
+                'Content-type': 'application/x-www-form-urlencoded'
+              },
+              data: {
+                id: id
+              }
+            }).then(
+              (data) => {
+                console.log(data);
+              }
+            ).catch(()=>{});
+          }
+        ).catch(()=>{});
+      },
+      touchStart(ev) {
+        ev = ev || event;
+        //tounches类数组，等于1时表示此时有只有一只手指在触摸屏幕
 
-    if (ev.touches.length == 1) {
-      // 记录开始位置
-      this.startX = ev.touches[0].clientX;
-    }
-  }
-  ,
-  touchMove(ev)
-  {
-    ev = ev || event;
-    //获取删除按钮的宽度，此宽度为滑块左滑的最大距离
-    let wd = 105;
-    let wdRem = 2.1;
-    if (ev.touches.length == 1) {
-      // 滑动时距离浏览器左侧实时距离
-      this.moveX = ev.touches[0].clientX
+        if (ev.touches.length == 1) {
+          // 记录开始位置
+          this.startX = ev.touches[0].clientX;
+        }
+      }
+      ,
+      touchMove(ev) {
+        ev = ev || event;
+        //获取删除按钮的宽度，此宽度为滑块左滑的最大距离
+        let wd = 105;
+        let wdRem = 2.1;
+        if (ev.touches.length == 1) {
+          // 滑动时距离浏览器左侧实时距离
+          this.moveX = ev.touches[0].clientX
 
-      //起始位置减去 实时的滑动的距离，得到手指实时偏移距离
-      this.disX = this.startX - this.moveX;
-      // 如果是向右滑动或者不滑动，不改变滑块的位置
-      if (this.disX < 0 || this.disX == 0) {
-        this.deleteSlider = "transform:translateX(0px)";
-        // 大于0，表示左滑了，此时滑块开始滑动
-      } else if (this.disX > 0) {
-        //具体滑动距离我取的是 手指偏移距离*5。
-        this.deleteSlider = "transform:translateX(-" + this.disX * 5 + "px)";
+          //起始位置减去 实时的滑动的距离，得到手指实时偏移距离
+          this.disX = this.startX - this.moveX;
+          // 如果是向右滑动或者不滑动，不改变滑块的位置
+          if (this.disX < 0 || this.disX == 0) {
+            this.deleteSlider = "transform:translateX(0px)";
+            // 大于0，表示左滑了，此时滑块开始滑动
+          } else if (this.disX > 0) {
+            //具体滑动距离我取的是 手指偏移距离*5。
+            this.deleteSlider = "transform:translateX(-" + this.disX * 5 + "px)";
 
-        // 最大也只能等于删除按钮宽度
-        if (this.disX * 5 >= wd) {
-          this.deleteSlider = "transform:translateX(-" + wdRem + "rem)";
+            // 最大也只能等于删除按钮宽度
+            if (this.disX * 5 >= wd) {
+              this.deleteSlider = "transform:translateX(-" + wdRem + "rem)";
 
+            }
+          }
+        }
+      }
+      ,
+      touchEnd(ev) {
+        ev = ev || event;
+        let wd = 105;
+        let wdRem = 2.1;
+        if (ev.changedTouches.length == 1) {
+          let endX = ev.changedTouches[0].clientX;
+
+          this.disX = this.startX - endX;
+          //如果距离小于删除按钮一半,强行回到起点
+
+          if ((this.disX * 5) < (wd / 2)) {
+
+            this.deleteSlider = "transform:translateX(0px)";
+          } else {
+            //大于一半 滑动到最大值
+            this.deleteSlider = "transform:translateX(-" + wdRem + "rem)";
+          }
         }
       }
     }
-  }
-  ,
-  touchEnd(ev)
-  {
-    ev = ev || event;
-    let wd = 105;
-    let wdRem = 2.1;
-    if (ev.changedTouches.length == 1) {
-      let endX = ev.changedTouches[0].clientX;
-
-      this.disX = this.startX - endX;
-      //如果距离小于删除按钮一半,强行回到起点
-
-      if ((this.disX * 5) < (wd / 2)) {
-
-        this.deleteSlider = "transform:translateX(0px)";
-      } else {
-        //大于一半 滑动到最大值
-        this.deleteSlider = "transform:translateX(-" + wdRem + "rem)";
-      }
-    }
-  }
-  }
   }
 </script>
 <style scoped>
@@ -210,4 +231,6 @@
     font-size: 12px;
     color: #999;
   }
+
+
 </style>
