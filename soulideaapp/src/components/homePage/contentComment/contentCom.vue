@@ -7,7 +7,7 @@
         <commentTop-com></commentTop-com>
         <commentShow-com></commentShow-com>
         <commentFooter-com  @handlGetBoo="getval"></commentFooter-com>
-        <commentInput-com v-show="Boo"></commentInput-com>
+        <commentInput-com v-show="Boo" @handlGetBooI="getval"></commentInput-com>
     </div>
     </transition>
     
