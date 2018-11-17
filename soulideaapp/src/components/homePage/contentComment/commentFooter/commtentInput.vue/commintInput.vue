@@ -50,7 +50,6 @@ export default {
             handlSendUserCom:"commentStore/handlSendUserCom"
         }),
         handlSendUserCom(){
-            alert(1)
             this.$emit("handlGetBooI",this.booF)
             this.data =""
         }

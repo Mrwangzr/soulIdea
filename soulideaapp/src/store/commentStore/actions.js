@@ -18,7 +18,7 @@ export default{
         // alert(params)
         axios({
             method:"get",
-            url:"/user/modifyinfo",
+            url:"Soulidea-1.0/product/getproduct/3",
 
         }).then((data)=>{
             console.log(data.data)
