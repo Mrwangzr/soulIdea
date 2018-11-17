@@ -129,35 +129,37 @@
 			handlerLogin(){
 				if(this.loginOne && this.loginTwo){
 					this.slider = !this.slider;
-					// this.$router.push()
-					// this.$router.go(0);
-	// 				axios({
-	// 				  method:"post",
-	// 				  url:"http://localhost:3000/list",
-	// 				  data:{
-	// 					  username:this.username,
-	// 					  password:this.password
-	// 				  }
-	// 				}).then((data)=>{
-	// 					console.log(data);
-	// 					if(data.data.result){
-	// 						console.log("登陆成功！")
-	// 						this.text = "登陆成功！"
-	// 					}else{
-	// 						switch(data.errorCode){
-	// 							case 301:
-	// 								this.text = "登录密码错误，请重新输入！"
-	// 								break;
-	// 							case 304:
-	// 								this.text = "邮箱网址错误，请输入正确的邮箱网址！"
-	// 								break;
-	// 							case 306:
-	// 								this.text = "手机地址错误，请输入正确的手机号码！"
-	// 								break;
-	// 						}
-	// 						
-	// 					}
-	// 				})
+					axios({
+						method:"get",
+						headers:{
+							'Content-type':'application/x-www-form-urlencoded'
+						},
+						// url:"/Soulidea-1.0/user/login?username=17864308316&password=123456"
+						url:"/Soulidea-1.0/user/login?username="+this.username+"&password="+this.password,
+					 /* data:{
+						  username:this.username,
+						  password:this.password
+					  } */
+					}).then((data)=>{
+						console.log(data);
+						if(data.data.data.result){
+							this.$router.push({name:"firstLevelPage"});
+							this.text = "登陆成功" 
+						}else{
+							switch(data.errorCode){
+								case 301:
+									this.text = "登录密码错误，请重新输入！"
+									break;
+								case 304:
+									this.text = "邮箱网址错误，请输入正确的邮箱网址！"
+									break;
+								case 306:
+									this.text = "手机地址错误，请输入正确的手机号码！"
+									break;
+							}
+							
+						}
+					})
 				}
 			},
 		
