@@ -3,14 +3,14 @@
 		<div class="content">
 			<div class="production-list" v-for="(item,index) in goodsList">
 				<router-link :to="{name:'beautiful',query:{id:item.id,name:item.name}}">
-					<p class="bigimg"><img :src="item.src"></p>
+					<p class="bigimg"><img :src='"http://"+item.src'></p>
 				</router-link>
 				<div class="production-list-b">
 					<div class="production-list-b-l">
 						<p>{{item.name}}</p>
 						<p>{{item.time}}</p>
 					</div>
-					<el-button type="text" class="production-list-b-r" @click="open2(item.id)">
+					<el-button type="text" class="production-list-b-r" @click="open2(item.name,item.id)">
 						<img src="../../../../../static/sorksimage/production/jiaru.png">
 					</el-button>
 				</div>
@@ -27,6 +27,7 @@
 	</div>
 </template>
 
+</mt-actionsheet>
 <script>
 import BScroll from "better-scroll"
 import Vuex from "vuex"

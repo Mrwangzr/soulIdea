@@ -2,6 +2,7 @@ export default {
 	goodsList:[],
 	getWorksMyList:[],
 	getproductour:[],
-    getproduct:{},
-	GetTitleWork:[]
+    getproduct:[],
+	GetTitleWork:[],
+	getphotoinfo:[]
 }

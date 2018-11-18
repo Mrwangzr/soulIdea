@@ -1,10 +1,10 @@
 <template>
 		<div class="wrapper" ref="wrapper">
 			<div class="content">
-				<div class="beautifulList" v-for="(item,index) in proList">
-					<router-link :to="{name:'details',query:{id:item.id,name:item.name}}">
+				<div class="beautifulList" v-for="(item,index) in product">
+					<router-link :to="{name:'details',query:{id:item.id}}">
 						<div>
-							<img :src="item.src">
+							<img :src="'http://' + item.url">
 						</div>
 					</router-link>
 				</div>
@@ -20,16 +20,17 @@ export default {
 		"getId"
 	],
 	created(){
-			this.getproductour(this.getId)
+			this.getproduct(this.getId)
 		},
 		computed: {
 			...Vuex.mapState({
-				proList:state=>state.production.getproductour
+				product:state=>state.production.getproduct,
+				
 			})
 		},
 	methods: {
 		...Vuex.mapActions({
-			getproductour:"getproductour"
+			getproduct:"getproduct"
 		}),
 	},
 	mounted(){

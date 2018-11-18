@@ -1,10 +1,10 @@
 export default {
     getworkslist(state,params){
 		state.goodsList = params;
-		
 	},
 	getWorksMyList(state,params){
 		state.getWorksMyList = params;
+		
 	},
 	getproductour(state,params){
 		state.getproductour = params
@@ -15,6 +15,9 @@ export default {
 	GetTitleWork(state,params){
 		state.GetTitleWork = params
 	},
+	getphotoinfo(state,params){
+		state.getphotoinfo = params
+	}
 // 	addproduct(state,params){
 // 		if(params.)
 // 	}
