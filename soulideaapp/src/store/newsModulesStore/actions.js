@@ -6,7 +6,7 @@ export default {
     if(params.max === -1){
         axios({
           method:"get",
-          url:"/Soulidea-1.0/user/forklist",
+          url:"/Soulidea-1.0/user/forkremind",
           data:{
             page:params,
           }}).then((data)=>{
@@ -18,7 +18,7 @@ export default {
     else if(params.pageNum<params.max){
         axios({
           method:"get",
-          url:"/Soulidea-1.0/user/forklist",
+          url:"/Soulidea-1.0/user/forkremind",
           data:{
             page:params,
           }}).then((data)=>{

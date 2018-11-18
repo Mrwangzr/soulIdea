@@ -105,8 +105,11 @@
     color: #999999;
   }
 
-  .move-enter, .move-leave-to {
+  .move-enter{
     transform: translateX(100%);
+  }
+  .move-leave-to{
+    transform: translateX(-100%);
   }
 
   .move-enter-active, .move-leave-active {

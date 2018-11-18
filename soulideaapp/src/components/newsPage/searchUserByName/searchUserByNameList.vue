@@ -1,10 +1,10 @@
 <template>
   <div class="all">
     <div class="info">
-      <img src="/static/image/newsPage/messagePage/logo.png" alt="">
+      <img :src="item.head" alt="">
       <span>
-         <p>用户名</p>
-      <p>个签</p>
+         <p>{{item.name}}</p>
+         <p>{{item.sign}}</p>
       </span>
     </div>
 
@@ -17,8 +17,12 @@
 
 <script>
   import {MessageBox} from "mint-ui";
+  import axios from "axios";
     export default {
         name: "search-user-by-name",
+      props:[
+         "item"
+     ],
         methods:{
           //处理添加好友
               handleAddFriend(){
@@ -28,16 +32,18 @@
                   action=>{
                     axios({
                       methods:"get",
-                      url:"",
-                      data:{
-                      }
+                      url:"/Soulidea-1.0/friend/addfriend?id="+this.item.id,
                     }).then(
                       (data)=>{
-                      /*MessageBox.alert("添加成功",{
-                          title:" "
-                        });*/
+                        if(data.data.code === 200){
+                        MessageBox.alert("添加成功",{
+                            title:" "
+                          });
+                        }
                       }
-                    ).catch(()=>{});
+                    ).catch(()=>{ MessageBox.alert("添加失败",{
+                      title:" "
+                    });});
                   }
                 ).catch(()=>{});
               }
@@ -62,6 +68,7 @@
     width: 1.1rem;
     height: 1.1rem;
     margin-right: .2rem;
+    border-radius: 100%;
   }
   .info{
     display: flex;
