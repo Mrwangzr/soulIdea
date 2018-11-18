@@ -7,7 +7,7 @@ export default{
 			url:"/Soulidea-1.0/user/loginfanslist",
 			
 		}).then((data)=>{
-			console.log(data.data.data)
+			// console.log(data.data.data)
 			commit("handleGetName",data.data.data)
 		})
 	},
@@ -39,7 +39,7 @@ export default{
 			method:"get",
 			url:"/Soulidea-1.0/user/loginforkslist",
 		}).then((data)=>{
-			// console.log(data.data)
+			console.log(data.data)
 			commit("handleGetAttentions",data.data)
 		})
 	},
