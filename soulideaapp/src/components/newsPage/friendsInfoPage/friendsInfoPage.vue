@@ -88,6 +88,39 @@
       }
     },
     methods: {
+      init(){
+        //初始化数据
+        this.id = this.$route.query.id;
+        axios({
+          method: "get",
+          url: "/Soulidea-1.0/user/getotheruserinfo?id=" + this.id,
+        }).then(
+          (data) => {
+            console.log(data);
+            var userInfo = data.data.data;
+            this.user.username = userInfo.username;
+            this.user.autograph = userInfo.sign;
+            this.user.sex = parseInt(userInfo.gender);
+            this.user.level = userInfo.level;
+            this.user.imgSrc = userInfo.head;
+            if (this.user.sex) {
+              this.sexClassName = "iconfont icon-nan nan"
+            } else {
+              this.sexClassName = "iconfont .icon-nv-copy nv"
+            }
+            axios({
+              method:"get",
+              url:"/Soulidea-1.0/friend/getfriendname?id="+this.id
+            }).then(
+              (data)=>{
+                console.log(data);
+                this.remarkValue = data.data.data.name;
+              }
+            ).catch(()=>{});
+          }
+        ).catch(() => {
+        });
+      },
       //处理备注弹出与隐藏
       handleSetRemark() {
         if (this.remark) {
@@ -175,36 +208,7 @@
       }
     },
     created() {
-      //初始化数据
-      this.id = this.$route.query.id;
-      axios({
-        method: "get",
-        url: "/Soulidea-1.0/user/getotheruserinfo?id=" + this.id,
-      }).then(
-        (data) => {
-          console.log(data);
-          var userInfo = data.data.data;
-          this.user.username = userInfo.username;
-          this.user.autograph = userInfo.sign;
-          this.user.sex = parseInt(userInfo.gender);
-          this.user.level = userInfo.level;
-          this.user.imgSrc = userInfo.head;
-          if (this.user.sex) {
-            this.sexClassName = "iconfont icon-nan nan"
-          } else {
-            this.sexClassName = "iconfont .icon-nv-copy nv"
-          }
-          axios({
-            method:"get",
-            url:"/Soulidea-1.0/friend/getfriendname?id="+this.id
-          }).then(
-            (data)=>{
-              this.remarkValue = data.data.data.name;
-            }
-          ).catch(()=>{});
-        }
-      ).catch(() => {
-      });
+        this.init();
     },
     components: {
       "friends-info-page-com": friendInfoheader

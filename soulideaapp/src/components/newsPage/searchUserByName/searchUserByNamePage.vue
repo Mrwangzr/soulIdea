@@ -8,6 +8,8 @@
             <list-com :item="item"></list-com>
           </li>
         </ul>
+        <mark-com v-if="markFlag" :message="'没有匹配的用户'"></mark-com>
+
       </div>
     </div>
   </transition>
@@ -18,20 +20,31 @@
   import list from "./searchUserByNameList";
   import axios from "axios";
   import BScroll from "better-scroll";
+  import { Indicator } from "mint-ui";
+  import mark from "../../common/nullPage";
+
 
   export default {
     name: "search-user-by-name-page",
     components: {
       "header-com": header,
-      "list-com": list
+      "list-com": list,
+      "mark-com":mark
+
     },
     data() {
       return {
-        userList: null
+        userList: null,
+        markFlag:false
       }
     },
     methods: {
       handleSearch(str) {
+        let ind = Indicator;
+        setTimeout(()=>{
+          ind.close();
+        },5000);
+        ind.open();
         axios({
           method: "get",
           url: "/Soulidea-1.0/friend/searchfriend?search=" + str
@@ -39,6 +52,13 @@
           (data) => {
             console.log(data);
             this.userList = data.data.data;
+            if(this.userList.length<=0){
+              this.markFlag = true;
+            }
+            else{
+              this.markFlag = false;
+            }
+            ind.close();
           }
         );
       }

@@ -78,13 +78,13 @@
   .header {
     padding: .7rem .3rem 0;
     height: 1.28rem;
-    box-shadow: 0 2px 6px -1px #999;
     font-size: 16px;
     color: #292929;
     text-align: center;
     font-weight: bold;
     background: #F8F8F8;
     position: relative;
+    border-bottom: 1px solid #d0d0d0;
   }
 
   .header span {

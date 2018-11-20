@@ -24,16 +24,21 @@
         friends: [],
       }
     },
+    methods:{
+      init(){
+        axios({
+          method: "get",
+          url: "Soulidea-1.0/friend/friendlist",
+        }).then(
+          (data) => {
+            this.friends = data.data.data;
+            console.log(data);
+          }
+        )
+      }
+    },
     created() {
-      axios({
-        method: "get",
-        url: "Soulidea-1.0/friend/friendlist",
-      }).then(
-        (data) => {
-          this.friends = data.data.data;
-          console.log(data);
-        }
-      )
+      this.init();
     },
     mounted(){
       this.scroll = new BScroll(this.$refs.wrapper,{
