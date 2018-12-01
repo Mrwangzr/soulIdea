@@ -22,8 +22,8 @@
 
 <script>
 
-import ListWorks from "./worksmodule/Listofworks.vue"
-import Mark from "./worksmodule/mark.vue"
+const ListWorks = ()=> import("./worksmodule/Listofworks.vue")
+const Mark = ()=>import("./worksmodule/mark.vue")
 export default {
 	data(){
 		return{

@@ -11,7 +11,7 @@
 
 <script>
 	
-import Allworkslist from "./worksmodule/AllworksList"
+const Allworkslist = ()=> import("./worksmodule/AllworksList")
 import	Vuex from "vuex"
 export default {
 	created(){

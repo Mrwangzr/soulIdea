@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import particularList from "./worksmodule/beautifullist.vue"
+const particularList = ()=>import("./worksmodule/beautifullist.vue")
 import	Vuex from "vuex"
 export default {
 	created(){
