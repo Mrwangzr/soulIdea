@@ -1,5 +1,8 @@
 <template>
+
+	
     <div class="payMoney">
+		<p class="text">灵点金币套餐</p>
 		<div class="payMoney-in">
 			<div 
 				v-for="(item,index) in list"
@@ -11,6 +14,7 @@
 			</div>
 		</div>
 	</div>
+
 </template>
 
 <script>
@@ -34,8 +38,19 @@
 </script>
 	
 <style scoped>
+	.text{
+		padding-left:.5rem;
+		width:3rem;
+		text-align: left;
+		height:1.2rem;
+		line-height: 1.2rem;
+		font-size:.36rem;
+		font-family:PingFang-SC-Medium;
+		font-weight:500;
+		color:rgba(121,118,118,1);
+	}
 	.payMoney-in{
-		padding:.8rem .5rem .8rem .5rem;
+		padding:0 .5rem .8rem .5rem;
 		display: flex;
 		justify-content:space-between;
 		flex-wrap: wrap;
@@ -71,4 +86,5 @@
 		background: url(../../../assets/imgLibo/pay-background1.png) no-repeat;
 		background-size:contain;
 	}
+
 </style>
