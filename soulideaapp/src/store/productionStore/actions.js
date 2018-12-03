@@ -41,5 +41,5 @@ export default {
 		 	commit("getphotoinfo",data.data.data)
 		 })
 	 },
-	
+
 }

@@ -4,7 +4,6 @@ export default {
 	},
 	getWorksMyList(state,params){
 		state.getWorksMyList = params;
-		
 	},
 	getproductour(state,params){
 		state.getproductour = params
@@ -18,7 +17,4 @@ export default {
 	getphotoinfo(state,params){
 		state.getphotoinfo = params
 	}
-// 	addproduct(state,params){
-// 		if(params.)
-// 	}
 }

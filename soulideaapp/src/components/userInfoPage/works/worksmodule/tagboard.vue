@@ -23,18 +23,11 @@ export default {
 				
 			};
 		},
-		created(){
-			this.getWorksMyList()
-		},
+		
 		computed: {
 			...Vuex.mapState({
 				getMyList:state=>state.production.getWorksMyList
 			})
-		},
-		methods: {
-			...Vuex.mapActions({
-				getWorksMyList:"getWorksMyList"
-			}),
 		},
 		mounted(){
 			this.scroll = new BScroll(this.$refs.wrapper,{
