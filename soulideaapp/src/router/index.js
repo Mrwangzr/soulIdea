@@ -23,6 +23,9 @@ export default new Router({
       path: '/firstLevelPage',
       name: 'firstLevelPage',
       component: firstLevelPage,
+			meta: {
+				keepAlive: true // 需要被缓存
+			}
     },
     //登录注册模块
 		...routerLi,

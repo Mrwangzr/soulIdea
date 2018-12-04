@@ -65,7 +65,7 @@
 <script>
 import Vuex from "vuex";
 export default {
-		name: "user-info-page",
+		name: 'user-info-page',
 
 		computed:{
 			...Vuex.mapState({
@@ -146,7 +146,9 @@ export default {
 		padding-bottom: .1rem;
 	}
 .box-center .photo img{
+	  height: 100%;
 		width:100%;
+		border-radius: .7rem;
 }
 	.box-center .nickname {
 		display: flex;

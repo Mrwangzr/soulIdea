@@ -1,14 +1,14 @@
 <template>
 	<div class="box">
 		<div class="rank-top">
-			<router-link to="/set">
+			<span @click="back">
 				<li class="iconfont icon-right"></li>
-			</router-link>
+			</span>
 			<li>个人等级</li>
 			<li></li>
 		</div>
 		<div class="rank-center">
-			<div class="photo"></div>
+			<div class="photo"><img src="../../../static/image/feedback/gz_tx.png" /> </div>
 			<div class="nowrank">
 				<li>当前等级：</li>
 				<li></li>
@@ -16,8 +16,9 @@
 			<div class="rank-num">
 				<li v-for="(item,index) in rankNum">{{item}}</li>
 			</div>
-			<div class="rank-photo">
-				<li v-for="(item,index) in rankNums"></li>
+			<div id="rank-photo">
+				<li><el-progress :text-inside="true" :stroke-width="22" :percentage="message.level"></el-progress></li>
+				<!-- <li v-for="(item,index) in rankNums"></li> -->
 			</div>
 			<div class="prompt">
 				<li>等级数据每天早上6点更新</li>
@@ -26,8 +27,8 @@
 		</div>
 		<div class="rank-bottom">
 			<div class="rank-next">
-				<li>距离下一个等级：</li>
-				<li><el-progress type="circle" :percentage="80"></el-progress></li>
+				<li>距离下一个等级：{{message.exp}} 点经验</li>
+				<li><el-progress type="circle" :percentage="message.exp"></el-progress></li>
 			</div>
 			<div class="rank-suffer">
 				
@@ -39,10 +40,22 @@
 <script>
 	import Vuex from "vuex";
 	export default{
+		data(){
+			return{
+				message1:2,
+				level:4
+			}
+		},
+		methods:{
+			back(){
+				this.$router.back();
+			},
+		},
 		computed:{
 			...Vuex.mapState({
 				rankNum:state=>state.userInfoStore.rankNum,
-				rankNums:state=>state.userInfoStore.rankNums
+				rankNums:state=>state.userInfoStore.rankNums,
+				message:state=>state.userInfoStore.message
 			})
 		},
 	}
@@ -83,8 +96,12 @@
 	width: 1.1rem;
 	height: 1.1rem;
 	border-radius: .5rem;
-	background: #c0c0c0;
+	/* background: #c0c0c0; */
 	margin: .35rem 0;
+}
+.rank-center .photo img{
+	width: 100%;
+	border-radius: .5rem;
 }
 .rank-center .nowrank{
 	font-size: .34rem;
@@ -107,7 +124,7 @@
 	text-align: center;
 	line-height: .22rem;
 }
-.rank-center .rank-photo{
+.rank-center #rank-photo{
 	height: .22rem;
 	width: 5.8rem;
 	background:white;
@@ -118,9 +135,10 @@
 	justify-content:space-between;
 	overflow: hidden;
 }
-.rank-center .rank-photo li{
-	height: 100%;
-	width:.62rem ;
+.rank-center #rank-photo li{
+	
+	width:5.8rem ;
+	border-radius: .1rem;
 	background:  #CBCBCB;
 }
 .rank-center .prompt{
@@ -153,7 +171,10 @@
 .rank-bottom .rank-suffer{
 	height: 4.2rem;
 	width: 4.2rem;
-	/* background:url(../../../static/image/feedback/dj_jf.png) no-repeat center; */
 	
+	
+}
+.el-progress-circle__track{
+	background:red;
 }
 </style>
