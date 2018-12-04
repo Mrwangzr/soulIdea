@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb658312-648c-462f-a341-4eeea86dd3b1" name="默认" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/wangzirui.iml" afterPath="$PROJECT_DIR$/.idea/wangzirui.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="cb658312-648c-462f-a341-4eeea86dd3b1" name="默认" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -165,12 +162,12 @@
       <workItem from="1543885601591" duration="1979000" />
       <workItem from="1543887624727" duration="127000" />
       <workItem from="1543890153532" duration="551000" />
-      <workItem from="1543890718365" duration="53000" />
+      <workItem from="1543890718365" duration="137000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49332000" />
+    <option name="totallyTimeSpent" value="49416000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
