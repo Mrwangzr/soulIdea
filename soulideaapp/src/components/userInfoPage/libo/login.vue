@@ -53,7 +53,8 @@
 	import Vue from 'vue';
 	import {
 		MessageBox,
-		Spinner
+		Spinner,
+		Toast
 	} from 'mint-ui';
 	Vue.component(Spinner.name, Spinner);
 	import axios from "axios";
@@ -114,17 +115,23 @@
 					var that = this;
 
 					setTimeout(function() {
-						MessageBox({
-							title: '提示',
-							message: that.text,
-						}).then(
-							action => {
-								if (that.text == "登陆成功！") {
-									that.$router.push({
+						if(that.text == "登陆成功！"){
+							Toast({
+									message: '登陆成功',
+									position: 'bottom',
+									duration: 1500,							
+								});							
+							setTimeout(function(){								
+								that.$router.push({
 										name: "firstLevelPage"
-									})
-								}
-							})
+									})								
+							},1500)								
+							}else{
+								MessageBox({
+									title: '提示',
+									message: that.text,
+								})														
+							}											
 					}, 2000)
 					setTimeout(function() {
 						that.slider = false;
