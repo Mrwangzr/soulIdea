@@ -33,6 +33,7 @@
 </template>
 
 <script scoped>
+	import { MessageBox } from 'mint-ui';
 	export default{
 		data(){
 			return{
@@ -41,52 +42,29 @@
 			}
 		},
 		methods:{
-			//点击提交，显示提交成功，3s后跳转到设置页面（set.vue）
-			open4() {
-				if(this.message!=""){
-					const h = this.$createElement;
-					this.$msgbox({
-						title: '意见反馈',
-						message: h('p', null, [
-						h('span', null, '是否提交该内容 '),
-						h('i', { style: 'color: teal' }, '')
-						]),
-						showCancelButton: true,
-						confirmButtonText: '确定',
-						cancelButtonText: '取消',
-						beforeClose: (action, instance, done) => {
-						if (action === 'confirm') {
-							instance.confirmButtonLoading = true;
-							instance.confirmButtonText = '执行中...';
-							this.message=="";
-							setTimeout(() => {
-							done();
-							setTimeout(() => {
-								instance.confirmButtonLoading = false;
-							}, 300);
-							this.$router.push('/set');
-							}, 3000);
-						} else {
-							done();
-						}
-						}
-					}).then(action => {
-						this.$message({
-						type: 'info',
-						message: 'action: ' + action
-						});
-					});
-				}		
-			},
 			back(){
 				this.$router.back();
+			},
+			//点击提交，显示提交成功，跳转到设置页面（set.vue）
+			open4(){
+				if(this.message!=""){
+					MessageBox.confirm('确定提交该反馈?').then(action => {
+						this.$router.push('/set');
+						this.message=null;
+					});
+				}
 			}
 		},
 		watch:{
 			message(newVal,oldVal){
 				this.message=newVal;
 			}
-		}
+		},
+// 		MessageBox({
+// 		  title: '提示',
+// 		  message: '确定执行此操作?',
+// 		  showCancelButton: true
+// 		});
 	}
 </script>
 

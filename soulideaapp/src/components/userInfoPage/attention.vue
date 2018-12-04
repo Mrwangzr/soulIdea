@@ -55,7 +55,6 @@
 			}
 		},
 		created(){
-			
 			this.handleGetAttentions();
 		} ,
 		mounted(){

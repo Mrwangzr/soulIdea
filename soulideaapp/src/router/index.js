@@ -25,22 +25,22 @@ export default new Router({
   routes: [
     {
       //重定向
-      path: "/",
-      redirect: "/login"
+      path:"/",
+      redirect:"/login"
     },
     {
       //首页的跳转路由
       path: '/firstLevelPage',
       name: 'firstLevelPage',
       component: firstLevelPage,
-      meta:{
-        keepAlive:true
-      }
+			meta: {
+				keepAlive: true // 需要被缓存
+			}
     },
     //登录注册模块
-    ...routerLi,
+		...routerLi,
     //个人信息路由
-    ...userInfoModule,
+		...userInfoModule,
     //消息模块的路由
     ...newsModule,
     //他人信息路由
