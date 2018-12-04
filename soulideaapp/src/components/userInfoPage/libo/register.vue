@@ -154,25 +154,6 @@
 			handlerGet(){
 				if(!this.show){
 					console.log(this.phone);
-<<<<<<< HEAD
-=======
-// 					{
-// 						method:"get",
-// 						headers:{
-// 							'Content-type':'application/x-www-form-urlencoded'
-// 						},
-// 						url:"/Soulidea-1.0/code/sendcode",
-// 						data:{
-// 							phone:this.phone,
-// 						}
-// 					}
-
-				/* 	axios.get("/Soulidea-1.0/code/sendcode?phone="+this.phone) */
-				axios.post("/Soulidea-1.0/code/sendcode?phone="+this.phone)
-				.then((data)=>{
-						console.log(data);
-					}).catch(()=>{});
->>>>>>> master
 					this.show = !this.show;
 					var that = this;
 					let timer = null;
@@ -187,7 +168,7 @@
 						},1000)
 					}
 					sport();
-<<<<<<< HEAD
+
 					axios({
 						method: "post",
 						headers: {
@@ -227,7 +208,7 @@
 					setTimeout(function() {
 						console.log(that.tit);
 						MessageBox({
-							title: '提示',
+							title: '',
 							message: that.tit,
 						}).then(
 							action=>{
@@ -241,15 +222,6 @@
 					setTimeout(function() {					
 						that.slider = false;
 					}, 2000)
-=======
-
-				}
-			},
-			handlerRegister(){
-				if(this.registerOne && this.registerTwo && this.registerThree){
-					this.slider = true;
-					console.log(this.phone,this.code,this.password);
->>>>>>> master
 					axios({
 						method:"post",
 						headers:{
@@ -266,27 +238,13 @@
 						console.log(data);
 						console.log(this.phone,this.code,this.password);
 						//this.slider = false;
-<<<<<<< HEAD
+
 						
 						if(data.status == 200){							
 							switch(data.data.code){
 								case 200:
 									this.tit = "注册成功！"
-=======
-						var that = this;
-						setTimeout(function(){
-							that.slider = false;
-						},1500)
-						setTimeout(function(){
-							that.$router.push({name:'login'});
-						},2500)
 
-						if(data.data.data.result){
-							console.log("注册成功！")
-							this.tit = "注册成功！";
-						}else{
-							switch(data.errorCode){
->>>>>>> master
 								case 302:
 									this.tit = "验证码错误，请重新输入！"
 									break;
@@ -302,11 +260,7 @@
 								case 500:
 									this.tit = "服务器产生未知错误！"
 							}
-<<<<<<< HEAD
-						
-=======
 
->>>>>>> master
 						}
 					}).catch(
 						this.tit = "啊哦，没网了，亲请检查您的网络！"
@@ -333,7 +287,7 @@
 	top:4.22rem;
 	color: #fc4343;
 }
-<<<<<<< HEAD
+
 .loading{
 	position:fixed;
 	height:50px;
@@ -345,8 +299,7 @@
 	margin:auto;
 	z-index: 10;
 }
-=======
->>>>>>> master
+
 .box{
 	height:3rem;
 	width:6rem;

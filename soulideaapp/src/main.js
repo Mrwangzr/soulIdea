@@ -69,9 +69,6 @@ Vue.config.productionTip = false;
 //设置observer 处理组件传值
 Vue.prototype.observer  = observer;
 //引入mint-ui插件
-import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
-
 
 
 
