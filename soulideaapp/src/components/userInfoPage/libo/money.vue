@@ -7,7 +7,7 @@
 		<div class="cont">
 			<div class="icon"></div>
 			<p>余额</p>
-			<div class="money-rmb">￥100</div>
+			<div class="money-rmb">￥100{{money}}</div>
 		</div>
 		<div 
 			class="pay-money"
@@ -20,11 +20,31 @@
 </template>
 
 <script>
+	import axios from "axios";
 	export default {
+		created(){
+			axios({
+				method:"get",
+				headers:{
+					'Content-type':'application/x-www-form-urlencoded'
+				},
+				// url:"/Soulidea-1.0/user/login?username=17864308316&password=123456"
+				url:"/Soulidea-1.0/user/balance",
+			/* data:{
+				username:this.username,
+				password:this.password
+			} */
+			}).then((data)=>{
+				console.log(data)
+				
+			})
+
+		},
 		data() {
 			return {
 				list:["充值","提现"],
-				cash:""
+				cash:"",
+				money:""
 			};
 		},
 		methods:{

@@ -1,15 +1,12 @@
 <template>
+
 	<div class="register">
-		<transition name="markSport">
-			<div class="mark"
-				v-show="slider"
-			></div>
-		</transition>
-		<transition name="boxSport">
-			<div class="box"
-				v-show="slider"
-			>{{tit}}</div>
-		</transition>
+		<div class="mark"
+			v-show="slider"
+		></div>
+		<div class="loading" v-show="slider">
+			<mt-spinner type="triple-bounce" color="#ccc" :size="40"></mt-spinner>
+		</div>
 		<div class="blank"></div>
 		<div class="register-top">注册</div>
 		<div class="register-cont">
@@ -68,9 +65,16 @@
 			>立即注册</div>
 		</div>
 	</div>
+
 </template>
 
 <script>
+	import Vue from 'vue';
+	import {
+		MessageBox,
+		Spinner
+	} from 'mint-ui';
+	Vue.component(Spinner.name, Spinner);
 	import axios from "axios";
 	export default {
 		data() {
@@ -92,7 +96,7 @@
 				registerTwo:'',
 				slider:"",
 				tit:""
-			};
+			}
 		},
 		watch:{
 			password(val){
@@ -150,22 +154,6 @@
 			handlerGet(){
 				if(!this.show){
 					console.log(this.phone);
-// 					{
-// 						method:"get",
-// 						headers:{
-// 							'Content-type':'application/x-www-form-urlencoded'
-// 						},
-// 						url:"/Soulidea-1.0/code/sendcode",
-// 						data:{
-// 							phone:this.phone,
-// 						}
-// 					}
-
-				/* 	axios.get("/Soulidea-1.0/code/sendcode?phone="+this.phone) */
-				axios.post("/Soulidea-1.0/code/sendcode?phone="+this.phone)
-				.then((data)=>{
-						console.log(data);
-					}).catch(()=>{});
 					this.show = !this.show;
 					var that = this;
 					let timer = null;
@@ -180,41 +168,80 @@
 						},1000)
 					}
 					sport();
+					axios({
+						method: "post",
+						headers: {
+							'Content-type': 'application/x-www-form-urlencoded'
+						},
+						url: "/Soulidea-1.0/user/sendcode?phone="+this.phone,
+
+					}).then(
+						console.log(this.phone)
+					)
+// 					axios.post("/Soulidea-1.0/code)
+// 					.then((data)=>{
+// 						console.log(data);
+// 					});
+
+// 					{
+// 						method:"get",
+// 						headers:{
+// 							'Content-type':'application/x-www-form-urlencoded'
+// 						},
+// 						url:"/Soulidea-1.0/code/sendcode",
+// 						data:{
+// 							phone:this.phone,
+// 						}
+// 					}
+
+				/* 	axios.get("/Soulidea-1.0/code/sendcode?phone="+this.phone) */
+
+
 
 				}
 			},
 			handlerRegister(){
 				if(this.registerOne && this.registerTwo && this.registerThree){
-					this.slider = true;
-					console.log(this.phone,this.code,this.password);
+					this.slider = ! this.slider;
+					var that = this;
+					setTimeout(function() {
+						console.log(that.tit);
+						MessageBox({
+							title: '提示',
+							message: that.tit,
+						}).then(
+							action=>{
+									if(that.tit == "注册成功！"){
+										that.$router.push({
+											name:'login'
+										})
+									}
+							})
+					}, 2000)
+					setTimeout(function() {
+						that.slider = false;
+					}, 2000)
 					axios({
-						method:"get",
+						method:"post",
 						headers:{
 							'Content-type':'application/x-www-form-urlencoded'
 						},
-						url:"/Soulidea-1.0/user/regist",
-						data:{
-							phone:this.phone,
-							code:this.code,
-							password:this.password
-						}
-						// url:"/Soulidea-1.0/user/register?phone="+this.phone+"&code="+this.code+"&password"+this.password,
+// 						url:"/Soulidea-1.0/user/regist",
+// 						data:{
+// 							phone:this.phone,
+// 							code:this.code,
+// 							password:this.password
+// 						}
+						url:"/Soulidea-1.0/user/register?phone="+this.phone+"&code="+this.code+"&password"+this.password,
 					}).then((data)=>{
 						console.log(data);
+						console.log(this.phone,this.code,this.password);
 						//this.slider = false;
-						var that = this;
-						setTimeout(function(){
-							that.slider = false;
-						},1500)
-						setTimeout(function(){
-							that.$router.push({name:'login'});
-						},2500)
 
-						if(data.data.data.result){
-							console.log("注册成功！")
-							this.tit = "注册成功！";
-						}else{
-							switch(data.errorCode){
+						if(data.status == 200){
+							switch(data.data.code){
+								case 200:
+									this.tit = "注册成功！"
 								case 302:
 									this.tit = "验证码错误，请重新输入！"
 									break;
@@ -225,12 +252,16 @@
 									this.tit = "手机地址错误，请输入正确的手机号码！"
 									break;
 								case 308:
-								 this.tit = "该手机邮箱已经注册，请登录！"
+									this.tit = "该手机邮箱已经注册，请登录！"
 									break;
+								case 500:
+									this.tit = "服务器产生未知错误！"
 							}
 
 						}
-					})
+					}).catch(
+						this.tit = "啊哦，没网了，亲请检查您的网络！"
+					)
 				}
 			},
 			handlerSee(){
@@ -252,6 +283,17 @@
 	left:.5rem;
 	top:4.22rem;
 	color: #fc4343;
+}
+.loading{
+	position:fixed;
+	height:50px;
+	width:50px;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	margin:auto;
+	z-index: 10;
 }
 .box{
 	height:3rem;
@@ -458,6 +500,9 @@ input{
 }
 .markSport-enter,.markSport-leave-to{
     opacity: 0;
+}
+.registerSport-enter,.registerSport-leave-to{
+    transform: translateX(-100%);
 }
 .markSport-enter-active,.markSport-leave-active{
     transition: all 300ms;
