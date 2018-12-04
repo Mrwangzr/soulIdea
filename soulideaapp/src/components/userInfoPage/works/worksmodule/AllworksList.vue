@@ -1,33 +1,37 @@
 <template>
 	<div class="wrapper" ref="wrapper">
 		<div class="content">
-			<div v-for="(item,index) in getMyList">
-				<router-link :to="{name:'Allworks',query:{id:item.id,name:item.name}}">
+			<div v-for="(item,index) in proList">
+				<router-link :to="{name:'beautiful',query:{id:item.id,name:item.name}}">
 					<div class="workslist">
-						<img :src="item.head">
+						<img :src="'http://'+item.src">
 						<p>{{item.name}}</p>
 					</div>
 				</router-link>
 			</div>
 		</div>
 	</div>
-
 </template>
 
 <script>
 import BScroll from "better-scroll"
 import Vuex from "vuex"
 export default {
-		data() {
-			return {
-				
-			};
+		props:[
+			"getId"
+		],
+		created(){
+			this.getproductour(this.getId)
 		},
-		
 		computed: {
 			...Vuex.mapState({
-				getMyList:state=>state.production.getWorksMyList
+				proList:state=>state.production.getproductour
 			})
+		},
+		methods: {
+			...Vuex.mapActions({
+				getproductour:"getproductour"
+			}),
 		},
 		mounted(){
 			this.scroll = new BScroll(this.$refs.wrapper,{
@@ -44,7 +48,7 @@ export default {
 	}
 </script>
 
-<style scoped="scoped">
+<style scoped>
 .wrapper{
 	overflow: hidden;
 	height: 100%;

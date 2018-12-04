@@ -69,6 +69,10 @@ Vue.config.productionTip = false;
 //设置observer 处理组件传值
 Vue.prototype.observer  = observer;
 
+import { Popup } from 'mint-ui';
+
+Vue.component(Popup.name, Popup);
+
 
 
 

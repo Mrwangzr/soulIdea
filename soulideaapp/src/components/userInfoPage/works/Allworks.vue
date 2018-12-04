@@ -1,17 +1,17 @@
 <template>
-	<div class="bigdiv">
-			<header class="beautifulHeader">
-				<p @click="back()"><img src="../../../../static/sorksimage/production/fanhui.png"></p>
-				<p>{{title}}</p>
-			</header>
-		<particularList-com :getId="getid"></particularList-com>
-	</div>
-	
-
+		<div class="bigdiv">
+				<header class="beautifulHeader">
+					<p @click="back()"><img src="../../../../static/sorksimage/production/fanhui.png"></p>
+					<p>{{title}}</p>
+				</header>
+			<Allworkslist-com :getId="getid"></Allworkslist-com>
+		</div>
+		
 </template>
 
 <script>
-const particularList = ()=>import("./worksmodule/beautifullist.vue")
+	
+const Allworkslist = ()=> import("./worksmodule/AllworksList")
 import	Vuex from "vuex"
 export default {
 	created(){
@@ -19,7 +19,7 @@ export default {
 			this.getid = this.$route.query.id
 		},
 		components:{
-			"particularList-com":particularList
+			"Allworkslist-com":Allworkslist
 		},
 	data() {
 			return {
@@ -35,7 +35,7 @@ export default {
 		back(){
 			this.$router.back()
 		}
-	}
+	},
 }
 </script>
 
@@ -68,5 +68,4 @@ export default {
 	left: 0.34rem;
 	top: 0.24rem;
 }
-
 </style>
