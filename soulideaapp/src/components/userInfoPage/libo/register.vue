@@ -14,9 +14,9 @@
 		</div>
 		<div class="register-cont-second">
 			<div class="register-input">
-				<div class="inputFirst">	
+				<div class="inputFirst">
 					<span class="tit" v-show="showS">请输入正确的手机号！</span>
-					<div 
+					<div
 						class="inputName"
 						:id="inputStyle == true ? 'myStyle' : ''"
 						:class="showS == true ? 'errorStyle' : ''"
@@ -24,15 +24,15 @@
 						<div class="input-icon">
 							<div class="input-icon-f"></div>
 						</div>
-						<input 
-							type="text" 
+						<input
+							type="text"
 							placeholder="请输入手机号"
 							v-model="phone"
 							@focus="handlerFocusOne()"
 							@blur="handlerBlurOne()"
 						>
 					</div>
-					<div 
+					<div
 						class="test"
 						@click="handlerGet()"
 						:class="show == true? 'test-wait':''"
@@ -57,8 +57,8 @@
 						<div class="input-icon-fo" @click="handlerSee()"></div>
 					</div>
 				</div>
-			</div>	
-			<div 
+			</div>
+			<div
 				class="register-on"
 				@click="handlerRegister()"
 				:id="(registerOne && registerTwo && registerThree) == true ? 'newStyle':''"
@@ -122,19 +122,19 @@
 					this.registerOne = false;
 				}
 			}
-			
+
 		},
 		methods:{
 			handlerBlurTwo(){
 				this.inputStyleS = false
-				
+
 			},
 			handlerFocusTwo(){
 				this.inputStyleS = true
 			},
 			handlerBlurThree(){
 				this.inputStyleT = false
-				
+
 			},
 			handlerFocusThree(){
 				this.inputStyleT = true
@@ -143,7 +143,7 @@
 				this.inputStyle = false
 				var re = /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/;
 				if(re.test(this.phone)) {
-					this.showS = false;					
+					this.showS = false;
 				} else {
 					this.showS = true;
 				}
@@ -154,9 +154,28 @@
 			handlerGet(){
 				if(!this.show){
 					console.log(this.phone);
+<<<<<<< HEAD
+=======
+// 					{
+// 						method:"get",
+// 						headers:{
+// 							'Content-type':'application/x-www-form-urlencoded'
+// 						},
+// 						url:"/Soulidea-1.0/code/sendcode",
+// 						data:{
+// 							phone:this.phone,
+// 						}
+// 					}
+
+				/* 	axios.get("/Soulidea-1.0/code/sendcode?phone="+this.phone) */
+				axios.post("/Soulidea-1.0/code/sendcode?phone="+this.phone)
+				.then((data)=>{
+						console.log(data);
+					}).catch(()=>{});
+>>>>>>> master
 					this.show = !this.show;
 					var that = this;
-					let timer = null; 
+					let timer = null;
 					var sport = function(){
 						timer = setInterval(function(){
 							that.num --;
@@ -168,6 +187,7 @@
 						},1000)
 					}
 					sport();
+<<<<<<< HEAD
 					axios({
 						method: "post",
 						headers: {
@@ -221,6 +241,15 @@
 					setTimeout(function() {					
 						that.slider = false;
 					}, 2000)
+=======
+
+				}
+			},
+			handlerRegister(){
+				if(this.registerOne && this.registerTwo && this.registerThree){
+					this.slider = true;
+					console.log(this.phone,this.code,this.password);
+>>>>>>> master
 					axios({
 						method:"post",
 						headers:{
@@ -237,11 +266,27 @@
 						console.log(data);
 						console.log(this.phone,this.code,this.password);
 						//this.slider = false;
+<<<<<<< HEAD
 						
 						if(data.status == 200){							
 							switch(data.data.code){
 								case 200:
 									this.tit = "注册成功！"
+=======
+						var that = this;
+						setTimeout(function(){
+							that.slider = false;
+						},1500)
+						setTimeout(function(){
+							that.$router.push({name:'login'});
+						},2500)
+
+						if(data.data.data.result){
+							console.log("注册成功！")
+							this.tit = "注册成功！";
+						}else{
+							switch(data.errorCode){
+>>>>>>> master
 								case 302:
 									this.tit = "验证码错误，请重新输入！"
 									break;
@@ -257,7 +302,11 @@
 								case 500:
 									this.tit = "服务器产生未知错误！"
 							}
+<<<<<<< HEAD
 						
+=======
+
+>>>>>>> master
 						}
 					}).catch(
 						this.tit = "啊哦，没网了，亲请检查您的网络！"
@@ -266,11 +315,11 @@
 			},
 			handlerSee(){
 				if(!this.toggle){
-					this.type = "text";					
+					this.type = "text";
 				}else{
 					this.type = "password";
 				}
-				
+
 				this.toggle = !this.toggle;
 			}
 		}
@@ -284,6 +333,7 @@
 	top:4.22rem;
 	color: #fc4343;
 }
+<<<<<<< HEAD
 .loading{
 	position:fixed;
 	height:50px;
@@ -295,6 +345,8 @@
 	margin:auto;
 	z-index: 10;
 }
+=======
+>>>>>>> master
 .box{
 	height:3rem;
 	width:6rem;
@@ -318,7 +370,7 @@
 	height:100%;
 	width:100%;
 	position: absolute;
-	background: rgba(0,0,0,0.5);	
+	background: rgba(0,0,0,0.5);
 	z-index: 1;
 }
 #myStyle{
@@ -342,7 +394,7 @@
 .blank{
 	height:.4rem;
 	width:100%;
-	
+
 }
 .register-top{
 	font-size:.34rem;
@@ -395,7 +447,7 @@
 	justify-content: center;
 	align-items: center;
 	border-radius:0 10px 10px 0;
-	
+
 }
 .input-icon-f{
 	height:.42rem;
@@ -452,7 +504,7 @@ input{
 .inputFirst .inputName{
 	height:1rem;
 	width:4.8rem;
-	
+
 }
 .inputFirst .test{
 	height:1rem;

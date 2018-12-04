@@ -1,15 +1,18 @@
 <template>
 	<div class="box">
 		<div class="set">
-			<router-link to="/set">
+			<!-- <router-link to="/set">
 				<li class="iconfont icon-right"></li>
-			</router-link>
+			</router-link> -->
+			<span @click="back">
+				<li class="iconfont icon-right"></li>
+			</span>
 			<li>意见反馈</li>
 			<li></li>
 		</div>
 		<div class="info"> 
 			<li>内容反馈:</li>
-			<textarea class="info-text" style="resize: none;" name="textareal"></textarea>
+			<textarea class="info-text" style="resize: none;" name="textareal" v-model="message"></textarea>
 		</div>
 		<div class="evaluate">
 			<li>评价我们：</li>	
@@ -19,32 +22,69 @@
 				<li><input type="radio" name="a">不满意</input></li>		
 			</div>
 		</div>
-		<div class="submit" @click="submit()">
-			<!-- <router-link to="/set"> -->
-				<img src="../../../static/image/feedback/提交.png" />
-			<!-- </router-link>	 -->
-			<li v-show="show">提交成功!</li>
+		<div class="submit" >
+			<template>
+				<el-button type="text" @click="open4">
+					<img src="../../../static/image/feedback/提交.png" />
+				</el-button>
+			</template>
 		</div>
 	</div>
 </template>
 
-<script>
+<script scoped>
 	export default{
 		data(){
 			return{
-				show:false
+				show:false,
+				message:""
 			}
 		},
 		methods:{
 			//点击提交，显示提交成功，3s后跳转到设置页面（set.vue）
-			submit(){
-				this.show=true;
-				alert(1);
-				setTimeout(()=>{
-					this.show=false;
-					this.$router.push('/set');
-					
-				},3000)
+			open4() {
+				if(this.message!=""){
+					const h = this.$createElement;
+					this.$msgbox({
+						title: '意见反馈',
+						message: h('p', null, [
+						h('span', null, '是否提交该内容 '),
+						h('i', { style: 'color: teal' }, '')
+						]),
+						showCancelButton: true,
+						confirmButtonText: '确定',
+						cancelButtonText: '取消',
+						beforeClose: (action, instance, done) => {
+						if (action === 'confirm') {
+							instance.confirmButtonLoading = true;
+							instance.confirmButtonText = '执行中...';
+							this.message=="";
+							setTimeout(() => {
+							done();
+							setTimeout(() => {
+								instance.confirmButtonLoading = false;
+							}, 300);
+							this.$router.push('/set');
+							}, 3000);
+						} else {
+							done();
+						}
+						}
+					}).then(action => {
+						this.$message({
+						type: 'info',
+						message: 'action: ' + action
+						});
+					});
+				}		
+			},
+			back(){
+				this.$router.back();
+			}
+		},
+		watch:{
+			message(newVal,oldVal){
+				this.message=newVal;
 			}
 		}
 	}
@@ -120,4 +160,7 @@ html,body{
 	font-size:.3rem ;
 	color: #F6C45D;
 }
+.el-message-box{
+		width: 6.75rem;
+	}
 </style>

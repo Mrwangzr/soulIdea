@@ -10,7 +10,7 @@
 		<a href="#" @click="cancel()">
 			<li>{{message}}</li>
 			
-		</a>
+		</a> 
 	</div>
 </template>
 
@@ -19,8 +19,8 @@
 	export default{
 		data(){
 			return{
-				message:"关注",
-			    del:"相互关注",
+				message:"取消关注",
+			    del:"关注",
 				
 				
 			}
@@ -28,25 +28,15 @@
 		props:{
 			item:Object
 		},
-// 		computed:{
-// 			...Vuex.mapState({
-// 				list:state=>state.userInfoStore.list
-// 			})
-// 		},
 		methods:{
 			cancel(){
-				if(this.message="关注"){
+				if(this.message="取消关注"){
 					this.message=this.del;
 					console.log(this.message);
 						console.log(this.index)
 				}	
 			}
 		},
-// 		watch:{
-// 			message(newVal,oldVal){
-// 				
-// 			}
-// 		}
 	}
 </script>
  

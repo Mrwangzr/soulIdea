@@ -7,27 +7,38 @@
 			</div>
 				<div class="box-center">
 							<div class="photo">
-
+									<!-- <img src="../../../static/image/feedback/gz_tx.png" /> -->
+									<el-upload
+										class="avatar-uploader"
+										action="https://jsonplaceholder.typicode.com/posts/"
+										:show-file-list="false"
+										:on-success="handleAvatarSuccess"
+										:before-upload="beforeAvatarUpload">
+										<img v-if="imageUrl" :src="imageUrl" class="avatar">
+										<i v-else class="el-icon-plus avatar-uploader-icon"></i>
+									</el-upload>
 							</div>
 							<div class="nickname">
-									<li>我的名字叫大白 </li>
-									<li> v.9</li>
+									<li>{{message.name}}</li>
+									
+										<li><router-link to="/rank">v.{{message.gender}}</router-link></li>
+									
 							</div>
-							<li>一个不会写代码的厨子不是个好的设计师</li>
+							<li>{{message.sign}}</li>
 							<div class="fans">
 									<span>
-											<li>200万</li>
+											<li>{{message.fork}}</li>
 											<li class="fans-li">赞</li>
 									</span>
 									<span>
 											<router-link to="/attention">
-													<li>2000</li>
+													<li>{{message.great}}</li>
 													<li class="fans-li">关注</li>
 											</router-link>
 									</span>
 									<span>
 											<router-link to="fans">
-													<li>99万</li>
+													<li>{{message.fans}}</li>
 													<li class="fans-li">粉丝</li>
 											</router-link>
 									</span>
@@ -39,35 +50,57 @@
 						<li class="iconfont icon-arrow-right"></li>
 					</ul>
 				</router-link>
-				<router-link to="/home">
+				<router-link to="/production">
 					<ul class="ul-my">
 						<li>我的作品</li>
 						<li class="iconfont icon-arrow-right"></li>
 					</ul>
 				</router-link>
-
+				
 	</div>
 
 
 </template>
 
 <script>
-	//     export default {
-	//         name: "user-info-page",
-	// 		//cameras-and-albums
-	//
-	//      }
-	// import vueCropper from 'vue-cropper'
-	  // import codes from 'code.vue'
-// 	export default {
-//
-// 		 name: "user-info-page",
-//
-// 	}
-
-	export default {
+import Vuex from "vuex";
+export default {
 		name: "user-info-page",
 
+		computed:{
+			...Vuex.mapState({
+				message:state=>state.userInfoStore.message
+			})
+		},
+		created(){
+			
+			this.handleGetMessage();
+		} ,
+		data() {
+      return {
+        imageUrl: ''
+      };
+    },
+    methods: {
+      handleAvatarSuccess(res, file) {
+        this.imageUrl = URL.createObjectURL(file.raw);
+      },
+      beforeAvatarUpload(file) {
+        const isJPG = file.type === 'image/jpeg';
+        const isLt2M = file.size / 1024 / 1024 < 2;
+
+        if (!isJPG) {
+          this.$message.error('上传头像图片只能是 JPG 格式!');
+        }
+        if (!isLt2M) {
+          this.$message.error('上传头像图片大小不能超过 2MB!');
+        }
+        return isJPG && isLt2M;
+      },
+			...Vuex.mapActions({
+				handleGetMessage:"userInfoStore/handleGetMessage"
+			})
+    }
   }
 </script>
 
@@ -112,7 +145,9 @@
 		border-radius: .7rem;
 		padding-bottom: .1rem;
 	}
-
+.box-center .photo img{
+		width:100%;
+}
 	.box-center .nickname {
 		display: flex;
 		text-decoration: row;
@@ -125,9 +160,10 @@
 	.box-center .nickname li:nth-child(1) {
 		font-size: .3rem;
 		padding-right: .06rem;
+		padding-left: .4rem;
 	}
 
-	.box-center .nickname li:nth-child(2) {
+	.box-center .nickname li:nth-child(2) a{
 		font-size: .2rem;
 		color: white;
 	}
@@ -171,5 +207,36 @@
 		width: 100%;
 		background: red;
 	}
-
+.avatar-uploader .el-upload {
+    /* border: 1px dashed #d9d9d9;
+    border-radius: 6px; */
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+		height: 1.2rem;
+		width: 1.2rem;
+		border-radius: .7rem;
+		padding-bottom: .1rem;
+ }
+	.avatar-uploader .el-upload  img{
+		width:100%;
+	}
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+   /* width: 178px;
+    height: 178px;
+    line-height: 178px; */
+		line-height: 1.2rem;
+    text-align: center;
+  }
+  /* .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  } */
+	
 </style>

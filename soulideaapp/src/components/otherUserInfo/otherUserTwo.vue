@@ -1,16 +1,13 @@
 <template>
     <div id="otherUserTwo">
         <!-- 头部空白 -->
-        <div class="white">
-
-         </div>  
-
         <!-- name -->
-        <div class="name">
-            <i class="iconfont icon-right" @click="handleBack()"></i>
-            《爱美丽》插画集
-        </div> 
-      
+        <div class="pp">
+            <div class="name">
+                <i class="iconfont icon-right" @click="handleBack()"></i>
+                《爱美丽》插画集
+            </div> 
+        </div>
         <!-- 插画集 -->
         <div class="wrapper" ref="wrapper">
             <div class="con content">
@@ -51,9 +48,6 @@ export default {
     created(){
         this.getPics();
         console.log(this);
-
-        // console.log(this.arr);
-
     },
      mounted(){
         var scroll = new Bscroll(this.$refs.wrapper,{
@@ -96,29 +90,20 @@ export default {
         height: 100%;
     }
    
-    /* 头部空白 */
-    .white{
-        width: 100%;
-        height: .4rem;
-        background: #fff;
-        position: fixed;
-        top: 0;
-        /* margin-bottom: 10px; */
-        z-index: 1000;
-
-    }
-    /* 名称 */
+    /* 头部空白*/
+   
     .name{
         width: 100%;
-        height: .88rem;
-        background: pink;
+        height: 1.28rem;
         text-align: center;
         line-height: .88rem;
+        padding-top: .4rem;
+        position: absolute;
+        top: 0;
         font-size: 20px;
-        position: fixed; 
-        /* bottom: 0; */
-        top: .4rem;
+        background: #fff;
         z-index: 1000;
+
 
     }
     .name i{
@@ -130,8 +115,6 @@ export default {
     /* 插画集 */
     .wrapper{
         width: 100%;
-        /* height: 100%; */
-        /* height: 3rem; */
         height:100% ;
         overflow: hidden;
         padding-top: 1.28rem;
@@ -141,13 +124,14 @@ export default {
     }
 
     .con{
-        padding-top: 1.1rem;
+        padding-top: 1.5rem;
         background: #f0f0f0;
     }
     .con>.pic{
         padding: 12px  12px;
         background: #fff;
         margin-bottom: 10px;
+        
     }
     .con>.pic>img{
         width: 7.02rem;

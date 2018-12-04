@@ -1,5 +1,6 @@
 import axios from "axios";
 export default{
+    //将用户评论信息传入数据库
     handlSendComment({commit},params){
         commit("handlSendComment",params)
         // console.log(parmas)
@@ -13,11 +14,11 @@ export default{
     //     })
     // },
     //获取用户信息接口
-    handlGetUserMsg({commit}){
-        // alert(2)
+    handlGetUserMsg({commit},params){
+        // alert(params)
         axios({
             method:"get",
-            url:"http://localhost:3000/userlist?id=1",
+            url:"Soulidea-1.0/product/getproduct/3",
 
         }).then((data)=>{
             console.log(data.data)

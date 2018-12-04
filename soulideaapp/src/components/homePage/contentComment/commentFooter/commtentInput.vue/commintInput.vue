@@ -33,7 +33,8 @@ export default {
     data(){
         return{
           data:"",
-          dataVal:this.data 
+          dataVal:this.data ,
+          booF:false
         }
     },
     created(){
@@ -48,6 +49,11 @@ export default {
         ...Vuex.mapActions({
             handlSendUserCom:"commentStore/handlSendUserCom"
         }),
+        handlSendUserCom(){
+            this.$emit("handlGetBooI",this.booF)
+            this.data =""
+        }
+        
         // handlSendComment(){
             
         //     this.dataVal = this.data

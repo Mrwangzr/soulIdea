@@ -3,5 +3,14 @@ export default{
 	handleGetName(state,params){
 		state.list = params;
 		console.log(state.list);
-	}
+	},
+	handleGetMessage(state,params){
+		state.message = params;
+		// console.log(state.message);
+	},
+	handleGetAttentions(state,params){
+		state.attentionsList = params;
+		// console.log(state.message);
+	},
+	
 } 

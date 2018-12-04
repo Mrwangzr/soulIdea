@@ -2,6 +2,7 @@
     <div id="otherUserFour">
         <div class="con">
             <div class="prImg" @click="handleHide()">
+                 <i class="iconfont icon-right" @click="handle()"></i>
                 <img src="../../../static/four/four.png" alt="">
             </div>
             <!-- <transition name="hide"> -->
@@ -25,7 +26,12 @@ export default {
 
         }
     },
+    //接收图片的id值
+    props:["id"],
+
+    
     created(){
+        
 
     },
     computed:{
@@ -34,7 +40,11 @@ export default {
     methods:{
         handleHide(){
             this.show = !this.show;
-        }
+            console.log(this.id);
+        },
+         handle(){
+            this.$router.back();
+        },
 
     }
     
@@ -56,6 +66,17 @@ export default {
     #otherUserFour .con prImg{
         width: 100%;
         height: 100%;
+        position: relative;
+    }
+    .prImg i{
+        position: fixed;
+        display: block;
+        left: 15px;
+        top: 15px;
+        z-index: 1000;
+        font-size: 24px;
+        color: #fff;
+        
     }
      #otherUserFour .con .prImg>img{
          width:100%;
@@ -82,4 +103,5 @@ export default {
          overflow: hidden;
          text-overflow: ellipsis;
      }
+   
 </style>

@@ -12,4 +12,10 @@ export default {
 	getproduct(state,params){
 		state.getproduct = params
 	},
+	GetTitleWork(state,params){
+		state.GetTitleWork = params
+	},
+// 	addproduct(state,params){
+// 		if(params.)
+// 	}
 }

@@ -8,4 +8,6 @@ export default {
   //打赏列表
   giftChange_list:[],
   giftChange_max:10
+
+
 }

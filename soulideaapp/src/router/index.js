@@ -16,7 +16,7 @@ export default new Router({
     {
       //重定向
       path:"/",
-      redirect:"/firstLevelPage"
+      redirect:"/login"
     },
     {
       //首页的跳转路由

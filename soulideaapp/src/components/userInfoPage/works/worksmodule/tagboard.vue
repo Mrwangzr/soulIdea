@@ -1,16 +1,17 @@
 <template>
 	<div class="wrapper" ref="wrapper">
 		<div class="content">
-			<div v-for="(item,index) in getMyList" >
+			<div v-for="(item,index) in getMyList">
 				<router-link :to="{name:'beautiful',query:{id:item.id,name:item.name}}">
 					<div class="workslist">
-						<img :src="item.src">
+						<img :src="item.head">
 						<p>{{item.name}}</p>
 					</div>
 				</router-link>
 			</div>
 		</div>
 	</div>
+
 </template>
 
 <script>
@@ -33,8 +34,7 @@ export default {
 		methods: {
 			...Vuex.mapActions({
 				getWorksMyList:"getWorksMyList"
-			})
-			
+			}),
 		},
 		mounted(){
 			this.scroll = new BScroll(this.$refs.wrapper,{
