@@ -8,9 +8,9 @@
     <div  @click="handleToTalk">
           <span>
             <img :src="item.head" alt="">
-            <div>
-              <span class="spanline">{{item.name}}</span>
-              <span class="spanline">{{item.sign}}</span>
+            <div class="message">
+              <p class="spanLine">{{item.name}}</p>
+              <p class="spanLine">{{item.sign}}</p>
             </div>
           </span>
      <!-- <b>
@@ -167,11 +167,13 @@
 
 <style scoped>
 
-  .spanline{
+  .spanLine{
     width:5rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    text-align: left;
+
   }
 
 
@@ -239,12 +241,12 @@
 
   }
 
-  li div > span:first-of-type div span:first-of-type {
+  li div > span:first-of-type div p:first-of-type {
     font-size: 14px;
     color: #292929;
   }
 
-  li div > span:first-of-type div span:last-of-type {
+  li div > span:first-of-type div p:last-of-type {
     font-size: 12px;
     color: #999;
   }

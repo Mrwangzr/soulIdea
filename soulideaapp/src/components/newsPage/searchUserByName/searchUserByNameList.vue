@@ -9,7 +9,7 @@
     </div>
 
     <div class="add" @click="handleAddFriend()">
-      加为好友
+      添加好友
     </div>
   </div>
 
@@ -26,7 +26,7 @@
         methods:{
           //处理添加好友
               handleAddFriend(){
-                MessageBox.confirm("添加对方为好友",{
+                MessageBox.confirm("添加对方对好友吗",{
                   title:" "
                 }).then(
                   action=>{
@@ -63,6 +63,7 @@
     border:1px solid #efefef;
     border-left: none;
     border-right: none;
+    justify-content: space-between;
   }
   img{
     width: 1.1rem;
@@ -99,7 +100,7 @@
   .add{
     border: 1px solid #999999;
     height: .6rem;
-    width: 3rem;
+    width: 1.4rem;
     font-size: 12px;
     display: flex;
     align-items: center;

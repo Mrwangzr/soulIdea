@@ -2,7 +2,7 @@
   <div class="all">
     <div>
       <span> <i class="iconfont icon-fangdajing"></i></span>
-      <input type="text" v-model="str">
+      <input type="text" v-model="str" placeholder="请输用要搜索的用户昵称">
     </div>
     <div class="font">
       <a href="javascript:;" @click="handleSearch()">搜索</a>
@@ -35,9 +35,10 @@
 <style scoped>
   .all {
     width: 100%;
-    height: .8rem;
+    height: 1.24rem;
     display: flex;
     border-bottom: 1px solid #efefef;
+    padding-top: .44rem;
     padding-left: .7rem;
     align-items: center;
     background: #ffffff;
@@ -68,6 +69,7 @@
     border-radius: 0 0.3rem 0.3rem 0;
     width: 4.5rem;
     margin-right: .2rem;
+    font-size: 12px;
   }
 
   a {
