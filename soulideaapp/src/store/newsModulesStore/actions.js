@@ -1,4 +1,5 @@
 import axios from "axios";
+import Vue from "vue";
 export default {
   //关注变化列表的获取
   handleFansChangeList_getList({commit},params){
@@ -21,13 +22,14 @@ export default {
         });
     }
     else if(params.pageNum<params.max){
+      console.log(params.pageNum);
         axios({
           method:"get",
           url:"/Soulidea-1.0/user/forkremind?page="+params.pageNum,
           }).then((data)=>{
             if(data.data.code === 200){
             console.log(data);
-          /*  commit("handleFansChangeList_getList",data.data);*/
+         //  commit("handleFansChangeList_getList",data.data.data.forkRemind);
           //空页面回调
           params.func(true);
             }

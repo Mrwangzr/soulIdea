@@ -83,14 +83,29 @@
         this.loading.close();
       }, 5000);
       this.handleFansChangeList_getList({
-        "pageNum": this.pageNum,
+        "pageNum": ++this.pageNum,
         "max": this.fansChange_max,
         "func": this.handleMarkAndLoading
       });
 
     },
     mounted() {
-      this.scroll = new BScroll(this.$refs.wrapper, {});
+      this.scroll = new BScroll(this.$refs.wrapper, {
+        pullUpLoad:300
+      });
+      this.scroll.on("pullingUp",()=>{
+        console.log("上拉刷新");
+        this.handleFansChangeList_getList({
+          "pageNum": ++this.pageNum,
+          "max": this.fansChange_max,
+          "func":()=>{
+            this.scroll.finishPullUp();
+          }
+        })
+      })
+    },
+    updated(){
+      this.scroll.refresh();
     }
   }
 </script>
