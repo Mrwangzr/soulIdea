@@ -18,12 +18,14 @@
 import BScroll from "better-scroll"
 import Vuex from "vuex"
 export default {
+	created() {
+		this.getWorksMyList()
+	},
 		data() {
 			return {
 				
 			};
 		},
-		
 		computed: {
 			...Vuex.mapState({
 				getMyList:state=>state.production.getWorksMyList
@@ -40,7 +42,13 @@ export default {
 				this.scroll.refresh();
 				//当数据加载完毕以后通知better-scroll
 				this.scroll.finishPullUp();
+		},
+		methods:{
+			...Vuex.mapActions({
+				getWorksMyList:"getWorksMyList",
+			}),
 		}
+		
 	}
 </script>
 

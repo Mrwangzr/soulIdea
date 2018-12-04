@@ -8,7 +8,7 @@
 				<div class="production-list-b">
 					<div class="production-list-b-l">
 						<p>{{item.name}}</p>
-						<p>{{item.time}}</p>
+						<p>{{item.time.slice(0,10)}}</p>
 					</div>
 					<div type="text" class="production-list-b-r" @click="open2(item.id)">
 						<img src="../../../../../static/sorksimage/production/jiaru.png">
