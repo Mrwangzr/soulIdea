@@ -153,7 +153,6 @@
 			},
 			handlerGet(){
 				if(!this.show){
-					console.log(this.phone);
 					this.show = !this.show;
 					var that = this;
 					let timer = null;
@@ -168,16 +167,16 @@
 						},1000)
 					}
 					sport();
-
+					console.log(this.phone);
 					axios({
-						method: "post",
+						method: "get",
 						headers: {
 							'Content-type': 'application/x-www-form-urlencoded'
 						},						
-						url: "/Soulidea-1.0/user/sendcode?phone="+this.phone,
+						url: "/Soulidea-1.0/code/sendcode?phone=" + this.phone
 
 					}).then(
-						console.log(this.phone)
+						
 					)
 // 					axios.post("/Soulidea-1.0/code)
 // 					.then((data)=>{
@@ -189,10 +188,7 @@
 // 						headers:{
 // 							'Content-type':'application/x-www-form-urlencoded'
 // 						},
-// 						url:"/Soulidea-1.0/code/sendcode",
-// 						data:{
-// 							phone:this.phone,
-// 						}
+// 						
 // 					}
 					
 				/* 	axios.get("/Soulidea-1.0/code/sendcode?phone="+this.phone) */
