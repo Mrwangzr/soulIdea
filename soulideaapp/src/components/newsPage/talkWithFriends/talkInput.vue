@@ -17,6 +17,7 @@
     methods:{
       handleSend(){
         this.$emit("oninputsend",this.inputValue);
+        this.inputValue = "";
       }
     }
 

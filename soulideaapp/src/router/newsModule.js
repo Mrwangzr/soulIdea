@@ -12,7 +12,7 @@ export default [
     path: "/talkPage",
     component: talkPage,
     meta:{
-      keepAlive:true
+      keepAlive:false
     }
   },
   {
