@@ -18,17 +18,17 @@
                     <img src="../../../static/img/t017eab4075c115d158.png" alt="">
                 </div>
             </div>
-        </div>
-        
 
-        
-    </div>
+        </div>
+</div>
 </template>
 
 
 <script>
+import Vuex from "vuex";
+import BScroll from "better-scroll";
 export default {
-    
+  
 }
 </script>
 

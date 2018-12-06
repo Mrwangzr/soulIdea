@@ -3,10 +3,10 @@
     <div class="share content">
         <div class="share_1">
             <div class="logo">
-                <img src="../../assets/logo.png">
+                <img src="http://img.duoziwang.com/2016/12/28/052933130034.jpg">
                 <div>
-                    <p>我的名字<span>V.9</span></p>
-                    <p>今天12:10</p>
+                    <p>李强<span>V.1</span></p>
+                    <p>今天9:10</p>
                     <p>举报</p>
                 </div>
             </div>
@@ -27,6 +27,148 @@
            
         </div>
 
+        <div class="share_1">
+            <div class="logo">
+                <img src="http://a3.topitme.com/5/e5/f2/1118609323e31f2e55l.jpg">
+                <div>
+                    <p>张梦晨<span>V.3</span></p>
+                    <p>今天10:15</p>
+                    <p>举报</p>
+                </div>
+            </div>
+            <p class="text">
+               &nbsp;&nbsp;&nbsp;&nbsp;晋太元中，武陵人捕鱼为业。缘溪行，忘路之远近。忽逢桃
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;花林，夹岸数百步，中无杂树，芳草鲜美，落英缤纷，渔人甚异之。复前行，欲穷其林...
+               </p>
+               
+            <div class="Img">
+                <img src="https://goss1.veer.com/creative/vcg/veer/612/veer-142468260.jpg" alt="">
+                <img src="https://goss3.veer.com/creative/vcg/veer/612/veer-130088931.jpg" alt="">
+                <img src="https://goss1.veer.com/creative/vcg/veer/612/veer-133857517.jpg" alt="">
+            </div>
+            <div class="Inp">
+                <input type="text" placeholder="评论">
+                <img src="../../../static/img/dianzhan .icon.png">
+                <img src="../../../static/img/fenxiang .icon.png">
+            </div>
+           
+        </div>
+
+
+
+        <div class="share_1">
+            <div class="logo">
+                <img src="http://img3.redocn.com/20120628/Redocn_2012062806101969.jpg">
+                <div>
+                    <p>张同<span>V.2</span></p>
+                    <p>今天09:54</p>
+                    <p>举报</p>
+                </div>
+            </div>
+            <p class="text">
+               &nbsp;&nbsp;&nbsp;&nbsp;林尽水源，便得一山，山有小口，仿佛若有光。便舍船，从
+                &nbsp;&nbsp;&nbsp;&nbsp;口入。初极狭，才通人。复行数十步，豁然开朗。土地平旷，屋舍俨然，有良田美池桑竹之属。阡陌交通，鸡犬相闻...
+               &nbsp;&nbsp;&nbsp;</p>
+               
+            <div class="Img">
+                <img src="https://goss2.veer.com/creative/vcg/veer/612/veer-138205190.jpg" alt="">
+                <img src="https://goss3.veer.com/creative/vcg/veer/612/veer-141917665.jpg" alt="">
+                <img src="https://goss4.veer.com/creative/vcg/veer/612/veer-133663134.jpg" alt="">
+            </div>
+            <div class="Inp">
+                <input type="text" placeholder="评论">
+                <img src="../../../static/img/dianzhan .icon.png">
+                <img src="../../../static/img/fenxiang .icon.png">
+            </div>
+           
+        </div>
+
+
+
+
+        <div class="share_1">
+            <div class="logo">
+                <img src="http://a0.att.hudong.com/16/12/01300535031999137270128786964.jpg">
+                <div>
+                    <p>张明轩<span>V.1</span></p>
+                    <p>今天16:12</p>
+                    <p>举报</p>
+                </div>
+            </div>
+            <p class="text">
+               &nbsp;&nbsp;&nbsp;&nbsp;萧瑟兮草木摇落而变衰，憭栗兮若在远行,
+               &nbsp;&nbsp;&nbsp; 登山临水兮送将归 萧瑟：寂寞萧条的样子。燎栗：凄凉。若在远行:好象人在远行之中...</p>
+               
+            <div class="Img">
+                <img src="https://goss1.veer.com/creative/vcg/veer/612/veer-134149996.jpg" alt="">
+                <img src="https://goss2.veer.com/creative/vcg/veer/612/veer-134579925.jpg" alt="">
+                <img src="https://goss3.veer.com/creative/vcg/veer/612/veer-129645925.jpg" alt="">
+            </div>
+            <div class="Inp">
+                <input type="text" placeholder="评论">
+                <img src="../../../static/img/dianzhan .icon.png">
+                <img src="../../../static/img/fenxiang .icon.png">
+            </div>
+           
+        </div>
+
+
+
+
+        <div class="share_1">
+            <div class="logo">
+                <img src="http://a2.att.hudong.com/22/04/01300536886921136691044308918.jpg">
+                <div>
+                    <p>李凡<span>V.2</span></p>
+                    <p>今天11:12</p>
+                    <p>举报</p>
+                </div>
+            </div>
+            <p class="text">
+               &nbsp;&nbsp;&nbsp;&nbsp;登山临水兮送将归！萧瑟兮草木摇落而变衰，憭栗兮若在远行,
+               &nbsp;&nbsp;&nbsp;  萧瑟：寂寞萧条的样子。燎栗：凄凉。若在远行:好象人在远行之中...</p>
+               
+            <div class="Img">
+                <img src="https://goss4.veer.com/creative/vcg/veer/612/veer-136227135.jpg" alt="">
+                <img src="https://goss.veer.com/creative/vcg/veer/612/veer-147789962.jpg" alt="">
+                <img src="https://goss1.veer.com/creative/vcg/veer/612/veer-147138934.jpg" alt="">
+            </div>
+            <div class="Inp">
+                <input type="text" placeholder="评论">
+                <img src="../../../static/img/dianzhan .icon.png">
+                <img src="../../../static/img/fenxiang .icon.png">
+            </div>
+           
+        </div>
+
+
+
+        <div class="share_1">
+            <div class="logo">
+                <img src="http://pic.58pic.com/58pic/13/76/69/39u58PICbDT_1024.jpg">
+                <div>
+                    <p>李时<span>V.4</span></p>
+                    <p>今天13:45</p>
+                    <p>举报</p>
+                </div>
+            </div>
+            <p class="text">
+               &nbsp;&nbsp;&nbsp;&nbsp;既出，得其船，便扶向路，处处志之。及郡下，诣太守，说如此。太守即遣人随其往，寻向所志，遂迷，不复得路。
+               &nbsp;&nbsp;</p>
+               
+            <div class="Img">
+                <img src="https://goss2.veer.com/creative/vcg/veer/612/veer-300062688.jpg" alt="">
+                <img src="https://goss2.veer.com/creative/vcg/veer/612/veer-147123808.jpg" alt="">
+                <img src="https://goss3.veer.com/creative/vcg/veer/612/veer-147151062.jpg" alt="">
+            </div>
+            <div class="Inp">
+                <input type="text" placeholder="评论">
+                <img src="../../../static/img/dianzhan .icon.png">
+                <img src="../../../static/img/fenxiang .icon.png">
+            </div>
+           
+        </div>
+
     </div>
     </div>
 </template>
@@ -38,7 +180,7 @@ import BScroll from "better-scroll";
 export default {
   created(){
      this.handleNow_getNowMovie();  
-     console.log(this.movie_nowMovie,111)
+    
   },
   computed:{
       ...Vuex.mapState({
