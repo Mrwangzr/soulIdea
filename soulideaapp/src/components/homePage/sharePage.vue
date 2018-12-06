@@ -3,9 +3,9 @@
     <div class="share content">
         <div class="share_1" @click="handleClick()">
             <div class="logo">
-                <img src="http://img.duoziwang.com/2016/12/28/052933130034.jpg">
+                <img src="../../../static/otherHomeImg/head.png">
                 <div>
-                    <p>李强<span>V.1</span></p>
+                    <h3 style="margin-top:15px">我是大笨蛋<span>V.10</span></h3>
                     <p>今天9:10</p>
                     <p>举报</p>
                 </div>

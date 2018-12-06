@@ -3,7 +3,7 @@
         <div class="content">
           <div class="content_show" v-for="(item,input) in userMessage" >
               <div class="content_myname">
-                <div><img src="http://img.duoziwang.com/2016/12/28/052933130034.jpg" alt=""></div>
+                <div @click="handlClick()"><img src="../../../../../static/otherHomeImg/head.png" alt=""></div>
                 <div>
                     <p>{{item.name}}<span>{{item.grade}}</span> </p>
                     <p>今天<span>12：00</span></p>
@@ -69,10 +69,13 @@ export default {
     ...Vuex.mapActions({
       handlGetUserMsg: "commentStore/handlGetUserMsg",
       handlCommentNum:"commentStore/handlCommentNum"
-    })
+    }),
     // ...Vuex.mapMutations({
     //     handlGetUserMsg:"handlGetUserMsg"
     // })
+    handlClick(){
+      this.$router.push("/otherUserHome")
+    }
   },
   mounted() {
     //第一个参数是最外面的大盒子第二个参数是配置项
