@@ -2,39 +2,31 @@
     <div id="prMore">
          <!-- 容器 -->
         <div class="con">
-            <!-- 创作个数 -->
-            <div class="proNum">
-                <p>共上传20个创作</p>
-                <p @click="handleTime()">时间更新</p>
-            </div>
+
             <!-- 作品集 -->
             <div class="wrapper" ref="wrapper">
                 <div class="proCon content">
+          <!-- 创作个数 -->
+                      <div class="proNum">
+                          <p>共上传20个创作</p>
+                          <p @click="handleTime()">时间更新</p>
+                      </div>
                     <!-- 作品 -->
-                    <div class="pr" @click="handle()" v-for="(item,index) in arr">
+                    <div class="pr" v-for="(item,index) in arr">
                         <div class="one">
-                            <img :src="item.src" alt="">
+                            <img :src="item.head"  @click="handle(item.id,item.name)">
                         </div>
                         <div class="two">
                             <p>{{item.name}}</p>
-                            <!-- <p><i>{{item.}}}</i>推荐 <i>0</i>评论</p> -->
                         </div>
                         <div class="three">
-                            平面-插画
+                           {{item.name}}
                         </div>
 
                     </div>
-                
+
                 </div>
             </div>
-<!--             
-             <div class="more">
-                    
-                    <img src="../../../../static/otherHomeImg/gd@2x.png" alt="">
-                    <p>
-                    点击加载更多
-                    </p>
-                </div> -->
         </div>
     </div>
 </template>
@@ -51,37 +43,29 @@ export default {
   created() {
     this.getMore();
   },
+  //接收父组件传的值id，并将该值发给后端
+   props:["val"],
+
+
 
   methods: {
-    handle() {
-      this.$router.push("/otherUserTwo");
+    handle(val,name) {
+      //点击图片进行跳转，并传值，图片的id
+      this.$router.push({name:"otherUserTwo",params:{id:val,name:name}});
     },
     handleTime() {
       //进行axios请求，按照时间进行请求
-      console.log("1");
+      // console.log("1");
     },
     getMore() {
-      // axios({
-      //   method: "get",
-      //   url: "Soulidea-1.0/showreel/getshowreel?id=6&orderby=1",
-      // }).then((data) => {
-      //   // this.arr = data.data;
-      //   // console.log("111111111111")
-      //   console.log(data);
-      // });
+
       axios({
         method: "get",
+        //传id值
+        // url: "Soulidea-1.0/showreel/getshowreel?id=val&orderby=1"
         url: "Soulidea-1.0/showreel/getshowreel?id=6&orderby=1"
       }).then(data => {
-        console.log(data);
-       // this.arr = data.data.data;
-        // this.arr.filter(item => {
-        //   item.src = "http://" + item.src;
-        //   item.name = item.name.substr(1, 6);
-        // });
-
-        // console.log(this.arr);
-        //   this.arr = data.data.data;
+        this.arr = data.data.data;
       });
     }
   },
@@ -102,6 +86,7 @@ export default {
 #prMore {
   padding: 0 12px;
   overflow: hidden;
+  height: 600px;
 }
 #prMore .proNum {
   border-radius: 10px;
@@ -119,7 +104,7 @@ export default {
   padding: 0 12px;
 }
 #prMore .proNum p:nth-of-type(2) {
-  background: #797979;
+  /* background: #797979; */
   border-radius: 5px;
 }
 #prMore .proNum p:nth-of-type(1) {
@@ -138,7 +123,6 @@ export default {
 #prMore .proCon {
   width: 100%;
   height: auto;
-  /* overflow: hidden; */
   margin-bottom: 10px;
   background: #fff;
 }
@@ -163,7 +147,6 @@ export default {
 #prMore .proCon .pr {
   width: 100%;
   height: 6.49rem;
-  /* background: #ccc; */
   overflow: hidden;
 }
 #prMore .proCon .pr img {
@@ -193,5 +176,6 @@ export default {
   line-height: 12px;
   padding-top: 8px;
   color: #797979;
+  text-align: left;
 }
 </style>

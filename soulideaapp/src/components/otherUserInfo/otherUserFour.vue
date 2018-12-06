@@ -1,5 +1,6 @@
 <template>
-    <div id="otherUserFour">
+    <div  class="otherUserFour">
+      
         <div class="con">
             <div class="prImg" @click="handleHide()">
                  <i class="iconfont icon-right" @click="handle()"></i>
@@ -31,10 +32,21 @@ export default {
     };
   },
   //接收图片的id值
-  props: ["id"],
+  // props: ["id"],
+  watch:{
+          "$route"(to,from){
+            //接收otherUserTwo路由传来的作品集的id值，并传给后端
+              this.id = to.params.id;
+              // this.name = to.params.name;
+              // console.log(this.id);
+              
 
+          }
+
+      },
   created() {
       this.getDetails();
+      console.log(this.id);
   },
   computed: {},
   methods: {
@@ -48,6 +60,7 @@ export default {
     getDetails() {
       axios({
         method: "get",
+        // url: "Soulidea-1.0/product/getphotoinfo?id=" + this.id
         url: "Soulidea-1.0/product/getphotoinfo?id=6"
       }).then((data) => {
         console.log(data.data.data);
@@ -60,17 +73,17 @@ export default {
 </script>
 
 <style>
-#otherUserFour {
+.otherUserFour {
   width: 100%;
   height: 100%;
   /* background: pink; */
 }
-#otherUserFour .con {
+.otherUserFour .con {
   width: 100%;
   height: 100%;
   position: relative;
 }
-#otherUserFour .con .prImg {
+.otherUserFour .con .prImg {
   width: 100%;
   height: 100%;
   position: relative;
@@ -82,14 +95,15 @@ export default {
   top: 15px;
   z-index: 1000;
   font-size: 24px;
-  color: #fff;
+  color: #000;
 }
-#otherUserFour .con .prImg>img {
+/*.otherUserFour>.con>*/
+.prImg>img {
   width: 100%;
   height: 100%;
   /* height: 13.34rem; */
 }
-#otherUserFour .con .mark {
+.otherUserFour .con .mark {
   width: 100%;
   height: 2.84rem;
   position: absolute;
@@ -97,7 +111,7 @@ export default {
   background: #333;
   opacity: 0.3;
 }
-#otherUserFour .con .text {
+.otherUserFour .con .text {
   width: 100%;
   height: 2.84rem;
   position: absolute;
@@ -109,7 +123,7 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-#otherUserFour .con .text i{
+.otherUserFour .con .text i{
     display: block;
     width: 20px;
     height: 20px;

@@ -47,7 +47,7 @@
       initWebSocket(id){
         if ('WebSocket' in window) {
           //这是建立链接的地址，需要传入用id
-         this.websocket  = new WebSocket("ws://" + "47.106.254.59:8080/Soulidea-1.0" + "/websocket/" + id);
+         this.websocket  = new WebSocket("ws://" + "localhost:8080/Soulidea-1.0" + "/websocket/" + id);
          console.log(this.websocket);
          // alert(document.location.host);
           this.websocket.onopen = function () {

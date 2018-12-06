@@ -8,8 +8,8 @@
         </div>
         <div class="wrapper" ref="wrapper">
             <div class="content">
-                <img v-for="(item,index) in arr " :src="item.src" alt="" @click="handleDetail()">
-                <img v-for="(item,index) in arr " :src="item.src" alt="" @click="handleDetail()">
+                <img v-for="(item,index) in arr " :src="item.src" alt="" @click="handleDetail(item.id)">
+                <img v-for="(item,index) in arr " :src="item.src" alt="" @click="handleDetail(item.id)">
                 
                 <div class="bottom">
                     <p><i class="iconfont icon-dianzan"></i> <i>{{seen}}</i> </p>
@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       arr: [],
-      name: "",
+      name: this.name,
       seen:"",
       great:""
     };
@@ -39,6 +39,9 @@ export default {
     this.getImg();
     // console.log(this.id);
     // alert(this.id);
+    this.id = this.$route.params.id;
+    this.name = this.$route.params.name
+
   },
   mounted() {
     var scroll = new Bscroll(this.$refs.wrapper, {
@@ -47,14 +50,23 @@ export default {
     });
   },
   //接收otherUserTwo传的id值
-  props:["id"],
+  watch:{
+        "$route"(to,from){
+          //接收otherUserTwo路由传来的作品集的id值，并传给后端
+            this.id = to.params.id;
+            this.name = to.params.name;
+            // console.log(this.id);
+
+        }
+
+    },
   methods: {
     handle() {
       this.$router.back();
     },
     handleDetail(val) {
-        // this.$router.push({ name: "otherUserFour", params: { id: val } });
-        this.$router.push({ name: "otherUserFour"});
+        this.$router.push({ name: "otherUserFour", params: { id: val } });
+        // this.$router.push({ name: "otherUserFour"});
 
     },
 
@@ -64,14 +76,13 @@ export default {
         url: "Soulidea-1.0/product/getproduct/2"
       }).then((data) => {
           console.log(data)
-        this.name = data.data.data.name;
+        // this.name = data.data.data.name;
         this.seen = data.data.data.seen;
         this.great = data.data.data.great;
         this.arr = data.data.data.src;
         this.arr.filter(item => {
           item.src = "http://" + item.url;
         });
-        console.log(this.arr);
       });
     }
   }

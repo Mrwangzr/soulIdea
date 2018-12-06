@@ -1,15 +1,19 @@
 <template>
-    <div id="otherUserHome">
+    <div class="otherUserHome">
         <!-- 头像 -->
-        <otherHeader-com></otherHeader-com>
+        <!-- <otherHeader-com :val="id"></otherHeader-com> -->
+        <otherHeader-com :id="id"></otherHeader-com>
+
         <!-- 作品集 -->
         <div class="pro">
             <p>作品集</p>
         </div>
         <!-- 容器 -->
-        <more-com></more-com>
-        
-        
+        <!-- <more-com :val="id"></more-com> -->
+        <more-com :val="id"></more-com>
+
+
+
 
 
     </div>
@@ -23,16 +27,20 @@ import pMore from "./one/more"
 export default {
     data(){
         return{
-
+            id:""
         }
     },
+    // 接收传值id,并将id传给两个子组件otherheader和 more
+  //props:["id"],
     components:{
         "otherHeader-com":otherHeader,
         "more-com":pMore
 
     },
     created(){
-
+        console.log("route");
+        console.log(this.$route);
+        this.id = this;$router.query.id;
     },
     computed:{
 
@@ -40,7 +48,7 @@ export default {
     methods:{
 
     }
-    
+
 
 }
 </script>
@@ -48,14 +56,14 @@ export default {
 <style>
 
 
-#otherUserHome{
+.otherUserHome{
     width: 100%;
     height: 100%;
     background: #fff;
 }
 
 /*作品集*/
-#otherUserHome .pro{
+.otherUserHome .pro{
     border-radius: 10px;
     width: 7.02rem;
     height: 1.18rem;
@@ -65,7 +73,7 @@ export default {
     margin-left: 12px;
 
 }
-#otherUserHome .pro p{
+.otherUserHome .pro p{
     color: #fff;
     font-size: 25px;
     text-align: center;

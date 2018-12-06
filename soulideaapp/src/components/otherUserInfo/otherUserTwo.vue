@@ -2,16 +2,14 @@
     <div id="otherUserTwo">
         <!-- 头部空白 -->
         <!-- name -->
-        <div class="pp">
-            <div class="name">
-                <i class="iconfont icon-right" @click="handleBack()"></i>
-                《爱美丽》插画集
-            </div> 
-        </div>
+          <div class="name">
+              <i class="iconfont icon-right" @click="handleBack()"></i>
+              {{name}}
+          </div> 
         <!-- 插画集 -->
         <div class="wrapper" ref="wrapper">
             <div class="con content">
-                <div class="pic" v-for="(item,index) in arr"  @click="handleToThree(item.id)">
+                <div class="pic" v-for="(item,index) in arr"  @click="handleToThree(item.id,item.name)">
                     <img :src="item.head" alt="">
                     <div class="one">
                         <p>{{item.name}}</p>
@@ -42,37 +40,61 @@ export default {
   data() {
     return {
       arr: [],
-      name: ""
+      id:this.id,
+      name: name,
+      
     };
   },
+//  props:["id","name"],
+  //防止组件复用
+  watch:{
+        "$route"(to,from){
+            console.log("to",to)
+          //接收more路由传来的作品集的id值，并传给后端
+            this.id = to.params.id;
+            this.name = to.params.name;
+            // console.log(this.id);
+          // this.getList();
+
+        }
+
+    },
   created() {
-    console.log(this);
     this.getList();
+    this.id = this.$route.params.id;
+    this.name = this.$route.params.name;
+  },
+  beforeMount(){
   },
   mounted() {
-    var scroll = new Bscroll(this.$refs.wrapper, {
+      var scroll = new Bscroll(this.$refs.wrapper, {
       click: true,
       pullUpLoad: true
     });
+    // this.getList();
+  },
+  updated(){
+    // this.scroll.refresh();
   },
   computed: {},
   methods: {
     getList() {
+      // console.log(this.id);
       axios({
         method: "get",
+        // url: "Soulidea-1.0/showreel/getshowreel?id=" + this.id +"&orderby=1"
         url: "Soulidea-1.0/showreel/getshowreel?id=6&orderby=1"
       }).then(data => {
-        this.arr = data.data.data;
-        // console.log("111111111111")
         console.log(data);
+        this.arr = data.data.data;
       });
     },
     handleBack() {
       this.$router.back();
     },
-    handleToThree(id) {
+    handleToThree(id,name) {
       //路由跳转并传id值
-      this.$router.push({ name: "otherUserThree", params: { id: id } });
+      this.$router.push({ name: "otherUserThree", params: { id: id ,name:name} });
     }
   }
 };
@@ -82,12 +104,16 @@ export default {
 * {
   font-family: "PingFangSC-Regular";
 }
-#otherUserTwo {
+.otherUserTwo{
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 /* 头部空白*/
+
 
 .name {
   width: 100%;
@@ -95,11 +121,11 @@ export default {
   text-align: center;
   line-height: 0.88rem;
   padding-top: 0.4rem;
-  position: absolute;
-  top: 0;
+  /* position: absolute; */
+  /* top: 0; */
   font-size: 20px;
   background: #fff;
-  z-index: 1000;
+  /* z-index: 1000; */
 }
 .name i {
   position: absolute;
@@ -110,15 +136,17 @@ export default {
 /* 插画集 */
 .wrapper {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
+  flex: 1;
   overflow: hidden;
-  padding-top: 1.28rem;
+  /* padding-top: 1.28rem; */
 }
 .content {
+
 }
 
 .con {
-  padding-top: 1.5rem;
+  /* padding-top: 1.5rem; */
   background: #f0f0f0;
 }
 .con > .pic {

@@ -8,14 +8,16 @@
        </div>
        <!-- 签到 -->
        <div class="signInCon">
-         <div class="signStar">
-           <!-- <i :class="sign1==index?el-icon-star-on:el-icon-star-off"></i>
-           <i :class="sign2==index?el-icon-star-on:el-icon-star-off"></i>
-           <i :class="sign3==index?el-icon-star-on:el-icon-star-off"></i>
-           <i :class="sign4==index?el-icon-star-on:el-icon-star-off"></i>
-           <i :class="sign5==index?el-icon-star-on:el-icon-star-off"></i>
-           <i :class="sign6==index?el-icon-star-on:el-icon-star-off"></i>
-           <i :class="sign7==index?el-icon-star-on:el-icon-star-off"></i> -->
+         <div class="signWeek">
+          
+            <div :class="one == 1?'active':''"></div>
+            <div :class="two == 2?'active':''"></div>
+            <div :class="three == 3?'active':''" ></div>
+            <div :class="four == 4?'active':''"></div>
+            <div :class="five == 5?'active':''"></div>
+            <div :class="six == 6?'active':''"></div>
+            <div :class="seven == 7?'active':''"></div>
+            <p class="line"></p>
 
          </div>
             <el-button  class="signConOne" @click="handleClick()">签到</el-button>
@@ -51,19 +53,17 @@ import axios from "axios";
 export default {
   data() {
     return {
-      sign7:0,
-      sign1:1,
-      sign2:2,
-      sign3:3,
-      sign4:4,
-      sign5:5,
-      sign6:6,
-      index:0
-
-      
+      one:"",
+      two:"",
+      three:"",
+      four:"",
+      five:"",
+      six:"",
+      seven:""
     };
   },
   created() {
+    this.signStart()
   },
   computed: {
     ...Vuex.mapState({
@@ -83,22 +83,78 @@ export default {
       }).then((data) => {
        console.log(data)
       });
+
+    
     },
     //点击签到，调用方法
     handleClick(){
-      this.signIn();
+      alert("您已签到，请明天再来哦")
+
+    },
+    signStart(){
       var data = new Date();
       var week = data.getDay();
-      var month = data.getMonth();
-      console.log(data);
       console.log(week);
-      console.log(month);
+      if(week == 0){
+        week = 7;
+      }
+     switch(week){
+       case 1:
+        this.one = 1;
+        break;
+        case 2:
+          this.one = 1;
+          this.two = 2;
+          break;
+        case 3:
+          this.one = 1;
+          this.two = 2;
+          this.three = 3;
+          break;
+        case 4:
+          this.one = 1;
+          this.two = 2;
+          this.three = 3;
+          this.four = 4;
+          break;
+         case 5:
+          this.one = 1;
+          this.two = 2;
+          this.three = 3;
+          this.four = 4;
+          this.five = 5;
+          break;
+        case 6:
+          this.one = 1;
+          this.two = 2;
+          this.three = 3;
+          this.four = 4;
+          this.five = 5;
+          this.six = 6;
+        break;
+        case 7:
+          this.one = 1;
+          this.two = 2;
+          this.three = 3;
+          this.four = 4;
+          this.five = 5;
+          this.six = 6;
+          this.seven = 7;
+        break;
+
+          
+           
+     }
+
     }
+
+    
   }
 };
 </script>
 
 <style>
+
 #signIn {
   width: 100%;
   height: 100%;
@@ -141,15 +197,35 @@ export default {
   padding-top: 80px;
   
 }
-.signInCon .signStar{
+.signInCon .signWeek {
   width: 100%;
+  height: .5rem;
+  /* background: pink; */
   display: flex;
   justify-content: space-around;
-  font-size: 20px;
-  }
-  .el-icon-star-on{
-    color: red;
-  }
+  align-items: center;
+  position: relative;
+  
+
+}
+.signInCon .signWeek>.line{
+  width:100%;
+  height: 2px;
+  background: #ccc;
+  position: absolute;
+  top: .25rem;
+  /* z-index: -1; */
+}
+.signInCon .signWeek div{
+  width: .3rem;
+  height: .3rem;
+  border-radius: 50%;
+  background: #ccc;
+  z-index:10;
+}
+.signInCon .signWeek .active{
+  background: yellow;
+}
 .el-button{
   margin-top: 20px;
 }

@@ -1,24 +1,24 @@
 <template>
     <div id="header">
         <!-- 头像 -->
-        <div class="head">
+        <div class="head" >
             <div class="headImg">
-                <img src="../../../../static/otherHomeImg/head.png" alt="">
+                <img :src="arr.head">
             </div>
-            <p><i></i> LV:10</p>
-            <p>这是大笨蛋</p>
-            <p>账号：wang123456789</p>
+            <p><i class="iconfont icon-huangguan ziti"></i>lv:{{arr.level}}</p>
+            <p>{{arr.username}}</p>
+            <p>账号：{{arr.username}}</p>
             <div class="bottom">
                 <li>
-                    <i>32650</i>
+                    <i>{{arr.fans}}</i>
                     <em>粉丝数</em>
                 </li>
                 <li>
-                     <i>8520</i>
+                     <i>{{arr.exp}}</i>
                     <em>关注</em>
                 </li>
                 <li>
-                     <i>750</i>
+                     <i>{{arr.fork}}</i>
                     <em>点赞数</em>
                 </li>
             </div>
@@ -32,24 +32,28 @@ import axios from "axios";
 export default {
     data(){
         return{
-            
+            arr:[],
         }
     },
+    //接收父组件传的值id，并将该值发给后端
+   props:["id"],
+
     created(){
-        // this.getHomeMessage();
+        this.getUserMessage();
+        // console.log(this.arr);
 
     },
     methods:{
-        // getHomeMessage(){
-        //     axios({
-        //         method:"get",
-        //         url:"Soulidea-1.0/showreel/getshowreel?id=2&orderby=0"
+        getUserMessage(){
+            axios({
+                method:"get",
+                // url:"Soulidea-1.0/user/getotheruserinfo?id=val",
+                url:"Soulidea-1.0/user/getotheruserinfo?id=6",
 
-        //         }).then((data)=>{
-        //             // this.arr = data.data;
-        //             console.log(data);
-        //         })
-        //      }
+                }).then((data)=>{
+                    this.arr = data.data.data;
+                })
+        }
     }
 
 }
@@ -68,9 +72,15 @@ export default {
     margin-bottom: 19px;
     padding-top: 40px;
 }
+
 #header .head p:nth-of-type(1){
     color: #fff;
     font-size: 12px;
+
+}
+#header .head p:nth-of-type(1) .ziti{
+    color:yellow;
+    padding-right: 5px;
 
 }
 #header .head p:nth-of-type(2){
@@ -91,6 +101,7 @@ export default {
     width: 1.62rem;
     height: 1.62rem;
     margin: 0 auto;
+    border-radius: 50%;
 }
 #header p{
     text-align: center;

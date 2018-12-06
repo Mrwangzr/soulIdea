@@ -5,6 +5,8 @@ const fansChangePage = ()=>import("../components/newsPage/fansChangeInfo/fansCha
 const aiteMessagePage = ()=>import("../components/newsPage/aiteMessage/aiteMessagePage");
 const giftMessagePage = ()=>import("../components/newsPage/giftMessage/giftMessagePage");
 const searchUserByNamePage = ()=>import("../components/newsPage/searchUserByName/searchUserByNamePage");
+
+const worksInfoPage = ()=>import("../components/homePage/worksInfo/worksInfoPage");
 //import fansChangePage from "../components/newsPage/fansChangeInfo/fansChangePage";
 
 export default [
@@ -63,6 +65,15 @@ export default [
       keepAlive:true
     }
   },
+  //额外工作
+  //作品详情
+  {
+    path:"/worksInfoPage",
+    component:worksInfoPage,
+    meta:{
+      keepAlive:false
+    }
+  }
   /*
     {
       //按照用户名搜索用户
@@ -70,6 +81,4 @@ export default [
       component:searchUserByNamePage
     }
   */
-
-
 ]
