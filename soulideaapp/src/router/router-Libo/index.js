@@ -2,6 +2,8 @@ import login from "../../components/userInfoPage/libo/login"
 import register from "../../components/userInfoPage/libo/register"
 import pay from"../../components/userInfoPage/libo/pay"
 import money from"../../components/userInfoPage/libo/money"
+import success from"../../components/userInfoPage/libo/success"
+
 export default [	
 	{
 		path:'/login',
@@ -21,6 +23,12 @@ export default [
 	{
 		path:'/money',
 		name:'money',
-		component:money,
+		component:money
+	},
+	{
+		path:'/success',
+		name:'success',
+		component:success
 	}
 ]
+

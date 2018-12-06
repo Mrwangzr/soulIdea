@@ -30,13 +30,24 @@
 				
 				
 				
-				<div 
-					 class="pay-go" :class="show == true? 'pay-sure':''"
-					@click="handlePay()"
-				>确认充值</div>
+					<form  action="http://ceshi.chenjunbo.xin/payment/weixinpay" method="get">
+											
+							<input type="hidden" name="orderId" v-model="orderId">                  
+						<input type="hidden" name="price" v-model="money">
+						 <input type="hidden" name="body" value="jinbi">
+					 <input type="hidden" name="url" value="http://localhost:8080/success">
+					<input type="submit" class="pay-go"  :class="show == true? 'pay-sure':''"
+					@click="handlePay()" value="确认支付" :disabled="show == true? false : true">
+
+		
+			 </form>
+				
+				
+			
 				
 			</div>
 		</div>
+	
 
 	</div>
 </template>
@@ -54,10 +65,11 @@
 				show:"",
 				money:"1",
 				body:"jinbi",
-				orderId:"zzzzzz_17864308316",
+				orderId:"",
 				url:"http://localhost:8080/getweixinback"
 			}
 		},
+
 		methods:{
 				getVal(val){
 					this.money = val;
@@ -74,27 +86,17 @@
             }
            },
 		   handleShow(){
-			   this.show = !this.show;
+				this.show = !this.show;
+				var date = new Date;
+				this.orderId = date.getTime();
+				console.log(this.orderId);
 		   },
-		   handlePay(){
+		   handlePay(){				 
+				
 			   if(this.show){
-				  console.log("可以支付了")
+				  
 				   // window.location.href = 'http://ceshi.chenjunbo.xin/payment/weixinpay?body="jinbi"&orderId="zzzzzz_17864308316"&url="http://localhost:8080/getweixinback"';
-					axios({
-						
-						method:"post",
-						headers:{
-							'Content-type':'application/x-www-form-urlencoded'
-						},
-						url:"http://ceshi.chenjunbo.xin/payment/weixinpay?orderId="+this.orderId+"&price="+this.money+"&url="+this.url,
-// 						data:{
-// 							orderId:this.orderId,
-// 							price:this.money,
-// 							body:this.body,
-// 						}
-					}).then((data)=>{
-						console.log(data);
-					})
+				
 			   } 
 		   },
 		   handlerBack(){
@@ -218,6 +220,7 @@
 		border-radius:50%;
 	}
 	.pay-go{
+		border: none;
 		margin-top:2rem;
 		width:5rem;
 		height:1rem;

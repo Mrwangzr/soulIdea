@@ -61,13 +61,6 @@
 	Vue.component(Spinner.name, Spinner);
 	import axios from "axios";
 	export default {
-
-
-		created() {
-
-
-
-		},
 		data() {
 			return {
 				show: "",

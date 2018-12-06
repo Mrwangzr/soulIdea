@@ -11,7 +11,6 @@ import contentCommentRouter from "./contentCommentRouter.js"
 import welcome from "../components/welcome";
 
 
-
 Vue.use(Router);
 
 export default new Router({
@@ -34,6 +33,7 @@ export default new Router({
       path: '/firstLevelPage',
       name: 'firstLevelPage',
       component: firstLevelPage,
+			
 			meta: {
 				keepAlive: true // 需要被缓存
 			}
