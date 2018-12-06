@@ -1,9 +1,9 @@
 <template>
-    <div class="wrapper" ref="wrapper">
+    <div class="" ref="wrapper">
         <div class="content">
           <div class="content_show" v-for="(item,input) in userMessage" >
               <div class="content_myname">
-                <div><img src="../../../../../static/commentImg/timg.jpg" alt=""></div>
+                <div><img src="http://img.duoziwang.com/2016/12/28/052933130034.jpg" alt=""></div>
                 <div>
                     <p>{{item.name}}<span>{{item.grade}}</span> </p>
                     <p>今天<span>12：00</span></p>
@@ -14,12 +14,12 @@
                     <p>悲哉秋之为气也！萧瑟兮草木摇落而变衰，憭栗兮若在远行， 登山临水兮送将归 萧瑟：寂寞萧条的样子。燎栗：凄凉</p>
                 </div>
             <div class="content_img">
-                <div><img src="../../../../../static/commentImg/psa2cde6d664f13de9-2b3f-43b8-bc18-1764470132f5.png" alt=""></div>
-                <div><img src="../../../../../static/commentImg/psa2cde6d664f13de9-2b3f-43b8-bc18-1764470132f5.png" alt=""></div>
-                <div><img src="../../../../../static/commentImg/psa2cde6d664f13de9-2b3f-43b8-bc18-1764470132f5.png" alt=""></div>
-                <div><img src="../../../../../static/commentImg/psa2cde6d664f13de9-2b3f-43b8-bc18-1764470132f5.png" alt=""></div>
-                <div><img src="../../../../../static/commentImg/psa2cde6d664f13de9-2b3f-43b8-bc18-1764470132f5.png" alt=""></div>
-                <div><img src="../../../../../static/commentImg/psa2cde6d664f13de9-2b3f-43b8-bc18-1764470132f5.png" alt=""></div>
+                <div><img src="../../../../../static/commentImg/222.png" alt=""></div>
+                <div><img src="../../../../../static/commentImg/矩形 4 拷贝 2 - 副本.png" alt=""></div>
+                <div><img src="../../../../../static/commentImg/矩形 4.png" alt=""></div>
+                <div><img src="https://goss1.veer.com/creative/vcg/veer/612/veer-142468260.jpg" alt=""></div>
+                <div><img src="https://goss1.veer.com/creative/vcg/veer/612/veer-133857517.jpg" alt=""></div>
+                <div><img src="https://goss1.veer.com/creative/vcg/veer/612/veer-134149996.jpg" alt=""></div>
             </div>
             <div class="content_visit">
                 <div  ><i  class="iconfont icon-yanjing "></i><em>{{item.pv}}万</em> </div>
