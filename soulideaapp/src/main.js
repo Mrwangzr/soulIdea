@@ -68,9 +68,6 @@ Vue.use(ElementUI);
 Vue.config.productionTip = false;
 //设置observer 处理组件传值
 Vue.prototype.observer = observer;
-
-
-
 Vue.component(Popup.name, Popup);
 
 Vue.filter("timeSet", (time) => {
@@ -87,10 +84,6 @@ Vue.filter("timeSet", (time) => {
     }
   }
 });
-
-
-
-
 
 /* eslint-disable no-new */
 new Vue({
