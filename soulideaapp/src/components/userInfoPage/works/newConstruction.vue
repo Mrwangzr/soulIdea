@@ -31,6 +31,9 @@
 </template>
 
 <script>
+	import { MessageBox } from 'mint-ui';
+	import { Toast } from 'mint-ui';
+	import axios from "axios"
 	import Vuex from "vuex"
 	export default {
 		data() {
@@ -43,9 +46,6 @@
 			};
 		},
 		methods: {
-			...Vuex.mapActions({
-				ReleasePortfolio:"ReleasePortfolio"
-			}),
 			back(){
 				this.$router.back()
 			},
@@ -58,8 +58,39 @@
 				obj.name = this.name;
 				obj.introduce = this.introduce;
 				obj.tags = this.tags
-				this.ReleasePortfolio(obj)
-			}
+				if(obj.name == "" || obj.introduce == "" || obj.tags == ""){
+					Toast({
+					message: '输入有误',
+					position: 'middle',
+					duration: 1000
+					});
+				}else{
+					
+					MessageBox({
+					  message: '确定新建?',
+					}).then(action => {
+	          		if(action == 'confirm'){
+			            this.ReleasePortfolio(obj)
+						Toast({
+						  message: '新建成功',
+						  position: 'middle',
+						  duration: 1000
+						});
+						this.$router.back()
+			          }else{
+						
+			          }
+			      });
+				}
+			},
+			ReleasePortfolio(obj){
+				axios({
+					method:"get",
+					url:"Soulidea-1.0/showreel/publishshowreel?name="+obj.name+"&introduce="+obj.introduce+"&tags="+obj.tags
+				}).then((data)=>{
+					
+				})
+			},
 		},
 	}
 </script>

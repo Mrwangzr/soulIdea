@@ -1,7 +1,7 @@
 <template>
 	<div class="details">
 		<div class="details-bigimg" @click="conceal()">
-			<img :src="product.src">
+			<img :src="'http://'+ photoinfo.src">
 			<div class="details-L" @click="back()">
 				<img src="../../../../static/sorksimage/details/fh.png">
 			</div>
@@ -11,7 +11,7 @@
 		</div>
 		<div class="details-mark" v-show="show"></div>
 		<div class="details-text" v-show="show">
-			<p>{{product.contant}}</p>
+			<p>{{photoinfo.contant}}</p>
 			<p>
 				<img src="../../../../static/sorksimage/details/logo.png">
 			</p>
@@ -22,12 +22,15 @@
 </template>
 
 <script>
+import { MessageBox } from 'mint-ui';
+import { Toast } from 'mint-ui';
+import axios from "axios"
 import Vuex from "vuex"
 export default {
 	created(){
-		this.id = this.$route.query.id;
-		this.getproduct(this.id);
-		this.index = this.id
+		this.index = this.$route.query.id
+		this.getphotoinfo(this.index)
+		console.log(this.index)
 	},
 	data() {
 		return {
@@ -35,9 +38,14 @@ export default {
 			index:""
 		};
 	},
-	computed: {
+	watch:{
+		"$route"(to,from){
+			this.index = to.query.id;
+		}
+	},
+	computed:{
 		...Vuex.mapState({
-			product:state=>state.production.getproduct
+			photoinfo:state=>state.production.getphotoinfo
 		})
 	},
 	methods: {
@@ -49,17 +57,49 @@ export default {
 		},
 		...Vuex.mapActions({
 			getproduct:"getproduct",
-			deletedData:"deletedData"
+			deletedData:"deletedData",
+			getphotoinfo:"getphotoinfo"
 		}),
 		cancel(index){
-			this.deletedData(index);
-			this.$router.back()
+			MessageBox({
+			  title: '提示',
+			  message: '确定删除图片?',
+			  showCancelButton: true,
+			  confirmButtonText:"删除",
+			  cancelButtonText:"取消"
+			}).then(action => {
+          		if(action == 'confirm'){
+		            this.deletedData(index)
+					Toast({
+					  message: '已成功删除图片',
+					  position: 'middle',
+					  duration: 1000
+					});
+					this.$router.back()
+		          }else{
+					Toast({
+						message: '已成功取消',
+						position: 'middle',
+						duration: 500
+					});
+		          }
+		      });
+
+		},
+		deletedData(id){
+			axios({
+				method:"get",
+				url:"Soulidea-1.0/product/delphoto?id="+id
+			}).then((data)=>{
+			})
 		}
 	},
+	
 }
 </script>
 
 <style scoped>
+
 .details-bigimg{
 	position: relative;
 }
@@ -125,4 +165,10 @@ export default {
 	left: .48rem;
 	
 }
+
+</style>
+<style>
+	.mint-msgbox-confirm{
+		color: #c33;
+	}
 </style>

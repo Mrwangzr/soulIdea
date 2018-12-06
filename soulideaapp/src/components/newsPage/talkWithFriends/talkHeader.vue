@@ -1,9 +1,9 @@
 <template>
   <div class="all">
-    <i class="iconfont icon-right"></i>
-    <span>用户名</span>
+    <i class="iconfont icon-right" @click="back"></i>
+    <span>{{friendName}}</span>
     <span>
-      <i class="iconfont icon-icon-list-horizontal" v-if="right"></i>
+      <i class="iconfont icon-icon-list-horizontal" @click="handleToFriendInfo()"></i>
     </span>
 
   </div>
@@ -13,8 +13,22 @@
     export default {
         name: "talk-header",
         props:{
-          right:Boolean
-        }
+            id:Number,
+            friendName:String
+        },
+      methods:{
+          back(){
+            this.$router.back();
+          },
+          handleToFriendInfo(){
+            this.$router.push({
+              path:"friendInfoPage",
+              query:{
+                id:this.id
+              }
+            })
+         }
+      }
     }
 </script>
 

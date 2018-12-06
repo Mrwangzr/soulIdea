@@ -1,5 +1,5 @@
 <template>
-	
+
 	<div class="register">
 		<div class="mark"
 			v-show="slider"
@@ -63,7 +63,7 @@
 				@click="handlerRegister()"
 				:id="(registerOne && registerTwo && registerThree) == true ? 'newStyle':''"
 			>立即注册</div>
-		</div>		
+		</div>
 	</div>
 
 </template>
@@ -153,6 +153,9 @@
 			},
 			handlerGet(){
 				if(!this.show){
+
+					console.log(this.phone);
+
 					this.show = !this.show;
 					var that = this;
 					let timer = null;
@@ -167,13 +170,17 @@
 						},1000)
 					}
 					sport();
+
 					console.log(this.phone);
+
 					axios({
 						method: "get",
 						headers: {
 							'Content-type': 'application/x-www-form-urlencoded'
+
 						},						
 						url: "/Soulidea-1.0/code/sendcode?phone=" + this.phone
+
 
 					}).then(
 						
@@ -182,7 +189,7 @@
 // 					.then((data)=>{
 // 						console.log(data);
 // 					});
-					
+
 // 					{
 // 						method:"get",
 // 						headers:{
@@ -190,12 +197,12 @@
 // 						},
 // 						
 // 					}
-					
+
 				/* 	axios.get("/Soulidea-1.0/code/sendcode?phone="+this.phone) */
 
-				
-					
-				}								
+
+
+				}
 			},
 			handlerRegister(){
 				if(this.registerOne && this.registerTwo && this.registerThree){
@@ -213,9 +220,9 @@
 											name:'login'
 										})
 									}
-							})															
+							})
 					}, 2000)
-					setTimeout(function() {					
+					setTimeout(function() {
 						that.slider = false;
 					}, 2000)
 					axios({

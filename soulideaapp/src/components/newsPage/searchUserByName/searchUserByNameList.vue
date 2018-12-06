@@ -1,15 +1,15 @@
 <template>
   <div class="all">
     <div class="info">
-      <img src="/static/image/newsPage/messagePage/logo.png" alt="">
+      <img :src="item.head" alt="">
       <span>
-         <p>用户名</p>
-      <p>个签</p>
+         <p>{{item.name}}</p>
+         <p>{{item.sign}}</p>
       </span>
     </div>
 
     <div class="add" @click="handleAddFriend()">
-      加为好友
+      添加好友
     </div>
   </div>
 
@@ -17,27 +17,33 @@
 
 <script>
   import {MessageBox} from "mint-ui";
+  import axios from "axios";
     export default {
         name: "search-user-by-name",
+      props:[
+         "item"
+     ],
         methods:{
           //处理添加好友
               handleAddFriend(){
-                MessageBox.confirm("添加对方为好友",{
+                MessageBox.confirm("添加对方对好友吗",{
                   title:" "
                 }).then(
                   action=>{
                     axios({
                       methods:"get",
-                      url:"",
-                      data:{
-                      }
+                      url:"/Soulidea-1.0/friend/addfriend?id="+this.item.id,
                     }).then(
                       (data)=>{
-                      /*MessageBox.alert("添加成功",{
-                          title:" "
-                        });*/
+                        if(data.data.code === 200){
+                        MessageBox.alert("添加成功",{
+                            title:" "
+                          });
+                        }
                       }
-                    ).catch(()=>{});
+                    ).catch(()=>{ MessageBox.alert("添加失败",{
+                      title:" "
+                    });});
                   }
                 ).catch(()=>{});
               }
@@ -57,11 +63,13 @@
     border:1px solid #efefef;
     border-left: none;
     border-right: none;
+    justify-content: space-between;
   }
   img{
     width: 1.1rem;
     height: 1.1rem;
     margin-right: .2rem;
+    border-radius: 100%;
   }
   .info{
     display: flex;
@@ -92,7 +100,7 @@
   .add{
     border: 1px solid #999999;
     height: .6rem;
-    width: 3rem;
+    width: 1.4rem;
     font-size: 12px;
     display: flex;
     align-items: center;

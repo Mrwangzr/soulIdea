@@ -1,6 +1,5 @@
 <template>
 	<div class="login">
-
 		<div class="mark" v-show="slider"></div>
 		<div class="loading" v-show="slider">
 			<mt-spinner type="triple-bounce" color="#ccc" :size="40"></mt-spinner>
@@ -63,7 +62,9 @@
 	import axios from "axios";
 	export default {
 
+
 		created() {
+
 
 
 		},

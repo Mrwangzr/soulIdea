@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Tagboard from "./worksmodule/tagboard.vue"
+const Tagboard = ()=>import("./worksmodule/tagboard.vue") 
 import Vuex from "vuex"
 export default {
 		data() {

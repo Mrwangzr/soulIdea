@@ -24,7 +24,7 @@
 										<li><router-link to="/rank">v.{{message.gender}}</router-link></li>
 									
 							</div>
-							<li>{{message.sign}}</li>
+							<li class="center-sign">{{message.sign}}</li>
 							<div class="fans">
 									<span>
 											<li>{{message.fork}}</li>
@@ -65,7 +65,7 @@
 <script>
 import Vuex from "vuex";
 export default {
-		name: "user-info-page",
+		name: 'user-info-page',
 
 		computed:{
 			...Vuex.mapState({
@@ -146,7 +146,9 @@ export default {
 		padding-bottom: .1rem;
 	}
 .box-center .photo img{
+	  height: 100%;
 		width:100%;
+		border-radius: .7rem;
 }
 	.box-center .nickname {
 		display: flex;
@@ -186,7 +188,13 @@ export default {
 		color: #ECECEC;
 
 	}
+	.box-center .center-sign{
+		width:3rem;
+		overflow: hidden;
+		text-overflow:ellipsis;
+		white-space:nowrap;
 
+	}
 	ul {
 		height: 1rem;
 		display: flex;
@@ -218,7 +226,7 @@ export default {
 		border-radius: .7rem;
 		padding-bottom: .1rem;
  }
-	.avatar-uploader .el-upload  img{
+	.avatar-uploader .el-upload  .avatar{
 		width:100%;
 	}
   .avatar-uploader .el-upload:hover {

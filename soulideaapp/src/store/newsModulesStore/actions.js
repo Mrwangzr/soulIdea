@@ -1,4 +1,5 @@
 import axios from "axios";
+import Vue from "vue";
 export default {
   //关注变化列表的获取
   handleFansChangeList_getList({commit},params){
@@ -6,24 +7,35 @@ export default {
     if(params.max === -1){
         axios({
           method:"get",
-          url:"/Soulidea-1.0/user/forklist",
-          data:{
-            page:params,
-          }}).then((data)=>{
+          url:"/Soulidea-1.0/user/forkremind?page="+params.pageNum,
+          }).then((data)=>{
+            if(data.data.code === 200){
             console.log(data);
            /* commit("handleFansChangeMax_setMax",data.data.max);
             commit("handleFansChangeList_getList",data.data.forklist);*/
+           //空页面回调
+           params.func(true);
+            }
+            else{
+              params.func(false);
+            }
         });
     }
     else if(params.pageNum<params.max){
+      console.log(params.pageNum);
         axios({
           method:"get",
-          url:"/Soulidea-1.0/user/forklist",
-          data:{
-            page:params,
-          }}).then((data)=>{
+          url:"/Soulidea-1.0/user/forkremind?page="+params.pageNum,
+          }).then((data)=>{
+            if(data.data.code === 200){
             console.log(data);
-          /*  commit("handleFansChangeList_getList",data.data);*/
+         //  commit("handleFansChangeList_getList",data.data.data.forkRemind);
+          //空页面回调
+          params.func(true);
+            }
+            else{
+              params.func(false);
+            }
         })
     }
   },
@@ -37,9 +49,15 @@ export default {
         data:{
           page:params,
         }}).then((data)=>{
-          console.log(data);
-      /*  commit("handleAiteChangeMax_setMax",data.data.max);
-        commit("handleAiteChangeList_getList",data.data.forklist);*/
+          if(data.data.code === 200) {
+            console.log(data);
+            /*  commit("handleAiteChangeMax_setMax",data.data.max);
+              commit("handleAiteChangeList_getList",data.data.forklist);*/
+            params.func(true);
+          }
+          else{
+            params.func(false);
+          }
       });
     }
     else if(params.pageNum<params.max){
@@ -49,8 +67,14 @@ export default {
         data:{
           page:params,
         }}).then((data)=>{
-          console.log(data);
-      // commit("handleAiteChangeList_getList",data.data);
+          if(data.data.code === 200) {
+            console.log(data);
+            // commit("handleAiteChangeList_getList",data.data);
+            params.func(true);
+          }
+          else{
+            params.func(false);
+          }
       })
     }
   },
@@ -64,9 +88,15 @@ export default {
         data:{
           page:params,
         }}).then((data)=>{
-          console.log(data);
-     /*   commit("handleGiftChangeMax_setMax",data.data.max);
-        commit("handleGiftChangeList_getList",data.data.forklist);*/
+          if(data.data.code === 200) {
+            console.log(data);
+            /*   commit("handleGiftChangeMax_setMax",data.data.max);
+               commit("handleGiftChangeList_getList",data.data.forklist);*/
+            params.func(true);
+          }
+          else{
+            params.func(false);
+          }
       });
     }
     else if(params.pageNum<params.max){
@@ -76,13 +106,19 @@ export default {
         data:{
           page:params,
         }}).then((data)=>{
+          if(data.data.code === 200){
           console.log(data);
         commit("handleGiftChangeList_getList",data.data);
+        params.func(true);
+      }
+      else{
+            params.func(false);
+          }
       })
     }
   },
 
-
+/*
   //好友模块
     //加好友
     addNewFriend(id){
@@ -100,9 +136,9 @@ export default {
            console.log(data);
          }
        )
-    },
+    },*/
 
-    //改备注
+   /* //改备注
     editFriendRemarks(params){
     axios({
       method:"post",
@@ -119,36 +155,10 @@ export default {
         console.log(data);
       }
     )
-    },
-    //查找个人信息
-    findFriendInfo(){
-      axios({
-        method:"get",
-        url: "",
-      }).then(
-        (data)=>{
-
-        }
-      )
-    },
+    }*/
   //聊天模块
     //发送消息
-    sendMessageTo(id){
-     axios({
-       method:"post",
-       headers:{
-         'Content-type': 'application/x-www-form-urlencoded'
-       },
-       url:"/friend/user",
-       data:{
-         to:id
-       }
-     }).then(
-       (data)=>{
-         data
-       }
-     )
-    },
+
     //查找消息
 
 

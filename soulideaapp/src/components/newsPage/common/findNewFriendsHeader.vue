@@ -24,7 +24,7 @@
 <style scoped>
   div{
     width: 100%;
-    padding: .4rem .34rem 0;
+    padding: .44rem .34rem 0;
     display: flex;
     height: 1.28rem;
     align-items: center;

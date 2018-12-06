@@ -1,9 +1,9 @@
-import production from "../components/userInfoPage/works/myproduction";
-import WorksCollection from "../components/userInfoPage/works/WorksCollection"
-import Beautiful from "../components/userInfoPage/works/beautiful";
-import details from "../components/userInfoPage/works/details";
-import newConstruction from "../components/userInfoPage/works/newConstruction";
-
+const production = ()=> import("../components/userInfoPage/works/myproduction")
+const WorksCollection = ()=> import("../components/userInfoPage/works/WorksCollection") 
+const Beautiful = ()=> import("../components/userInfoPage/works/beautiful") 
+const details = ()=> import("../components/userInfoPage/works/details") 
+const newConstruction = ()=> import("../components/userInfoPage/works/newConstruction")
+const Allworks = ()=> import("../components/userInfoPage/works/Allworks")
 export default [
     {
       //首页的跳转路由
@@ -35,5 +35,11 @@ export default [
 			name:"newConstruction",
 			component:newConstruction
 		},
+		{
+			//获取当前作品集中所有作品
+			path:"/Allworks",
+			name:"Allworks",
+			component:Allworks
+		}
   ]
 

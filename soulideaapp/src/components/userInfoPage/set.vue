@@ -36,6 +36,7 @@
 <script>
 	import Vuex from "vuex";
 	import axios from "axios";
+	import { MessageBox } from 'mint-ui';
 	export default{
 		methods:{
 			back(){
@@ -43,15 +44,18 @@
 			},
 			//退出登录
 			handleUserLogout(){
-				axios({
-					method:"get",
-					url:"/Soulidea-1.0/user/logout",
-				}).then((data)=>{
-					console.log(data.status)
-					if(data.status=200){
-						this.$router.push("/login");
-					}
-				})
+				MessageBox.confirm('确定退出该账号?').then(action => {
+					axios({
+						method:"get",
+						url:"/Soulidea-1.0/user/logout",
+					}).then((data)=>{
+						console.log(data.status)
+						if(data.status=200){
+							this.$router.push("/login");
+						}
+					})
+				});
+				
 			}
 		}
 	}
