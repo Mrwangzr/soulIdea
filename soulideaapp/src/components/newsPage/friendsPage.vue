@@ -2,7 +2,7 @@
   <transition name="move">
     <div  class="wrapper" ref="wrapper">
      <ul class="content">
-        <friendsList-com v-for="item in friends" :item="item">
+        <friendsList-com v-for="(item,index) in friends" :index="index" :item="item" @ondelete="handleDeleteFriend">
         </friendsList-com>
      </ul>
     </div>
@@ -35,9 +35,15 @@
             console.log(data);
           }
         )
+      },
+      handleDeleteFriend(index){
+          this.friends.splice(index,1);
       }
     },
     created() {
+      this.init();
+    },
+    activated(){
       this.init();
     },
     mounted(){

@@ -7,7 +7,7 @@
       <p>{{types}}{{num}}</p>
     </div>
     <div>
-       {{time}}
+       {{time | timeSet}}
     </div>
   </div>
 </template>

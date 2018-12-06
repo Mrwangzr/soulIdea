@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>chat</title>
+  <script type="text/javascript">
+    var websocket = null;
+    function abc() {
+      // 初始化websocket
+      var name = document.getElementById("name").value;
+      //判断浏览器是否支持websocket
+      if ('WebSocket' in window) {
+        //这是建立链接的地址，需要传入用id
+        websocket  = new WebSocket("ws://" + document.location.host + "/websocket?name=" + name);
+        alert(document.location.host)
+        websocket.onopen = function () {
+          // alert("链接成功")
+          setMessage("连接成功")
+        }
+        websocket.onclose = function () {
+          setMessage("连接关闭")
+        }
+        websocket.onerro = function () {
+          setMessage("连接出错")
+        }
+        websocket.onmessage = function (message) {
+          setMessage(message.data)
+        }
+      } else {
+        alert("什么破浏览器,连websocket都不支持,给我五百万,我帮重装一个")
+      }
+    }
+    function setMessage(data) {
+      var xianshi = document.getElementById("xianshi");
+      xianshi.innerHTML = data;
+    }
+    function close() {
+      if (websocket != null) {
+        websocket.close()
+      }
+    }
+    //发送消息
+    function sendmessage() {
+      var to = document.getElementById("to").value;//接收者
+      var msg = document.getElementById("content").value;//获取要发送的内容
+      if (websocket != null) {//防止有神经病上来就点发送
+        //json字符串，这里的格式如果没有必要无需更改。
+        var message='{"to":"'+to+'","content":"'+msg+'"}';
+        websocket.send(message)
+      }
+    }
+    //页面关闭之前
+    window.onbeforeunload = function () {
+      close();
+    }
+
+
+  </script>
+</head>
+<body>
+
+
+用户名: <input id="name">
+<button onclick="abc()">连接</button>
+<br>
+接收者:<input id="to"><br>
+
+内容:<input id="content">
+<button onclick="sendmessage()">发送</button>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<span id="xianshi"></span>
+
+</body>
+</html>

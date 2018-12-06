@@ -42,13 +42,14 @@ export default {
 <style scoped>
 .bigdiv{
 	height: 100%;
-	padding-top: .4rem;	
+
 }
 
 .beautifulHeader{
+	padding-top: .4rem;
 	background: #fff;
 	width: 100%;
-	height:0.88rem;
+	height:1.28rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -66,7 +67,7 @@ export default {
 	height: 0.41rem;
 	position: absolute;
 	left: 0.34rem;
-	top: 0.24rem;
+	top: 0.64rem;
 }
 
 </style>

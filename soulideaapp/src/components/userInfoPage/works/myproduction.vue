@@ -41,7 +41,7 @@ import Vuex from "vuex"
 export default {
 	data(){
 		return{
-			popupVisible:true,
+			popupVisible:false,
 			MyList:-1
 		}
 	},
@@ -61,7 +61,7 @@ export default {
 			getWorksMyList:"getWorksMyList",
 		}),
 		back(){
-			this.$router.back()
+			this.$router.push("/firstLevelPage")
 		},
 		getShow(id){
 			this.popupVisible = !this.popupVisible;
@@ -81,6 +81,7 @@ export default {
 				method:"get",
 				url:"Soulidea-1.0/product/addtoshowreel?id="+obj.id+"&pid="+obj.pid
 			}).then((data)=>{
+				console.log(data)
 				if(data.data.message == "SUCCESS"){
 					Toast({
 						message: '已成功加入',
@@ -104,13 +105,12 @@ export default {
 .production{
 	height: 100%;
 }
-.production{
-	padding-top: .4rem;
-}
+
 .header{
+	padding-top: .4rem;
 	background: #fff;
 	width: 100%;
-	height:0.88rem;
+	height:1.28rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -127,7 +127,7 @@ export default {
 	height: 0.41rem;
 	position: absolute;
 	left: 0.34rem;
-	top: 0.24rem;
+	top: 0.64rem;
 }
 .production-nav{
 	width: 100%;
