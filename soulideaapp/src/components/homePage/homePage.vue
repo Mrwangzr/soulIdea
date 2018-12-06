@@ -2,17 +2,17 @@
     <div class=" page home_com">
         <div class="header">
         <div class="home_tab">
-            <div><i class="iconfont icon-caidan"></i></div>
-            <div :class="activeIndex == 1?'active':''" 
+            <div><i class="iconfont icon-caidan" style="font-size: 28px;" @click="handleToSignin"></i></div>
+            <div :class="activeIndex == 2?'active':''"
             @click="handleToggle(2)"
             >共享</div>
-            <div :class="activeIndex == 2?'active':''" 
+            <div :class="activeIndex == 1?'active':''"
             @click="handleToggle(1)"
             >专属</div>
-            <div><i class="iconfont icon-jia"></i></div>
+            <div><i class="iconfont icon-jia" style="font-size: 22px;" @click="handleToRelease"></i></div>
         </div>
     </div>
-        
+
     <component :is="comName"></component>
 
 
@@ -48,12 +48,22 @@ export default {
           break;
       }
     },
-   
+    handleToRelease(){
+      this.$router.push("/releasePage");
+    },
+    handleToSignin(){
+      this.$router.push("/signin");
+    }
+
   }
 };
 </script>
 
 <style scoped>
+  .home_tab {
+    color: #999999;
+    font-size: 12px!important;
+  }
 
  .home_com{
   width:100%;
@@ -66,10 +76,10 @@ export default {
     position: relative;
     margin-top:0.4rem
   }
-  
+
  .home_tab{
     height: .88rem;
-    border-bottom:5px solid rgb(223, 223, 223);
+    border-bottom:1px solid rgb(223, 223, 223);
     display: flex;
     justify-content: space-between;
 }
@@ -80,8 +90,8 @@ export default {
     font-size: 17px;
 }
 .home_tab>.active{
-    color:#aaaaaa;
-    
+    color:#333;
+
 }
 .home_tab div:nth-child(1) i {
   font-size: 30px;
@@ -92,7 +102,7 @@ export default {
   font-size: 25px;
   line-height: 0.88rem;
   padding-left:40px;
-} 
+}
 
 
 </style>

@@ -9,7 +9,7 @@
        <!-- 签到 -->
        <div class="signInCon">
          <div class="signWeek">
-          
+
             <div :class="one == 1?'active':''"></div>
             <div :class="two == 2?'active':''"></div>
             <div :class="three == 3?'active':''" ></div>
@@ -21,7 +21,7 @@
 
          </div>
             <el-button  class="signConOne" @click="handleClick()">签到</el-button>
-           
+
        </div>
        <!-- 经验值 -->
        <div class="signInVal">
@@ -33,10 +33,10 @@
        </div>
        <!-- 签到提示 -->
        <div class="sinInBottom">
-           <div> 
+           <div>
                <i class="iconfont icon-xin"></i>
                <p>连续签到经验翻倍</p>
-               
+
            </div>
            <div>
                <i class="iconfont icon-liwu"></i>
@@ -50,6 +50,7 @@
 <script>
 import Vuex from "vuex";
 import axios from "axios";
+import { MessageBox } from "mint-ui";
 export default {
   data() {
     return {
@@ -84,12 +85,11 @@ export default {
        console.log(data)
       });
 
-    
+
     },
     //点击签到，调用方法
     handleClick(){
-      alert("您已签到，请明天再来哦")
-
+      MessageBox("您已签到，请明天再来哦");
     },
     signStart(){
       var data = new Date();
@@ -142,13 +142,13 @@ export default {
           this.seven = 7;
         break;
 
-          
-           
+
+
      }
 
     }
 
-    
+
   }
 };
 </script>
@@ -195,7 +195,7 @@ export default {
   background-size: 100%,4rem;
   margin-bottom: 10px;
   padding-top: 80px;
-  
+
 }
 .signInCon .signWeek {
   width: 100%;
@@ -205,7 +205,7 @@ export default {
   justify-content: space-around;
   align-items: center;
   position: relative;
-  
+
 
 }
 .signInCon .signWeek>.line{
@@ -229,7 +229,7 @@ export default {
 .el-button{
   margin-top: 20px;
 }
- 
+
 
 /**/
 #signIn > .signInVal {

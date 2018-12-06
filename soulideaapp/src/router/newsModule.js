@@ -7,6 +7,7 @@ const giftMessagePage = ()=>import("../components/newsPage/giftMessage/giftMessa
 const searchUserByNamePage = ()=>import("../components/newsPage/searchUserByName/searchUserByNamePage");
 
 const worksInfoPage = ()=>import("../components/homePage/worksInfo/worksInfoPage");
+const releasePage = ()=>import("../components/homePage/release/releasePage");
 //import fansChangePage from "../components/newsPage/fansChangeInfo/fansChangePage";
 
 export default [
@@ -70,6 +71,13 @@ export default [
   {
     path:"/worksInfoPage",
     component:worksInfoPage,
+    meta:{
+      keepAlive:false
+    }
+  },
+  {
+    path:"/releasePage",
+    component:releasePage,
     meta:{
       keepAlive:false
     }

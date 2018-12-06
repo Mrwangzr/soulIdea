@@ -3,6 +3,7 @@
     <i class="iconfont icon-right" @click="handleBackBtn"></i>
     <span>{{titleString}}</span>
     <span>
+        <a href="javascript:;" @click="handleRightBtn">{{rightString}}</a>
     </span>
 
   </div>
@@ -11,11 +12,16 @@
 <script>
   export default {
     props:{
-      titleString:String
+      titleString:String,
+      rightString:String,
+      rightEvent:String
     },
     methods:{
       handleBackBtn(){
         this.$router.back();
+      },
+      handleRightBtn(){
+        this.$emit(this.rightEvent);
       }
     }
   }

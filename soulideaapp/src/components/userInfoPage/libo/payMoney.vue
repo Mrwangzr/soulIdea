@@ -1,10 +1,10 @@
 <template>
 
-	
+
     <div class="payMoney">
 		<p class="text">灵点金币套餐</p>
 		<div class="payMoney-in">
-			<div 
+			<div
 				v-for="(item,index) in list"
 				:class="active == index?'active':''"
 				@click ="handlerBtn(index)"
@@ -36,7 +36,7 @@
 		},
     }
 </script>
-	
+
 <style scoped>
 	.text{
 		padding-left:.5rem;
@@ -54,7 +54,7 @@
 		display: flex;
 		justify-content:space-between;
 		flex-wrap: wrap;
-		
+
 	}
 	.payMoney-in div{
 		width:2rem;
@@ -80,7 +80,7 @@
 		font-family:PingFang-SC-Medium;
 		font-weight:500;
 		color:rgba(246,196,93,1);
-		
+
 	}
 	.payMoney-in .active{
 		background: url(../../../assets/imgLibo/pay-background1.png) no-repeat;

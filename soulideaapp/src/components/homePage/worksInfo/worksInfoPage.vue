@@ -64,7 +64,7 @@
       </ul>
     </div>
 
-    <div class="bottomInputBlock" v-if="BottomInputClass">
+      <div class="bottomInputBlock" v-if="BottomInputClass">
       <div class="inputDiv">
         <i class="iconfont icon-yuyin"></i>
         <input type="text" ref="input" autofocus @blur="handleBlur" v-model="inputValue">
@@ -98,7 +98,7 @@
           uid: "",
           src: []
         },
-        comments:[{}],
+        comments:[],
         greatClass: "",
         guanzhuClass: "",
         guanzhuFlag: true,
@@ -113,7 +113,6 @@
         axios.get("/Soulidea-1.0/share/privateetc?id=" + this.id).then((data) => {
           this.content = data.data.data;
         });
-
       },
       //获取评论
       initComments(){
@@ -164,7 +163,7 @@
       handleSend(id,content){
         axios({
           method:"post",
-          url:"/Soulidea/share/comment",
+          url:"/Soulidea-1.0/share/comment",
           headers:{
             'Content-type': 'application/x-www-form-urlencoded'
           },
@@ -196,7 +195,7 @@
     },
     created() {
       this.initUser();
-      this. initComments();
+    /*  this. initComments();*/
     },
     mounted() {
       this.scroll = new BScroll(this.$refs.wrapper, {
@@ -256,7 +255,8 @@
   .headImg {
     height: .9rem;
     width: .9rem;
-    margin-right: .1rem;
+    margin-right: .2rem;
+    border-radius: 50%;
   }
 
   .userInfo > div {
