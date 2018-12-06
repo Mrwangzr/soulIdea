@@ -12,6 +12,8 @@ import welcome from "../components/welcome";
 
 
 
+
+Vue.use(Router)
 Vue.use(Router);
 
 export default new Router({
@@ -37,6 +39,12 @@ export default new Router({
 			meta: {
 				keepAlive: true // 需要被缓存
 			}
+    },
+
+    {
+      path:'./homePage',
+      name:"homePage",
+      component:homePage
     },
     //登录注册模块
 		...routerLi,

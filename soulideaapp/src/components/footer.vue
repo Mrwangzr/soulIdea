@@ -52,6 +52,8 @@
     position: absolute;
     bottom: 0;
     display: flex;
+    background: #f8f8f8;
+ 
     background: #fff;
     border-top:1px solid #efefef ;
     z-index: 1000;
@@ -66,6 +68,8 @@
     align-items: center;
     padding-top: 0.2rem;
     flex-direction: column;
+
+    
   }
 
   i {

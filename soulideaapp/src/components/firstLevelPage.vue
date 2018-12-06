@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="all">
       <component :is="comName"></component>
     <footer-com></footer-com>
   </div>
@@ -37,6 +37,9 @@
 </script>
 
 <style scoped>
+    .all{
+      height: 100%;
+    }
   div {
     height: 100%;
   }
