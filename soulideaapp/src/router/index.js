@@ -13,7 +13,6 @@ import welcome from "../components/welcome";
 
 
 
-Vue.use(Router)
 Vue.use(Router);
 
 export default new Router({

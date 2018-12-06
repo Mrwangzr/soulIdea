@@ -62,7 +62,6 @@ import VueCropper from 'vue-cropper';
 import MintUI from 'mint-ui';
 import 'mint-ui/lib/style.css';
 import './css_common/mint-uicolor.css';
-import {Popup} from 'mint-ui';
 
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
@@ -70,7 +69,7 @@ Vue.config.productionTip = false;
 Vue.prototype.observer = observer;
 
 
-Vue.component(Popup.name, Popup);
+//Vue.component(Popup.name, Popup);
 
 Vue.filter("timeSet", (time) => {
   if (time instanceof Date) {

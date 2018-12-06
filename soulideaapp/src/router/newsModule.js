@@ -44,7 +44,7 @@ export default [
     path: "/fansChangePage",
     component: fansChangePage,
     meta:{
-      keepAlive:false
+      keepAlive:true
     }
   },
   {
@@ -52,7 +52,7 @@ export default [
     path: "/aiteMessagePage",
     component: aiteMessagePage,
     meta:{
-      keepAlive:false
+      keepAlive:true
     }
   },
   {
@@ -60,7 +60,7 @@ export default [
     path: "/giftMessagePage",
     component: giftMessagePage,
     meta:{
-      keepAlive:false
+      keepAlive:true
     }
   },
   /*
