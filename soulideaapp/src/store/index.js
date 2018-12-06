@@ -1,6 +1,7 @@
 import Vue from "vue";
 import  Vuex from "vuex";
 import axios from "axios";
+import nowMovie  from "./sharePage"
 
 
 
@@ -23,6 +24,9 @@ const Store = new Vuex.Store({
     state,
     mutations,
     actions,
+    modules:{
+        nowMovie
+    }
 
 });
 

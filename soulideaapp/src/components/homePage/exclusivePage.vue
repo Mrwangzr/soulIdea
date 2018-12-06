@@ -36,7 +36,7 @@ export default {
 <style>
     .Exclusive{
         width:100%;
-        height:12rem;
+        /* height:12rem; */
     }
     .Tier{
         width:100%;

@@ -1,10 +1,11 @@
 <template>
-    <div class="share">
+<div class="wrapper" ref="wrapper"> 
+    <div class="share content">
         <div class="share_1">
             <div class="logo">
-                <img src="../../../static/img/logo.png">
+                <img src="../../assets/logo.png">
                 <div>
-                    <p>我的名字 <span>V.9</span></p>
+                    <p>我的名字<span>V.9</span></p>
                     <p>今天12:10</p>
                     <p>举报</p>
                 </div>
@@ -25,28 +26,53 @@
             </div>
            
         </div>
-    
+
+    </div>
     </div>
 </template>
 
 
 <script>
 import Vuex from "vuex";
+import BScroll from "better-scroll";
 export default {
-  data() {
-    return {
-      banner: [1, 2, 3,4,5]
-    };
+  created(){
+     this.handleNow_getNowMovie();  
+     console.log(this.movie_nowMovie,111)
   },
+  computed:{
+      ...Vuex.mapState({
+          movie_nowMovie:state=>state.nowMovie.movie_nowMovie,
+      })
+  },
+  methods:{
+      ...Vuex.mapActions({
+          handleNow_getNowMovie:"nowMovie/handleNow_getNowMovie"
+      }),
+      handleClick(){
+          alert(1)
+      }
+  },
+  mounted(){
+      new BScroll(this.$refs.wrapper,{
+            click:true
+      });
+      
+  }
  
 }
 </script>
 
 
 <style>
-.share > .share_1 {
+.wrapper{
+    overflow: hidden;
+    height:100%;
+}
+
+.share_1 {
   width: 100%;
-  height:6rem;
+  height:6rem; 
   background: #fff;
   border-bottom: 5px solid rgb(223, 223, 223);
 
@@ -57,11 +83,12 @@ export default {
     display: flex;
     justify-content: space-center;
     position: relative;
+    
 }
 .logo img {
   width: 0.81rem;
   height: 0.82rem;
-  margin:0.23rem 0.19rem 0.25rem 0.24rem
+  margin:0.23rem 0.19rem 0.25rem 0.24rem;
 }
 .logo span {
   color: red;
