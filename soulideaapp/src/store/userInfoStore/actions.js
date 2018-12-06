@@ -8,6 +8,7 @@ export default{
 			
 		}).then((data)=>{
 			// console.log(data.data.data)
+			// commit("handleGetName",data.data.data.userlist)
 			commit("handleGetName",data.data.data.userlist)
 		})
 	},

@@ -43,6 +43,7 @@
 											</router-link>
 									</span>
 							</div>
+							
 				</div>
 				<router-link to="/home">
 					<ul class="ul-pay">
