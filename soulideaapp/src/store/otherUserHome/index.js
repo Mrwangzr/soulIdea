@@ -1,0 +1,14 @@
+
+//引入各个对象
+import state from "./state";
+import actions from "./actions";
+import mutations from "./mutations";
+import getters from "./getters";
+
+
+export default{
+    state,
+    mutations,
+    actions,
+    getters
+}

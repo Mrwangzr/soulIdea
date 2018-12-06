@@ -1,7 +1,7 @@
 <template>
 <div class="wrapper" ref="wrapper"> 
     <div class="share content">
-        <div class="share_1">
+        <div class="share_1" @click="handleClick()">
             <div class="logo">
                 <img src="http://img.duoziwang.com/2016/12/28/052933130034.jpg">
                 <div>
@@ -27,7 +27,7 @@
            
         </div>
 
-        <div class="share_1">
+        <div class="share_1" @click="handleClick()">
             <div class="logo">
                 <img src="http://a3.topitme.com/5/e5/f2/1118609323e31f2e55l.jpg">
                 <div>
@@ -191,15 +191,15 @@ export default {
       ...Vuex.mapActions({
           handleNow_getNowMovie:"nowMovie/handleNow_getNowMovie"
       }),
-      handleClick(){
-          alert(1)
+        handleClick(){
+          this.$router.push("/contentComment")
       }
   },
   mounted(){
       new BScroll(this.$refs.wrapper,{
             click:true
       });
-      
+   
   }
  
 }

@@ -54,6 +54,9 @@
     display: flex;
     background: #f8f8f8;
  
+    background: #fff;
+    border-top:1px solid #efefef ;
+    z-index: 1000;
   }
 
   div {

@@ -14,6 +14,7 @@ ul, ol ,li{ list-style:none; }
 body { color:#333; font:12px "SimSun","宋体","Arial Narrow",HELVETICA; background:#fff;}
 
 a { color:#666; text-decoration:none; }
+
 /*清除浮动*/
 .clear{clear:both}
 
@@ -23,8 +24,22 @@ html,body{
     width: 100%;
     height: 100%;
     overflow: hidden;
+    background: #F8F8F8;
    }
 
+
+
+
+.yesButton{
+  color: #fce450;
+  background: #fce450;
+}
+.nan{
+  color: #16b5ff;
+}
+.nv{
+  color: #ff8eee;font-weight: 900;
+}
 
 
 
