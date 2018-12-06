@@ -35,7 +35,7 @@
 							<input type="hidden" name="orderId" v-model="orderId">                  
 						<input type="hidden" name="price" v-model="money">
 						 <input type="hidden" name="body" value="jinbi">
-					 <input type="hidden" name="url" value="http://localhost:8080/success">
+					 <input type="hidden" name="url" value="http://localhost:8080/#/success">
 					<input type="submit" class="pay-go"  :class="show == true? 'pay-sure':''"
 					@click="handlePay()" value="确认支付" :disabled="show == true? false : true">
 
