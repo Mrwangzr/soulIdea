@@ -8,6 +8,7 @@
             <message-com :username="item.name" :imgSrc="item.head" :time="item.time" :content="item.content"
                          :type="'@了我'"></message-com>
           </li>
+          <i class="fa fa-circle-o-notch fa-spin" v-if="loadingBottom"></i>
         </ul>
         <mark-com v-if="markFlag" :message="'最近还没有人@你哦'"></mark-com>
       </div>
@@ -22,7 +23,7 @@
   import BScroll from "better-scroll";
   import Vuex from "vuex";
   import mark from "../../common/nullPage";
-  import {Indicator} from 'mint-ui';
+  import {Indicator,Toast} from 'mint-ui';
 
 
   export default {
@@ -34,8 +35,9 @@
     },
     data() {
       return {
-        pageNum: 1,
-        markFlag: false
+        pageNum: 0,
+        markFlag: false,
+        loadingBottom:false
       }
     },
     methods: {
@@ -61,6 +63,13 @@
           });
         }
       },
+      init(){
+        this.handleAiteChangeList_getList({
+          pageNum: ++this.pageNum,
+          max: this.aiteChange_max,
+          func: this.handleMarkAndLoading
+        });
+      }
     },
     computed: {
       ...Vuex.mapState({
@@ -74,14 +83,29 @@
       setTimeout(() => {
         this.loading.close();
       }, 5000);
-      this.handleAiteChangeList_getList({
-        pageNum: this.pageNum,
-        max: this.aiteChange_max,
-        func: this.handleMarkAndLoading
-      });
+     this.init();
     },
     mounted() {
-      this.scroll = new BScroll(this.$refs.wrapper, {});
+      this.scroll = new BScroll(this.$refs.wrapper, {
+        pullUpLoad:300
+      });
+      this.scroll.on("pullingUp",()=>{
+        console.log("上拉刷新");
+        this.loadingBottom = true;
+        this.handleAiteChangeList_getList({
+          "pageNum": ++this.pageNum,
+          "max": this.fansChange_max,
+          "func":()=>{
+            this.scroll.finishPullUp();
+          }
+        })
+      })
+    },
+    updated(){
+      this.scroll.refresh();
+      if(this.pageNum + 1 >= this.fansChange_max){
+        this.loadingBottom = false;
+      }
     }
 
   }

@@ -8,6 +8,7 @@
             <one-message-com :username="item.username" :imgSrc="item.head" :time="item.time"
                              :type="'关注了我'"></one-message-com>
           </li>
+          <i class="fa fa-circle-o-notch fa-spin" v-if="loadingBottom"></i>
         </ul>
         <mark-com v-if="markFlag" :message="'最近还没有人关注你哦'"></mark-com>
       </div>
@@ -37,7 +38,8 @@
         //空页面
         markFlag: false,
         //读取条
-        loading: null
+        loading: null,
+        loadingBottom:false
       }
     },
     methods: {
@@ -95,6 +97,7 @@
       });
       this.scroll.on("pullingUp",()=>{
         console.log("上拉刷新");
+        this.loadingBottom = true;
         this.handleFansChangeList_getList({
           "pageNum": ++this.pageNum,
           "max": this.fansChange_max,
@@ -106,6 +109,9 @@
     },
     updated(){
       this.scroll.refresh();
+      if(this.pageNum + 1 >= this.fansChange_max){
+        this.loadingBottom = false;
+      }
     }
   }
 </script>

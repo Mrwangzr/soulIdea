@@ -29,7 +29,7 @@ export default {
           }).then((data)=>{
             if(data.data.code === 200){
             console.log(data);
-         //  commit("handleFansChangeList_getList",data.data.data.forkRemind);
+           commit("handleFansChangeList_getList",data.data.data.forkRemind);
           //空页面回调
           params.func(true);
             }
@@ -45,12 +45,11 @@ export default {
     if(params.max === -1){
       axios({
         method:"get",
-        url:"/Soulidea-1.0/share/message",
+        url:"/Soulidea-1.0/share/getAllAt",
         data:{
           page:params,
         }}).then((data)=>{
           if(data.data.code === 200) {
-            console.log(data);
             /*  commit("handleAiteChangeMax_setMax",data.data.max);
               commit("handleAiteChangeList_getList",data.data.forklist);*/
             params.func(true);
@@ -63,14 +62,16 @@ export default {
     else if(params.pageNum<params.max){
       axios({
         method:"get",
-        url:"/Soulidea-1.0/share/message",
+        url:"/Soulidea-1.0/share/getAllAt",
         data:{
           page:params,
         }}).then((data)=>{
           if(data.data.code === 200) {
-            console.log(data);
             // commit("handleAiteChangeList_getList",data.data);
             params.func(true);
+          }
+          else if(data.data.code === 201) {
+              params.func(true);
           }
           else{
             params.func(false);

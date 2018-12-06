@@ -62,17 +62,30 @@ import VueCropper from 'vue-cropper';
 import MintUI from 'mint-ui';
 import 'mint-ui/lib/style.css';
 import './css_common/mint-uicolor.css';
-import { Popup } from 'mint-ui';
+import {Popup} from 'mint-ui';
 
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
 //设置observer 处理组件传值
-Vue.prototype.observer  = observer;
-
+Vue.prototype.observer = observer;
 
 
 Vue.component(Popup.name, Popup);
 
+Vue.filter("timeSet", (time) => {
+  if (time instanceof Date) {
+    return time.getFullYear() + "-" + time.getMonth() + "-" + time.getDay();
+  }
+  else {
+    var str = "";
+    for (var i = 0, length = time.length; i < length; i++) {
+      if (time.charAt(i) == "T") {
+        return str;
+      }
+      str += time.charAt(i);
+    }
+  }
+});
 
 
 
@@ -83,6 +96,20 @@ new Vue({
   router,
   store,
   storeCom,
-  components: { App },
+  components: {App},
   template: '<App/>'
 });
+
+Vue.random = {
+  socketArr: [],
+};
+Vue.random.getNumber = function () {
+  var flag = 0;
+  while (flag !== -1) {
+    var num = Math.random() * 1000000;
+    if (this.random.socketArr.indexOf(num) === -1) {
+      this.random.socketArr.push(num);
+      break;
+    }
+  }
+};

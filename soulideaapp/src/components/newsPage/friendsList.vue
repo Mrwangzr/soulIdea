@@ -47,7 +47,8 @@
       }
     },
     props: {
-      item: Object
+      item: Object,
+      index:Number
     },
     methods: {
       /* touchStart(e){
@@ -82,6 +83,7 @@
                 MessageBox.alert("删除成功",{
                   title:" "
                 });
+                this.$emit("ondelete",this.index);
                 }
                 else{
                   MessageBox.alert("删除失败",{
