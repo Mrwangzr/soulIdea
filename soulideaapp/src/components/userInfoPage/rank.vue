@@ -10,15 +10,15 @@
 		<div class="rank-center">
 			<div class="photo"><img src="../../../static/image/feedback/gz_tx.png" /> </div>
 			<div class="nowrank">
-				<li>当前等级：</li>
+				<li>当前等级：{{message.level}}</li>
 				<li></li>
 			</div>
 			<div class="rank-num">
 				<li v-for="(item,index) in rankNum">{{item}}</li>
 			</div>
 			<div id="rank-photo">
-				<li><el-progress :text-inside="true" :stroke-width="22" :percentage="message.level"></el-progress></li>
-				<!-- <li v-for="(item,index) in rankNums"></li> -->
+				<!-- <li><el-progress :text-inside="true" :stroke-width="22" :percentage="message.level"></el-progress></li> -->
+				<li v-for="(item,index) in rankNums" :class="index<message.level-1?'alive':''" ></li>
 			</div>
 			<div class="prompt">
 				<li>等级数据每天早上6点更新</li>
@@ -28,7 +28,8 @@
 		<div class="rank-bottom">
 			<div class="rank-next">
 				<li>距离下一个等级：{{message.exp}} 点经验</li>
-				<li><el-progress type="circle" :percentage="message.exp"></el-progress></li>
+				<li><el-progress type="circle" :percentage="parseInt(10000-message.exp/message.totalexp)/100"></el-progress></li>
+				
 			</div>
 			<div class="rank-suffer">
 				
@@ -134,17 +135,27 @@
 	flex-direction: row;
 	justify-content:space-between;
 	overflow: hidden;
+	background:  #ccc;
 }
 .rank-center #rank-photo li{
 	
-	width:5.8rem ;
-	border-radius: .1rem;
+	width:5.7rem ;
+	margin-right:.05rem;
+	
 	background:  #CBCBCB;
 }
+.rank-center #rank-photo .alive{
+	background:  #F6C45D;
+}
+/* .el-progress .el-progress--circle .el-progress-circle .el-progress-circle__path{
+	stroke: #F6C45D !important;
+	
+} */
+
 .rank-center .prompt{
 	font-size: .22rem;
 	color: #292929;
-	margin-top: .1rem;
+	margin-top: .01rem;
 }
 .rank-center .prompt li{
 	position: absolute;
@@ -174,7 +185,7 @@
 	
 	
 }
-.el-progress-circle__track{
-	background:red;
-}
+/* .rank-bottom .rank-next .el-progress-circle__track .el-progress-circle__path {
+	stroke:red !important;
+} */
 </style>

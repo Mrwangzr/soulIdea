@@ -1,53 +1,75 @@
 <template>
   <transition name="move">
-    <ul>
-      <friendsList-com v-for="item in friends"  :item="item">
+    <div  class="wrapper" ref="wrapper">
+     <ul class="content">
+        <friendsList-com v-for="(item,index) in friends" :index="index" :item="item" @ondelete="handleDeleteFriend">
         </friendsList-com>
-    </ul>
+     </ul>
+    </div>
   </transition>
 </template>
 
 <script>
   import friendsList from "./friendsList";
+  import axios from "axios";
+  import BScroll from "better-scroll";
+
   export default {
     name: "friends-page",
-    components:{
-      "friendsList-com":friendsList
+    components: {
+      "friendsList-com": friendsList
     },
     data() {
       return {
-        friends: [
-          {
-            name: "用户名",
-            message: "最后一条信息",
-            time: "8-30"
-          },
-          {
-            name: "用户名",
-            message: "最后一条信息",
-            time: "8-30"
-          },
-          {
-            name: "用户名",
-            message: "最后一条信息",
-            time: "8-30"
-          }
-        ],
+        friends: [],
       }
+    },
+    methods:{
+      init(){
+        axios({
+          method: "get",
+          url: "Soulidea-1.0/friend/friendlist",
+        }).then(
+          (data) => {
+            this.friends = data.data.data;
+            console.log(data);
+          }
+        )
+      },
+      handleDeleteFriend(index){
+          this.friends.splice(index,1);
+      }
+    },
+    created() {
+      this.init();
+    },
+    activated(){
+      this.init();
+    },
+    mounted(){
+      this.scroll = new BScroll(this.$refs.wrapper,{
+          click:true
+      });
     }
   }
 </script>
 
 <style scoped>
 
-  ul {
+  div{
     padding: 0 .24rem;
     width: 100%;
     position: absolute;
     overflow: hidden;
   }
+  .wrapper{
+    height: 100%;
+  }
+  .content{
+    padding-bottom:3.5rem;
+  }
 
-  ul li {
+  div li {
     width: 200%;
     height: 1.31rem;
     position: relative;
@@ -59,7 +81,7 @@
     left: -105px;
   }
 
-  ul li div:nth-of-type(2) {
+  div li div:nth-of-type(2) {
     width: 100px;
     height: 100%;
     background: #e96262;
@@ -71,13 +93,13 @@
     font-size: 16px;
   }
 
-  ul li div img {
+  div li div img {
     width: .9rem;
     height: .9rem;
     margin-right: .26rem;
   }
 
-  ul li > div:first-of-type {
+  div li > div:first-of-type {
     width: 50%;
     height: 1.31rem;
     border-bottom: 1px solid #dfdfdf;
@@ -87,39 +109,39 @@
     margin-right: 15px;
   }
 
-  ul li:first-of-type > div:first-of-type {
+  div li:first-of-type > div:first-of-type {
     border-top: 1px solid #dfdfdf;
   }
 
-  ul li div > span:first-of-type {
+  div li div > span:first-of-type {
     display: flex;
     align-items: center;
   }
 
-  ul li div > span:first-of-type div {
+  div li div > span:first-of-type div {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 0.8rem;
   }
 
-  ul li div > span:first-of-type div span {
+  div li div > span:first-of-type div span {
     display: flex;
     justify-content: flex-start;
 
   }
 
-  ul li div > span:first-of-type div span:first-of-type {
+  div li div > span:first-of-type div span:first-of-type {
     font-size: 14px;
     color: #292929;
   }
 
-  ul li div > span:first-of-type div span:last-of-type {
+  div li div > span:first-of-type div span:last-of-type {
     font-size: 12px;
     color: #999;
   }
 
-  ul li div > b {
+  div li div > b {
     font-weight: normal;
     align-self: flex-start;
     padding: 0.3rem 0.4rem 0 0;

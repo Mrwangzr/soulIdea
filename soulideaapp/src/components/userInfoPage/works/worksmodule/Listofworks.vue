@@ -3,16 +3,16 @@
 		<div class="content">
 			<div class="production-list" v-for="(item,index) in goodsList">
 				<router-link :to="{name:'beautiful',query:{id:item.id,name:item.name}}">
-					<p class="bigimg"><img :src="item.src"></p>
+					<p class="bigimg"><img :src='"http://"+item.src'></p>
 				</router-link>
 				<div class="production-list-b">
 					<div class="production-list-b-l">
 						<p>{{item.name}}</p>
-						<p>{{item.time}}</p>
+						<p>{{item.time.slice(0,10)}}</p>
 					</div>
-					<el-button type="text" class="production-list-b-r" @click="open2(item.id)">
+					<div type="text" class="production-list-b-r" @click="open2(item.id)">
 						<img src="../../../../../static/sorksimage/production/jiaru.png">
-					</el-button>
+					</div>
 				</div>
 				<div class="production-list-yanjing">
 					<p><img src="../../../../../static/sorksimage/production/yanjing.png"></p>
@@ -27,6 +27,7 @@
 	</div>
 </template>
 
+</mt-actionsheet>
 <script>
 import BScroll from "better-scroll"
 import Vuex from "vuex"
@@ -36,7 +37,7 @@ export default {
     },
     data() {
     	return {
-
+						popupVisible:false
     	}
     },
     computed: {
@@ -51,25 +52,10 @@ export default {
     	...Vuex.mapActions({
     		getworkslist:"getworkslist"
     	}),
-		open2(id) {
-			this.$confirm('是否加入作品集？', '提示', {
-			confirmButtonText: '确定',
-			cancelButtonText: '取消',
-			type: 'warning'
-			}).then((id) => {
-				this.$message({
-					type: 'success',
-					message: '成功加入!',
-
-				});
-
-			}).catch(() => {
-				this.$message({
-					type: 'info',
-					message: '取消加入'
-				});
-			});
-		}
+			open2(id){
+				this.$emit("handleTogle",id)
+			}
+			
     },
 	mounted(){
 		this.scroll = new BScroll(this.$refs.wrapper,{

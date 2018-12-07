@@ -22,5 +22,5 @@ export default [
 		path:'/money',
 		name:'money',
 		component:money,
-	},
+	}
 ]

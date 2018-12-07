@@ -3,18 +3,19 @@
       :style="deleteSlider"
       @touchstart='touchStart'
       @touchmove='touchMove'
+
   >
-    <div>
+    <div  @click="handleToTalk">
           <span>
-            <img src="/static/image/newsPage/messagePage/logo.png" alt="">
-            <div>
-              <span>{{item.name}}</span>
-              <span>{{item.message}}</span>
+            <img :src="item.head" alt="">
+            <div class="message">
+              <p class="spanLine">{{item.name}}</p>
+              <p class="spanLine">{{item.sign}}</p>
             </div>
           </span>
-      <b>
+     <!-- <b>
         {{item.time}}
-      </b>
+      </b>-->
     </div>
     <div @click="handleDelete">删除</div>
   </li>
@@ -46,7 +47,8 @@
       }
     },
     props: {
-      item: Object
+      item: Object,
+      index:Number
     },
     methods: {
       /* touchStart(e){
@@ -65,30 +67,35 @@
            this.slideDelClass = "slideDel";
          }
        },*/
+      //处理删除按钮
       handleDelete() {
         MessageBox.confirm("确认删除好友吗",{
           title: '  ',
-          message: '确定执行此操作?',
           showCancelButton: true
         }).then(
           action => {
             axios({
-              method: "post",
-              url: "/Soulidea/friend/deletefriend",
-              headers: {
-                'Content-type': 'application/x-www-form-urlencoded'
-              },
-              data: {
-                id: id
-              }
+              method: "get",
+              url: "/Soulidea-1.0/friend/deletefriend?id="+this.item.id,
             }).then(
               (data) => {
-                console.log(data);
+                if(data.data.code === 200){
+                MessageBox.alert("删除成功",{
+                  title:" "
+                });
+                this.$emit("ondelete",this.index);
+                }
+                else{
+                  MessageBox.alert("删除失败",{
+                    title:" "
+                  })
+                }
               }
             ).catch(()=>{});
           }
         ).catch(()=>{});
       },
+      //处理触摸滑动
       touchStart(ev) {
         ev = ev || event;
         //tounches类数组，等于1时表示此时有只有一只手指在触摸屏幕
@@ -145,11 +152,31 @@
             this.deleteSlider = "transform:translateX(-" + wdRem + "rem)";
           }
         }
+      },
+      //处理点击进入聊天
+      handleToTalk(){
+       this.$router.push({
+          path:"/talkpage",
+          query:{
+            id:this.item.id,
+            friendName:this.item.name
+          }
+        });
       }
     }
   }
 </script>
+
 <style scoped>
+
+  .spanLine{
+    width:5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+
+  }
 
 
   li {
@@ -180,6 +207,8 @@
     width: .9rem;
     height: .9rem;
     margin-right: .26rem;
+    border-radius: 100%;
+
   }
 
   li > div:first-of-type {
@@ -214,12 +243,12 @@
 
   }
 
-  li div > span:first-of-type div span:first-of-type {
+  li div > span:first-of-type div p:first-of-type {
     font-size: 14px;
     color: #292929;
   }
 
-  li div > span:first-of-type div span:last-of-type {
+  li div > span:first-of-type div p:last-of-type {
     font-size: 12px;
     color: #999;
   }

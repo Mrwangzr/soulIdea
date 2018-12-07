@@ -28,41 +28,34 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
     data(){
         return{
             
         }
+    },
+    created(){
+        // this.getHomeMessage();
+
+    },
+    methods:{
+        // getHomeMessage(){
+        //     axios({
+        //         method:"get",
+        //         url:"Soulidea-1.0/showreel/getshowreel?id=2&orderby=0"
+
+        //         }).then((data)=>{
+        //             // this.arr = data.data;
+        //             console.log(data);
+        //         })
+        //      }
     }
 
 }
 </script>
 
 <style scoped>
-/*
- <div class="head">
-            <div class="headImg">
-                <img src="../../../../static/otherHomeImg/head.png" alt="">
-            </div>
-            <p><i></i> LV:10</p>
-            <p>账号：wang123456789</p>
-            <div class="bottom">
-                <li>
-                    <i>32650</i>
-                    <em>粉丝数</em>
-                </li>
-                <li>
-                     <i>8520</i>
-                    <em>关注</em>
-                </li>
-                <li>
-                     <i>750</i>
-                    <em>点赞数</em>
-                </li>
-            </div>
-
-        </div>
-*/
 /*头像*/
 *{
     font-family: "PingFangSC-Medium";

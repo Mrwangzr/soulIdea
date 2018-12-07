@@ -31,6 +31,9 @@
 </template>
 
 <script>
+	import { MessageBox } from 'mint-ui';
+	import { Toast } from 'mint-ui';
+	import axios from "axios"
 	import Vuex from "vuex"
 	export default {
 		data() {
@@ -40,12 +43,10 @@
 				name:"",
 				introduce:"",
 				tags:"摄影",
+				page:false
 			};
 		},
 		methods: {
-			...Vuex.mapActions({
-				ReleasePortfolio:"ReleasePortfolio"
-			}),
 			back(){
 				this.$router.back()
 			},
@@ -58,20 +59,53 @@
 				obj.name = this.name;
 				obj.introduce = this.introduce;
 				obj.tags = this.tags
-				this.ReleasePortfolio(obj)
+				if(obj.name == "" || obj.introduce == "" || obj.tags == ""){
+					Toast({
+					message: '输入有误',
+					position: 'middle',
+					duration: 1000
+					});
+				}else{
+					MessageBox({
+					  message: '确定新建?',
+					}).then(action => {
+	          		if(action == 'confirm'){
+			            this.ReleasePortfolio(obj)
+									}
+								setTimeout(()=>{
+									this.$router.push("/WorksCollection")
+								},500)
+			      });
+				}
+				
+
+			},
+			
+			ReleasePortfolio(obj){
+				axios({
+					method:"get",
+					url:"Soulidea-1.0/showreel/publishshowreel?name="+obj.name+"&introduce="+obj.introduce+"&tags="+obj.tags
+				}).then((data)=>{
+					if(data.data.message == "SUCCESS"){
+							Toast({
+								message: '新建成功',
+								position: 'middle',
+								duration: 1000
+								});
+						}
+					})
 			}
-		},
+		}
 	}
 </script>
 
 <style scoped>
-.newConstruction{
-	padding-top: .4rem;
-}
+
 .header{
+	padding-top: .4rem;
 	background: #fff;
 	width: 100%;
-	height:0.88rem;
+	height:1.28rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -88,7 +122,7 @@
 	height: 0.41rem;
 	position: absolute;
 	left: 0.34rem;
-	top: 0.24rem;
+	top: 0.64rem;
 }
 .newlyName{
 	width: 100%;

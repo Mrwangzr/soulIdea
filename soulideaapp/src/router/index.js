@@ -8,6 +8,9 @@ import routerLi from "./router-Libo";
 import othersInfoModule from "./othersInfoModule";
 import works from "./works";
 import contentCommentRouter from "./contentCommentRouter.js"
+import welcome from "../components/welcome";
+
+
 
 Vue.use(Router);
 
@@ -15,8 +18,16 @@ export default new Router({
   routes: [
     {
       //重定向
-      path:"/",
-      redirect:"/login"
+      path: "/",
+      redirect: "/welcome"
+    },
+    {
+      //首屏
+      path:'/welcome',
+      component:welcome,
+      meta:{
+        keepAlive:false
+      }
     },
     {
       //首页的跳转路由

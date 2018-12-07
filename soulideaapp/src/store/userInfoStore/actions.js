@@ -27,9 +27,10 @@ export default{
 			obj.fans=data.data.data.fans;
 			obj.great=data.data.data.great;
 			obj.head=data.data.data.head;
-			obj.leave=data.data.data.leave;
+			obj.level=data.data.data.level;
 			obj.gender=data.data.data.gender;
 			obj.exp=data.data.data.exp;
+			obj.totalexp=data.data.data.totalexp;
 			console.log(obj);
 			commit("handleGetMessage",obj);
 		})

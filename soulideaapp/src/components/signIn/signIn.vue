@@ -4,20 +4,20 @@
        <div class="top"></div>
        <div class="signInName">
            <i class="iconfont icon-right" @click="handleBack()"></i>
-           <p>签到</p>
+           <p @click="hangleSignIn()">签到</p>
        </div>
        <!-- 签到 -->
        <div class="signInCon">
+         <div class="signStar">
+           <!-- <i :class="sign1==index?el-icon-star-on:el-icon-star-off"></i>
+           <i :class="sign2==index?el-icon-star-on:el-icon-star-off"></i>
+           <i :class="sign3==index?el-icon-star-on:el-icon-star-off"></i>
+           <i :class="sign4==index?el-icon-star-on:el-icon-star-off"></i>
+           <i :class="sign5==index?el-icon-star-on:el-icon-star-off"></i>
+           <i :class="sign6==index?el-icon-star-on:el-icon-star-off"></i>
+           <i :class="sign7==index?el-icon-star-on:el-icon-star-off"></i> -->
 
-           <el-steps :active="activeA" finish-status="success">
-                <el-step title="1天"></el-step>
-                <el-step title="2天"></el-step>
-                <el-step title="3天"></el-step>
-                <el-step title="4天"></el-step>
-                <el-step title="5天"></el-step>
-                <el-step title="6天"></el-step>
-                <el-step title="7天"></el-step>
-            </el-steps>
+         </div>
             <el-button  class="signConOne" @click="handleClick()">签到</el-button>
            
        </div>
@@ -51,21 +51,19 @@ import axios from "axios";
 export default {
   data() {
     return {
-      // 签到后激活相应的圈
-         activeA: 0
+      sign7:0,
+      sign1:1,
+      sign2:2,
+      sign3:3,
+      sign4:4,
+      sign5:5,
+      sign6:6,
+      index:0
+
+      
     };
   },
   created() {
-    //         axios({
-    //             method:"get",//请求方式
-    //             url:"",//请求接口
-    //             data:{
-    //                 id:""//传送的值
-    //             },
-    //             responseType:"json"//请求数据返回的数据类型
-    //         }).then((data)=>{
-    // //成功的回调
-    //         })
   },
   computed: {
     ...Vuex.mapState({
@@ -77,13 +75,25 @@ export default {
     handleBack() {
       this.$router.back();
     },
-    handleClick() {
-      this.activeA = 6;
-        // if (this.active++ > 6){
-        //     this.active = 0;
-
-        // } 
-      }
+      //点击签到，向后端请求
+    signIn() {
+      axios({
+        method: "get",
+        url: "Soulidea-1.0/user/signin"
+      }).then((data) => {
+       console.log(data)
+      });
+    },
+    //点击签到，调用方法
+    handleClick(){
+      this.signIn();
+      var data = new Date();
+      var week = data.getDay();
+      var month = data.getMonth();
+      console.log(data);
+      console.log(week);
+      console.log(month);
+    }
   }
 };
 </script>
@@ -129,25 +139,21 @@ export default {
   background-size: 100%,4rem;
   margin-bottom: 10px;
   padding-top: 80px;
+  
 }
-#signIn > .signInCon>.signConOne{
-    margin: 10px 0 0 150px;
-}
- #signIn > .signInCon .el-step__icon-inner{
-   display: none;
- }
- /* 签到后的样式 */
-  #signIn > .signInCon .el-step__head.is-success{
-    color:red;
-        border-color:red;
+.signInCon .signStar{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  font-size: 20px;
   }
-  #signIn > .signInCon .el-step__title.is-success{
+  .el-icon-star-on{
     color: red;
   }
-  /* 签到前的样式 */
-  #signIn > .signInCon .el-step__head.is-process{
-    color: #ccc;
-  }
+.el-button{
+  margin-top: 20px;
+}
+ 
 
 /**/
 #signIn > .signInVal {

@@ -27,9 +27,11 @@
       },
       
       {
-        path:'/otherUserThree',
+        path:'/otherUserThree/:id',
         name:"otherUserThree",
-        component:otherUserThree
+        component:otherUserThree,
+        props:true
+
       },
       {
         path:'/otherUserFour',

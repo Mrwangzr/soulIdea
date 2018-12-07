@@ -15,37 +15,88 @@
 
 		<!-- 作品列表 -->
 		<ListWorks-com @handleTogle="getShow"></ListWorks-com>
+		<mt-popup
+			mt-popup v-model="popupVisible" 
+			popup-transition="popup-fade" 
+			closeOnClickModal="true" 
+			position="bottom"
+			>
+			<div class="MyListnamelist">
+				<h3>选择您的作品集</h3>
+				<ul v-for="(item) in MyListname">
+					<li @click="handlejiaru(item.id)">{{item.name}}</li>
+				</ul>
+			</div>
+		</mt-popup>
 
-		<mark-com @handleMark="getVal" v-show="show"></mark-com>
 	</div>
 </template>
 
 <script>
 
-import ListWorks from "./worksmodule/Listofworks.vue"
-import Mark from "./worksmodule/mark.vue"
+const ListWorks = ()=> import("./worksmodule/Listofworks.vue")
+import { Toast } from 'mint-ui';
+import axios from "axios"
+import Vuex from "vuex"
 export default {
 	data(){
 		return{
-			show:false
-
+			popupVisible:false,
+			MyList:-1
 		}
 	},
+	created(){
+		this.getWorksMyList()
+	},
 	components:{
-		"ListWorks-com":ListWorks,
-		"mark-com":Mark
+		"ListWorks-com":ListWorks
+	},
+	computed:{
+		...Vuex.mapState({
+			MyListname:state=>state.production.getWorksMyList
+		})
 	},
 	methods: {
+		...Vuex.mapActions({
+			getWorksMyList:"getWorksMyList",
+		}),
 		back(){
-			this.$router.back()
+			this.$router.push("/firstLevelPage")
 		},
-		getVal(val){
-			this.show = val
+		getShow(id){
+			this.popupVisible = !this.popupVisible;
+			this.MyList = id
 		},
-		getShow(){
-			this.show = !this.show;
+		handlejiaru(id){
+			setTimeout(()=>{
+				this.popupVisible = !this.popupVisible
+				let obj = {}
+				obj.id=id
+				obj.pid=this.MyList
+				this.addtoshowreel(obj)
+			},500)
 		},
-
+		addtoshowreel(obj){
+			axios({
+				method:"get",
+				url:"Soulidea-1.0/product/addtoshowreel?id="+obj.id+"&pid="+obj.pid
+			}).then((data)=>{
+				console.log(data)
+				if(data.data.message == "SUCCESS"){
+					Toast({
+						message: '已成功加入',
+						position: 'middle',
+						duration: 1000
+					});
+				}else{
+					Toast({
+						message: '加入错误',
+						position: 'middle',
+						duration: 1000
+					});
+				}
+			})
+		}
 	},
 }
 </script>
@@ -54,13 +105,12 @@ export default {
 .production{
 	height: 100%;
 }
-.production{
-	padding-top: .4rem;
-}
+
 .header{
+	padding-top: .4rem;
 	background: #fff;
 	width: 100%;
-	height:0.88rem;
+	height:1.28rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -77,7 +127,7 @@ export default {
 	height: 0.41rem;
 	position: absolute;
 	left: 0.34rem;
-	top: 0.24rem;
+	top: 0.64rem;
 }
 .production-nav{
 	width: 100%;
@@ -100,7 +150,25 @@ export default {
 	width: 0.16rem;
 	height: 0.32rem;
 }
-
-
-
+.mint-popup {
+	width: 100%;
+	border-radius: 3px;
+}
+.mint-popup ul li{
+	text-align: center;
+	line-height: .8rem;
+	height: .8rem;
+	font-size: .32rem;
+	margin-bottom: .3rem;
+}
+.MyListnamelist h3{
+	font-size: .34rem;
+	margin-bottom: .5rem;
+}
+</style>
+<style>
+	.v-modal{
+		background: #000;
+		width: 100%;
+	}
 </style>

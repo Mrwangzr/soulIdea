@@ -12,9 +12,12 @@
 					@click = 'handlerToggle(index)'
 				>{{item}}</li>
 			</div>
-			<keep-alive>
+
+				<keep-alive>
 			<component :is="comNames" v-on:byVal="getVal"></component> 
-			</keep-alive> 
+				</keep-alive>
+
+			 
 			<div class="cont-bottom">
 				<div class="line"></div>
 				<p>支付方式</p>
@@ -24,12 +27,17 @@
 						<div class="circle" v-show="show"></div>
 					</div>
 				</div>
+				
+				
+				
 				<div 
-					class="pay-go" :class="show == true? 'pay-sure':''"
+					 class="pay-go" :class="show == true? 'pay-sure':''"
 					@click="handlePay()"
 				>确认充值</div>
+				
 			</div>
 		</div>
+
 	</div>
 </template>
 
@@ -44,8 +52,10 @@
 				active : 0,
 				comNames:"payMoney-com",
 				show:"",
-				money:"",
-				body:"there is a fool will be charge money !!!"
+				money:"1",
+				body:"jinbi",
+				orderId:"zzzzzz_17864308316",
+				url:"http://localhost:8080/getweixinback"
 			}
 		},
 		methods:{
@@ -69,18 +79,23 @@
 		   handlePay(){
 			   if(this.show){
 				  console.log("可以支付了")
-				   // window.location.href = "mhttp://ceshi.chenjunbo.xin/payment/weixinpay";
+				   // window.location.href = 'http://ceshi.chenjunbo.xin/payment/weixinpay?body="jinbi"&orderId="zzzzzz_17864308316"&url="http://localhost:8080/getweixinback"';
 					axios({
+						
 						method:"post",
-						url:"mhttp://ceshi.chenjunbo.xin/payment/weixinpay",
-						data:{
-							price:this.money,
-							body:this.body,
-						}
+						headers:{
+							'Content-type':'application/x-www-form-urlencoded'
+						},
+						url:"http://ceshi.chenjunbo.xin/payment/weixinpay?orderId="+this.orderId+"&price="+this.money+"&url="+this.url,
+// 						data:{
+// 							orderId:this.orderId,
+// 							price:this.money,
+// 							body:this.body,
+// 						}
 					}).then((data)=>{
 						console.log(data);
 					})
-			   }
+			   } 
 		   },
 		   handlerBack(){
 			   this.$router.back();

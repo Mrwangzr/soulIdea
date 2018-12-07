@@ -15,13 +15,14 @@
 										:on-success="handleAvatarSuccess"
 										:before-upload="beforeAvatarUpload">
 										<img v-if="imageUrl" :src="imageUrl" class="avatar">
+										<!-- <i v-else class="el-icon-plus avatar-uploader-icon"></i> -->
 										<i v-else class="el-icon-plus avatar-uploader-icon"></i>
 									</el-upload>
 							</div>
 							<div class="nickname">
 									<li>{{message.name}}</li>
 									
-										<li><router-link to="/rank">v.{{message.gender}}</router-link></li>
+										<li><router-link to="/rank">v.{{message.level}}</router-link></li>
 									
 							</div>
 							<li class="center-sign">{{message.sign}}</li>
@@ -45,7 +46,7 @@
 							</div>
 							
 				</div>
-				<router-link to="/home">
+				<router-link to="money">
 					<ul class="ul-pay">
 						<li>点点钱包</li>
 						<li class="iconfont icon-arrow-right"></li>
@@ -140,16 +141,18 @@ export default {
 	}
 
 	.box-center .photo {
-		background: #ccc;
+		/* background: #ccc; */
 		height: 1.2rem;
 		width: 1.2rem;
 		border-radius: .7rem;
 		padding-bottom: .1rem;
+		background: url(../../../static/image/feedback/gz_tx.png) no-repeat center;
 	}
 .box-center .photo img{
 	  height: 100%;
 		width:100%;
 		border-radius: .7rem;
+		
 }
 	.box-center .nickname {
 		display: flex;
@@ -226,6 +229,7 @@ export default {
 		width: 1.2rem;
 		border-radius: .7rem;
 		padding-bottom: .1rem;
+		
  }
 	.avatar-uploader .el-upload  .avatar{
 		width:100%;
@@ -235,12 +239,13 @@ export default {
   }
   .avatar-uploader-icon {
     font-size: 28px;
-    color: #8c939d;
+    color: #ccc;
    /* width: 178px;
     height: 178px;
     line-height: 178px; */
 		line-height: 1.2rem;
     text-align: center;
+		opacity: 0;
   }
   /* .avatar {
     width: 178px;

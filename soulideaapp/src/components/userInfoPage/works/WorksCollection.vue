@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Tagboard from "./worksmodule/tagboard.vue"
+import Tagboard from "./worksmodule/tagboard.vue" 
 import Vuex from "vuex"
 export default {
 		data() {
@@ -39,17 +39,17 @@ export default {
 .mylist{
 	height: 100%;
 }
-.WorksCollection{
-	padding-top: .4rem;	
-	}
+
 .worksHeader{
+	
 	background: #fff;
 	width: 100%;
-	height:0.88rem;
+	height:1.28rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding:0 .25rem 0 .34rem;
+	padding-top: .4rem;
 	margin-bottom: .24rem;
 }
 .worksHeader p:nth-child(2){

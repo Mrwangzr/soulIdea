@@ -1,14 +1,26 @@
 <template>
   <div>
     <i class="iconfont icon-yuyin"></i>
-    <input type="text">
-    <a href="##">发送</a>
+    <input type="text" v-model="inputValue">
+    <a href="javascript:;" @click="handleSend">发送</a>
   </div>
 </template>
 
 <script>
   export default {
-    name: "talk-input"
+    name: "talk-input",
+    data(){
+      return {
+        inputValue:""
+      }
+    },
+    methods:{
+      handleSend(){
+        this.$emit("oninputsend",this.inputValue);
+        this.inputValue = "";
+      }
+    }
+
   }
 </script>
 
